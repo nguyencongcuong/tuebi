@@ -1,0 +1,108 @@
+<!-- <div> -->
+<!-- 	<p-splitter -->
+<!-- 		[panelSizes]="[10, 90]" -->
+<!-- 		[style]="{'border-radius': '5px', 'overflow': 'hidden', 'height': '80vh'}" -->
+<!-- 		class="bg-gray-100" -->
+<!-- 		layout="horizontal" -->
+<!-- 	> -->
+<!-- 		<ng-template pTemplate> -->
+<!-- 			<div class="bg-white w-full block" [ngStyle]="{'height': '80vh', 'overflow': 'auto'}"> -->
+
+<!-- 				<div class="bg-neutral-50 p-6"> -->
+
+<!-- 					&lt;!&ndash;Categories List&ndash;&gt; -->
+<!-- 					<div class="flex flex-col gap-3"> -->
+<!-- 						<app-category -->
+<!-- 							(click)="filterBookmarks('All')" -->
+<!-- 							[bookmarks$]="bookmarks$" -->
+<!-- 							[isAll]="true"> -->
+<!-- 						</app-category> -->
+
+<!-- 						<app-category -->
+<!-- 							(click)="filterBookmarks('Uncategorized')" -->
+<!-- 							[bookmarks$]="bookmarks$" -->
+<!-- 							[isUncategorized]="true"> -->
+<!-- 						</app-category> -->
+
+<!-- 						<app-category -->
+<!-- 							(click)="filterBookmarks('Trash')" -->
+<!-- 							[bookmarks$]="bookmarks$" -->
+<!-- 							[isTrash]="true"> -->
+<!-- 						</app-category> -->
+<!-- 					</div> -->
+
+<!-- 					<nz-divider></nz-divider> -->
+
+<!-- 					<div -->
+<!-- 						(cdkDropListDropped)="dropCategory($event)" -->
+<!-- 						cdkDropList -->
+<!-- 						cdkDropListOrientation="vertical" -->
+<!-- 						class="flex flex-col gap-3" -->
+<!-- 					> -->
+<!-- 						<app-category -->
+<!-- 							(click)="filterBookmarks('Categorized', category)" -->
+<!-- 							*ngFor="let category of category-list$ | async" -->
+<!-- 							[bookmarks$]="bookmarks$" -->
+<!-- 							[category]="category" -->
+<!-- 							cdkDrag></app-category> -->
+<!-- 					</div> -->
+
+<!-- 				</div> -->
+
+<!-- 			</div> -->
+<!-- 		</ng-template> -->
+<!-- 		<ng-template pTemplate> -->
+<!-- 			<div class="bg-white w-full overflow-auto p-6" [ngStyle]="{'height': '80vh'}"> -->
+
+<!-- 				&lt;!&ndash;Search and Menu&ndash;&gt; -->
+<!-- 				<div class="flex items-center gap-2 mb-6"> -->
+
+<!-- 					<form> -->
+<!-- 						<nz-form-item nzAlign="middle" nzJustify="center" nzGutter="0" [ngStyle]="{'margin': '0'}"> -->
+<!-- 							<nz-input-group nzPrefixIcon="search"> -->
+<!-- 								<input nz-input nzSize="small" placeholder="Search bookmarks"/> -->
+<!-- 							</nz-input-group> -->
+<!-- 						</nz-form-item> -->
+<!-- 					</form> -->
+
+<!-- 					<app-form-add-category></app-form-add-category> -->
+
+<!-- 					<app-form-add-bookmark></app-form-add-bookmark> -->
+
+<!-- 					<div -->
+<!-- 						(click)="openDrawer()" -->
+<!-- 						nz-icon -->
+<!-- 						nzType="setting" -->
+<!-- 						nzTheme="outline" -->
+<!-- 						title="Settings" -->
+<!-- 					></div> -->
+<!-- 				</div> -->
+
+<!-- 				&lt;!&ndash;Settings Drawer&ndash;&gt; -->
+<!-- 				<nz-drawer -->
+<!-- 					(nzOnClose)="closeDrawer()" -->
+<!-- 					[nzClosable]="true" -->
+<!-- 					[nzVisible]="isDrawerVisible" -->
+<!-- 					nzPlacement="right" -->
+<!-- 					nzTitle="User Settings" -->
+<!-- 				> -->
+<!-- 					<ng-container *nzDrawerContent> -->
+<!-- 						<app-settings></app-settings> -->
+<!-- 					</ng-container> -->
+<!-- 				</nz-drawer> -->
+
+<!-- 				&lt;!&ndash;Bookmark List&ndash;&gt; -->
+<!-- 				<div (cdkDropListDropped)="dropBookmark($event)" cdkDropList class="flex flex-col gap-4"> -->
+<!-- 					<app-bookmark -->
+<!-- 						*ngFor="let bookmark of filteredBookmarks$ | async" -->
+<!-- 						[bookmark]="bookmark" -->
+<!-- 						[isCategorized]="isCategorized" -->
+<!-- 						cdkDrag></app-bookmark> -->
+<!-- 				</div> -->
+
+<!-- 			</div> -->
+<!-- 		</ng-template> -->
+<!-- 	</p-splitter> -->
+<!-- </div> -->
+
+<div class="">Hello Bookmark list</div>

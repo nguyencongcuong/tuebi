@@ -1,0 +1,13 @@
+.avatar {
+  width: 120px;
+  height: 120px;
+  animation: radius 3s ease-in-out infinite;
+  border: 8px solid rgba(243, 243, 243, 0.69);
+  border-radius: 48% 43% 45% 46%;
+}
+
+@keyframes radius {
+  50% {
+    border-radius: 45% 40% 48% 48%;
+  }
+}

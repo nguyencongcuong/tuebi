@@ -1,0 +1,102 @@
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ActivatedRoute, ParamMap, Route, Router } from '@angular/router';
+import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzSelectModule } from 'ng-zorro-antd/select';
+import { firstValueFrom, map, Observable } from 'rxjs';
+import { Category } from 'src/app/modules/categories/categories.model';
+import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
+import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
+import { NgIconModule } from 'src/app/ng-icon.module';
+
+@Component({
+	standalone: true,
+	selector: 'app-form-add-bookmark',
+	imports: [
+		CommonModule,
+		FormsModule,
+		ReactiveFormsModule,
+		NzModalModule,
+		NzFormModule,
+		NzInputModule,
+		NzSelectModule,
+		NgIconModule
+	],
+	templateUrl: './form-add-bookmark.html',
+	styleUrls: ['./form-add-bookmark.scss']
+})
+export class FormAddBookmark implements OnInit {
+	categories$ = new Observable<Category[]>();
+	
+	form: FormGroup;
+	
+	selectedCategoryId = '';
+	selectedCategoryName = '';
+	
+	isVisible = false;
+	
+	constructor(
+		private fb: FormBuilder,
+		private route: ActivatedRoute,
+		private bookmarkEntityService: BookmarksEntityService,
+		private categoryEntityService: CategoriesEntityService
+	) {
+		this.categories$ = this.categoryEntityService.entities$;
+		
+		this.form = this.fb.group({
+			bookmark_name: ['', [Validators.required]],
+			bookmark_url: ['', [Validators.required]],
+			category_id: ['']
+		});
+	}
+	
+	public async ngOnInit() {
+		const categories = await firstValueFrom(this.categories$);
+		
+		this.route.paramMap.pipe(
+			map((params: ParamMap) => params.get('id') || ''),
+			map((id: string) => categories.find((category) => category.id === id)),
+			map((category) => {
+				if(category) {
+					this.selectedCategoryId = category.id;
+					this.selectedCategoryName = category.category_name;
+				}
+			})
+		).subscribe();
+	}
+	
+	get name() {
+		return this.form.controls['bookmark_name'];
+	}
+	
+	get url() {
+		return this.form.controls['bookmark_url'];
+	}
+	
+	submit() {
+		this.form.patchValue({
+			bookmark_name: this.name.value.trim(),
+			bookmark_url: this.url.value.trim()
+		});
+		
+		if (this.form.valid) {
+			this.bookmarkEntityService.add(this.form.value);
+			this.closeModal();
+		}
+		
+	}
+	
+	closeModal() {
+		this.isVisible = false;
+	}
+	
+	openModal() {
+		this.form.reset();
+		this.form.markAsUntouched();
+		this.form.markAsPristine();
+		this.isVisible = true;
+	}
+}

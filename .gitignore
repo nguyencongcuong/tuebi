@@ -1,0 +1,9 @@
+.idea/
+tuebi-api/node_modules
+tuebi-api/dist
+tuebi-api/coverage
+tuebi-api/.idea
+tuebi-ui/node_modules
+tuebi-ui/dist
+tuebi-ui/.angular
+tuebi-ui/.idea

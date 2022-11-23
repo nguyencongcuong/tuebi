@@ -1,0 +1,59 @@
+<div
+	(click)="openModal()"
+	class="flex items-center gap-2"
+>
+	<span nz-icon nzTheme="outline" nzType="edit"></span>
+	<span>Edit</span>
+</div>
+
+<nz-modal
+	(nzOnCancel)="closeModal()"
+	(nzOnOk)="submit()"
+	[(nzVisible)]="isVisible"
+	nzTitle="Edit bookmark: {{bookmark.bookmark_name}}"
+>
+	<ng-container *nzModalContent>
+		<form (ngSubmit)="submit()" [formGroup]="form" nz-form>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please input your bookmark name!">
+					<nz-input-group nzPrefixIcon="book">
+						<input
+							formControlName="bookmark_name"
+							nz-input
+							placeholder="Bookmark name"
+							type="text"
+						/>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please input your bookmark url!">
+					<nz-input-group nzPrefixIcon="link">
+						<input
+							formControlName="bookmark_url"
+							nz-input
+							placeholder="Bookmark url"
+							type="text"
+						/>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please input your bookmark category!">
+					<nz-input-group nzPrefixIcon="unordered-list">
+						<nz-select formControlName="category_id" nzBorderless>
+							<nz-option
+								*ngFor="let category of categories$ | async"
+								[nzLabel]="category.category_name"
+								[nzValue]="category.id"
+							>
+							</nz-option>
+						</nz-select>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+	</ng-container>
+</nz-modal>

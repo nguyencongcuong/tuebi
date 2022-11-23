@@ -1,0 +1,43 @@
+<div class="grid grid-cols-12 w-full w-full">
+	<div class="col-span-3 w-full h-full bg-white">
+		<div class="flex flex-col gap-4 p-4 h-screen overflow-auto">
+
+			<div
+				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
+				[routerLink]="['/space/settings/general']"
+			>
+				<ng-icon name="oct-person"></ng-icon>
+				<div>General</div>
+			</div>
+
+			<div
+				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
+				[routerLink]="['/space/settings/appearance']"
+			>
+				<ng-icon name="oct-eye"></ng-icon>
+				<div>Appearance</div>
+			</div>
+
+			<div
+				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
+				[routerLink]="['/space/settings/import-export']"
+			>
+				<ng-icon name="oct-database"></ng-icon>
+				<div>Import/Export</div>
+			</div>
+
+			<div
+				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
+				[routerLink]="['/space/settings/about']"
+			>
+				<ng-icon name="oct-info"></ng-icon>
+				<div>About Tuebi</div>
+			</div>
+
+
+		</div>
+	</div>
+	<div class="col-span-9 w-full h-full" [ngStyle]="{background: theme.color.primary.light}">
+		<router-outlet></router-outlet>
+	</div>
+</div>

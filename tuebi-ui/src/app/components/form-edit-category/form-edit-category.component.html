@@ -1,0 +1,51 @@
+<span
+	(click)="openModal()"
+	class="flex items-center gap-2"
+>
+	<span nz-icon nzTheme="outline" nzType="edit"></span>
+	<span>Edit</span>
+</span>
+
+<nz-modal
+	(nzOnCancel)="closeModal()"
+	(nzOnOk)="submit()"
+	[(nzVisible)]="isVisible"
+	nzTitle="Edit category: {{category.category_name}}"
+>
+	<ng-container *nzModalContent>
+		<form (ngSubmit)="submit()" [formGroup]="form" nz-form>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please input your category name!">
+					<nz-input-group nzPrefixIcon="tag">
+						<input
+							formControlName="category_name"
+							nz-input
+							placeholder="Category name"
+							type="text"
+						/>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control>
+					<nz-input-group nzPrefixIcon="bg-colors">
+						<nz-tag [nzColor]="theme" class="tag">{{name}}</nz-tag>
+					</nz-input-group>
+
+					<div class="flex flex-wrap gap-2 mt-2">
+						<nz-tag
+							(nzCheckedChange)="changeColor(theme)"
+							*ngFor="let theme of themes"
+							[nzColor]="theme[1]"
+							class="tag"
+							nzMode="checkable"
+						>
+							{{theme[0].toLowerCase()}}
+						</nz-tag>
+					</div>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+	</ng-container>
+</nz-modal>

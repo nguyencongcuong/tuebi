@@ -1,0 +1,144 @@
+<div *ngIf="!(isLoggedIn$ | async)" [ngStyle]="{'background': theme.color.primary.light}"
+     class="flex flex-col gap-6 p-6">
+
+	<!-- Header -->
+	<div *ngIf="!(isLoggedIn$ | async)" class="flex justify-between gap-4">
+		<app-logo></app-logo>
+		<div class="hidden lg:flex lg:flex-wrap lg:justify-center lg:items-center lg:gap-4 lg:p-4">
+			<a
+				*ngFor="let item of routeList"
+				[routerLink]="['/', item.routerLink]"
+				[routerLinkActive]="['bg-neutral-300']"
+				class="text-gray-800 font-bold hover:text-gray-800 uppercase">
+				{{item.name}}
+			</a>
+		</div>
+
+		<div class="flex flex-col items-end gap-4 lg:hidden">
+			<ng-icon name="oct-grabber" size="40" (click)="toggleNav(isShown)" class="cursor-pointer"></ng-icon>
+			<div [ngClass]="isShown ? 'animation--in' : 'hidden'">
+				<div class="flex flex-col items-end gap-2 text-end">
+					<a
+						*ngFor="let item of routeList"
+						[routerLink]="item.routerLink"
+						[routerLinkActive]="['bg-neutral-300']"
+						[routerLinkActiveOptions]="{ exact: true }"
+						[ariaCurrentWhenActive]="true"
+						class="text-gray-800 font-bold hover:text-gray-800 uppercase block">
+						{{item.name}}
+					</a>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+	<router-outlet></router-outlet>
+
+	<!-- Title and Description -->
+	<div
+		*ngIf="currentUrl === '/'"
+		class="flex flex-wrap flex-col justify-center items-center gap-2 rounded-xl p-6 min-h-screen"
+		[ngStyle]="{background: theme.color.primary.main}">
+		<h1 class="text-2xl lg:text-4xl font-bold mb-6">{{title}}</h1>
+		<p class="lg:text-xl font-light">{{desc_1}}</p>
+		<p class="lg:text-xl font-semibold">{{desc_2}}</p>
+		<div class="flex justify-center items-center gap-4 mt-6">
+			<a [routerLink]="[ROUTE.SIGNUP]">
+				<button
+					[ngStyle]="{background: theme.color.primary.dark}"
+					class="rounded px-4 py-2 lg:px-6 lg:py-4 lg:text-xl text-white"
+				>
+					<strong>Join</strong> tuebi.io
+				</button>
+			</a>
+			<a [routerLink]="[ROUTE.ABOUT]">
+				<button
+					[ngStyle]="{background: theme.color.accent.dark}"
+					class="rounded px-4 py-2 lg:px-6 lg:py-4 lg:text-xl text-white"
+				>
+					<strong>Learn</strong> more
+				</button>
+			</a>
+		</div>
+	</div>
+
+	<!-- Features -->
+	<div
+		*ngIf="currentUrl === '/'"
+		class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+		<div class="col-span-1 bg-white rounded-xl p-6" *ngFor="let item of features">
+			<!-- Item -->
+			<div class="flex flex-col gap-4">
+				<img [src]="item.imageSrc" [alt]="item.title" class="w-3/4">
+				<div class="flex justify-between items-center mb-6">
+					<div class="font-bold text-xl lg:text-2xl">{{item.title}}</div>
+					<ng-icon [name]="item.icon" size="30"></ng-icon>
+				</div>
+				<p class="lg:text-xl">{{item.desc}}</p>
+			</div>
+		</div>
+		<div class="col-span-1 lg:col-span-3 gap-4">
+			<div class="flex flex-col bg-white rounded-xl p-10">
+				<div class="font-bold text-xl lg:text-2xl mb-10">All Features at Glance</div>
+				<div class="flex flex-col lg:flex-row lg:flex-wrap w-full">
+					<div
+						*ngFor="let item of featuresAtGlance"
+						class="flex items-center basis-1/2 gap-4 flex-shrink mb-4"
+					>
+						<ng-icon [name]="item.icon" size="20"></ng-icon>
+						<div class="lg:text-xl">{{item.name}}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Actions -->
+	<div
+		*ngIf="currentUrl === '/'"
+		class="flex flex-col justify-center items-center gap-2 rounded-xl p-6 min-h-screen"
+		[ngStyle]="{background: theme.color.primary.main}"
+	>
+		<img src="assets/svg/join.svg" alt="Join tuebi.io" class="w-6/12 lg:w-3/12 mb-6">
+		<h1 class="text-2xl lg:text-4xl font-bold mb-6 text-center">Not a member yet? <br/>Give it a try!</h1>
+		<p class="lg:text-xl font-light">It's free, safe and useful. No lock-in.</p>
+		<div class="flex justify-center items-center gap-4 mt-6">
+			<a [routerLink]="[ROUTE.SIGNUP]">
+				<button
+					[ngStyle]="{background: theme.color.primary.dark}"
+					class="rounded px-4 py-2 lg:px-6 lg:py-4 lg:text-xl text-white"
+				>
+					<strong>Join</strong> tuebi.io
+				</button>
+			</a>
+			<a [routerLink]="[ROUTE.ABOUT]">
+				<button
+					[ngStyle]="{background: theme.color.accent.dark}"
+					class="rounded px-4 py-2 lg:px-6 lg:py-4 lg:text-xl text-white"
+				>
+					<strong>Learn</strong> more
+				</button>
+			</a>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<div *ngIf="!(isLoggedIn$ | async)"
+	     class="flex flex-wrap flex-col justify-center items-center gap-4 rounded-xl p-6 bg-neutral-800">
+		<app-logo [light]="true" class="mb-6"></app-logo>
+		<div class="flex gap-4">
+			<a class="text-neutral-50" [routerLink]="['/', ROUTE.ABOUT]">About</a>
+			<a class="text-neutral-50" [routerLink]="['/', ROUTE.CONTACT]">Contact</a>
+		</div>
+		<p class="font-semibold text-white">
+			© {{year}} - {{year + 1}} <a href="https://tuebi.io" target="_blank" class="text-white">tuebi.io</a>.
+			All Rights Reserved.
+		</p>
+	</div>
+</div>
+
+<div *ngIf="isLoggedIn$ | async">
+	<router-outlet></router-outlet>
+</div>

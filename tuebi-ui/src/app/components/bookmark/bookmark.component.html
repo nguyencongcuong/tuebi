@@ -1,0 +1,109 @@
+<div
+	*ngIf="userSettings$ | async as settings"
+	class="grid grid-cols-12 gap-4 rounded p-4"
+	[ngStyle]="{background: 'white'}">
+
+	<!-- Bookmark Information -->
+	<div class="col-span-8">
+		<div class="flex justify-start items-center gap-2">
+			<img
+				*ngIf="settings.is_favicon_shown"
+				alt="{{ bookmark.bookmark_name }} favicon"
+				height="12"
+				src="{{ getFavicon(bookmark.bookmark_url) }}"
+				width="12"
+				class="favicon"
+			/>
+			<div class="flex flex-col gap-2">
+				<span class="font-bold">{{ bookmark.bookmark_name }}</span>
+				<a
+					nz-tooltip
+					[nzTooltipTitle]="bookmark.bookmark_url"
+					*ngIf="bookmark.bookmark_url"
+					class="text-gray-400"
+					href="{{ bookmark.bookmark_url }}"
+					rel="noreferrer nofollow"
+					target="_blank"
+				>
+					{{
+					settings.is_bookmark_url_shorten
+						? handleUrl(bookmark.bookmark_url, true)
+						: handleUrl(bookmark.bookmark_url, false)
+					}}
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<div class="col-span-3">
+		<div class="flex justify-end items-center" *ngIf="category$ | async as category">
+			<nz-tag [nzColor]="category.category_theme" *ngIf="!isCategorized">
+				{{category.category_name}}
+			</nz-tag>
+			<nz-tag *ngIf="!(category$ | async)">
+				Uncategorized
+			</nz-tag>
+		</div>
+	</div>
+
+	<!-- Bookmark Options -->
+	<div class="col-span-1">
+		<div class="flex justify-end items-center">
+			<ng-icon
+				class="cursor-pointer opacity-80 hover:opacity-100"
+				name="oct-kebab-horizontal"
+				nz-dropdown
+				[nzDropdownMenu]="menu">
+			</ng-icon>
+			<nz-dropdown-menu #menu="nzDropdownMenu">
+				<ul nz-menu>
+					<li class="flex gap-2" nz-menu-item>
+					<span (click)="open()" class="flex items-center gap-2">
+						<ng-icon class="cursor-pointer" name="oct-link"></ng-icon>
+						<span>Open in new tab</span>
+					</span>
+					</li>
+					<li class="flex gap-2" nz-menu-item>
+						<div (click)="copy()" class="flex items-center gap-2 w-full">
+							<ng-icon class="cursor-pointer" name="oct-copy"></ng-icon>
+							<span>Copy URL</span>
+						</div>
+					</li>
+					<li class="flex gap-2" nz-menu-item>
+						<app-form-edit-bookmark [bookmark]="bookmark" class="w-full"></app-form-edit-bookmark>
+					</li>
+					<li class="flex gap-2" nz-menu-item>
+						<div (click)="bookmark.bookmark_deleted ? delete() : remove()" class="flex items-center gap-2 w-full">
+							<ng-icon class="cursor-pointer" name="oct-trash"></ng-icon>
+							<span>{{bookmark.bookmark_deleted ? 'Delete' : 'Move to Trash'}}</span>
+						</div>
+					</li>
+					<li *ngIf="bookmark.bookmark_deleted" class="flex gap-2" nz-menu-item>
+						<div (click)="restore()" class="flex items-center gap-2 w-full">
+							<ng-icon class="cursor-pointer" name="oct-history"></ng-icon>
+							<span>Restore</span>
+						</div>
+					</li>
+				</ul>
+			</nz-dropdown-menu>
+		</div>
+	</div>
+
+	<div class="col-span-12">
+		<nz-divider class="my-2"></nz-divider>
+	</div>
+
+	<div class="col-span-12">
+		<div class="flex justify-between items-center px-2">
+			<div class=""></div>
+			<div class="flex items-center gap-4">
+				<ng-icon
+					*ngFor="let item of quickActionItems"
+					[name]="item.icon"
+					(click)="item.handleClick()"
+					class="cursor-pointer opacity-80 hover:opacity-100 duration-150 transition">
+				</ng-icon>
+			</div>
+		</div>
+	</div>
+</div>

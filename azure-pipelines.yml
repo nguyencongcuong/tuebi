@@ -1,0 +1,89 @@
+# Node.js Function App to Linux on Azure
+
+# Build a Node.js function app and deploy it to Azure as a Linux function app.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+
+trigger:
+  - main
+
+variables:
+  
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: '50b10c5a-f79c-4b21-814c-22aebe3f18f6'
+  
+  # Function app name
+  functionAppName: 'tuebi-api-prod-lx'
+  
+  # Environment name
+  environmentName: 'tuebi-api-prod-lx'
+  
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+  - stage: Build
+    displayName: Build stage
+    jobs:
+      - job: Build
+        displayName: Build
+        pool:
+          vmImage: $(vmImageName)
+
+        steps:
+          - task: NodeTool@0
+            inputs:
+              versionSpec: '16.18.0'
+            displayName: 'Install NodeJS v16.18.0'
+
+          - script: |
+              npm install --global @nestjs/cli
+              npm run install:api
+              npm run build:api
+            displayName: 'Install application dependencies'
+
+          - task: ArchiveFiles@2
+            displayName: 'Archive tuebi-api artifact'
+            inputs:
+              rootFolderOrFile: '$(System.DefaultWorkingDirectory)/tuebi-api/dist'
+              includeRootFolder: false
+              archiveType: zip
+              archiveFile: $(Build.ArtifactStagingDirectory)/tuebi-api.zip
+              replaceExistingArchive: true
+
+          - upload: $(Build.ArtifactStagingDirectory)/tuebi-api.zip
+            displayName: 'Upload tuebi-api artifact'
+            artifact: drop
+            condition:
+
+          - task: AzureStaticWebApp@0
+            inputs:
+              app_location: '/tuebi-ui'
+              app_build_command: 'npm run build'
+              output_location: 'dist'
+              skip_api_build: true
+              azure_static_web_apps_api_token: 'd0568fa8dc464aa01d541e2dc56efbb1ae4531c393c9acc6b1f1c31bfa37463a2-99911a36-7783-47b5-9653-a85e0dc3e94b00044381'
+
+  - stage: Deploy
+    displayName: Deploy stage
+    dependsOn: Build
+    condition: succeeded()
+    jobs:
+      - deployment: Deploy
+        displayName: Deploy
+        environment: $(environmentName)
+        pool:
+          vmImage: $(vmImageName)
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - task: AzureRmWebAppDeployment@4
+                  inputs:
+                    ConnectionType: 'AzureRM'
+                    azureSubscription: 'tuebi-prod-subscription(c4e18098-78ef-494b-966a-a72c8a27c61c)'
+                    appType: 'webAppLinux'
+                    WebAppName: 'tuebi-api-prod-lx'
+                    packageForLinux: '$(Pipeline.Workspace)/drop/tuebi-api.zip'
+                    RuntimeStack: 'NODE|16-lts'
+                    StartupCommand: 'node main.js'

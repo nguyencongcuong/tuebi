@@ -1,0 +1,117 @@
+<div *ngIf="!isSignedUp && !isConfirmed" class="h-screen grid grid-cols-1 lg:grid-cols-3 rounded-2xl"
+     [ngStyle]="{background: theme.color.primary.main}">
+	<div
+		class="col-span-1 lg:col-start-2 lg:col-end-2 flex flex-col justify-center items-center gap-10 h-full w-full p-6">
+
+		<form nz-form (ngSubmit)="signup()" [formGroup]="form" class="w-full">
+			<nz-form-item class="w-full">
+				<nz-form-control>
+					<input
+						nz-input
+						formControlName="user_email"
+						type="email"
+						nzSize="large"
+						placeholder="Email"
+					>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item class="w-full">
+				<nz-form-control>
+					<input
+						nz-input
+						formControlName="user_password"
+						type="password"
+						nzSize="large"
+						placeholder="Password"
+					>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item class="w-full">
+				<nz-form-control>
+					<input
+						nz-input
+						formControlName="user_confirmed_password"
+						type="password"
+						nzSize="large"
+						placeholder="Confirm Password"
+					>
+				</nz-form-control>
+			</nz-form-item>
+
+			<div class="flex justify-end">
+				Already a member?
+				<a class="px-2 font-bold underline mb-4" [routerLink]="['/', route.LOGIN]">
+					Login here
+				</a>
+			</div>
+
+			<div class="flex justify-end">
+				<button
+					class="rounded text-white hover:text-white opacity-80 hover:opacity-100 duration-300 ease-in-out flex items-center"
+					[ngStyle]="{background: theme.color.primary.dark}"
+					type="submit"
+					nz-button
+					nzType="text"
+					[nzLoading]="isLoading"
+				>
+					<span nz-icon nzType="send"></span>
+					Sign up
+				</button>
+			</div>
+
+		</form>
+
+	</div>
+</div>
+
+<div *ngIf="isSignedUp && !isConfirmed" class="h-screen flex flex-col justify-center items-center gap-4"
+     [ngStyle]="{background: theme.color.primary.main}">
+	<div class="flex flex-col items-center justify-center gap-8 text-center p-10">
+		<h2 class="text-4xl font-semibold">Confirm your Email</h2>
+		<p class="text-base text-xl text-color">
+			Please check your inbox for a confirmation email, and fill here the verification code you receive:
+		</p>
+
+		<form nz-form (ngSubmit)="confirm()" [formGroup]="confirmationForm"
+		      class="flex h-full w-full flex-col justify-center gap-4">
+			<nz-form-item class="w-full">
+				<nz-form-control>
+					<input
+						nz-input
+						formControlName="user_confirmation_code"
+						type="text"
+						nzSize="large"
+						placeholder="Confirmation Code"
+					>
+				</nz-form-control>
+			</nz-form-item>
+
+			<button
+				type="submit"
+				class="px-8 py-2 rounded text-white opacity-60 hover:opacity-100 duration-300 ease-in-out"
+				[ngStyle]="{background: theme.color.primary.dark}"
+			>
+				Confirm
+			</button>
+
+		</form>
+	</div>
+</div>
+
+<div *ngIf="isSignedUp && isConfirmed" class="h-screen flex flex-col justify-center items-center gap-4"
+     [ngStyle]="{background: theme.color.primary.main}">
+	<span class="mb-2 text-green-500 pi pi-check" style="font-size: 50px"></span>
+	<h2 class="mb-8 text-4xl font-semibold">Congratulations!</h2>
+	<p class="text-lg">Your email has already been confirmed.</p>
+	<p class="mb-8 text-lg">You can now login to the application.</p>
+	<button
+		[routerLink]="['/', route.LOGIN]"
+		class="px-8 py-2 rounded text-white opacity-60 hover:opacity-100 duration-300 ease-in-out"
+		[ngStyle]="{background: theme.color.primary.dark}"
+	>
+		Sign in
+	</button>
+</div>
+

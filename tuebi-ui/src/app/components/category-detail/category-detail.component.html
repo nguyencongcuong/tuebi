@@ -1,0 +1,24 @@
+<div class="h-screen p-6 overflow-auto">
+
+	<div class="mb-4">
+		<div class="flex justify-between items-center">
+			<div class="font-bold">Bookmarks</div>
+			<app-form-add-bookmark></app-form-add-bookmark>
+		</div>
+	</div>
+
+	<div *ngIf="!(isEmpty$ | async)" (cdkDropListDropped)="dropBookmark($event)" cdkDropList class="flex flex-col gap-2">
+		<app-bookmark
+			*ngFor="let bookmark of filteredBookmarks$ | async"
+			[bookmark]="bookmark"
+			cdkDrag>
+		</app-bookmark>
+	</div>
+
+	<div *ngIf="isEmpty$ | async" class="flex flex-col justify-center items-center w-full h-3/4">
+		<div class="font-bold text-2xl opacity-50">
+			Empty
+		</div>
+	</div>
+</div>
+

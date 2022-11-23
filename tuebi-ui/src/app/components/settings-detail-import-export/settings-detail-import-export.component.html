@@ -1,0 +1,31 @@
+<div class="flex flex-col gap-4 p-6">
+	<ng-template #indicatorTemplate><span nz-icon nzType="loading"></span></ng-template>
+	<nz-spin
+		[nzDelay]="500"
+		[nzIndicator]="indicatorTemplate"
+		[nzSpinning]="isImportingBookmarkLoading"
+		nzTip="Please wait a moment..."
+	>
+		<div class="flex flex-col gap-1">
+			<div class="flex justify-between items-center gap-2">
+				<span>Import Bookmarks:</span>
+				<nz-upload
+					(nzChange)="handleChange($event)"
+					[nzAccept]="acceptFile"
+					[nzAction]="UPLOAD_API_URL"
+					[nzHeaders]="{ authorization: this.authorization }"
+					[nzMultiple]="false"
+					[nzShowUploadList]="false"
+					[nzSize]="1024"
+				>
+					<button nz-button nzSize="small" nzType="primary">
+						Import
+					</button>
+				</nz-upload>
+			</div>
+			<span class="text-xs text-gray-400">
+					Move all of your bookmarks to tuebi.io quickly
+				</span>
+		</div>
+	</nz-spin>
+</div>

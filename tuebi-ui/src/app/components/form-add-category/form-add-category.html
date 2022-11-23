@@ -1,0 +1,43 @@
+<ng-icon name="oct-plus" class="cursor-pointer" (click)="openModal()"></ng-icon>
+
+<nz-modal
+	(nzOnCancel)="closeModal()"
+	(nzOnOk)="submit()"
+	[(nzVisible)]="isVisible"
+	nzTitle="New Category"
+>
+	<ng-container *nzModalContent>
+		<form (ngSubmit)="submit()" [formGroup]="form" nz-form>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please fill the category name.">
+					<nz-input-group nzSuffixIcon="tag">
+						<input
+							formControlName="category_name"
+							nz-input
+							placeholder="Category Name"
+							type="text"
+						/>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control>
+					<nz-tag [nzColor]="theme" class="tag">{{name}}</nz-tag>
+
+					<div class="flex flex-wrap gap-2 mt-5">
+						<nz-tag
+							(nzCheckedChange)="changeColor(theme)"
+							*ngFor="let theme of themes"
+							[nzColor]="theme[1]"
+							class="tag"
+							nzMode="checkable"
+						>
+							{{theme[0].toLowerCase()}}
+						</nz-tag>
+					</div>
+				</nz-form-control>
+			</nz-form-item>
+		</form>
+	</ng-container>
+</nz-modal>

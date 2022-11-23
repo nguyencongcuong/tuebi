@@ -1,0 +1,28 @@
+<div class="relative">
+	<!-- User Information -->
+	<form [formGroup]="form" class="flex flex-col gap-2">
+		<div class="font-semibold mb-4">Edit Profile</div>
+
+		<nz-form-item>
+			<nz-form-label>Your Full Name</nz-form-label>
+			<input formControlName="user_name" nz-input/>
+		</nz-form-item>
+
+		<nz-form-item>
+			<nz-form-label>Email</nz-form-label>
+			<input [disabled]="true" nz-input placeholder="{{user.user_email}}"/>
+		</nz-form-item>
+	</form>
+
+	<div class="flex justify-end absolute bottom-0 right-0">
+		<ng-template #indicatorTemplate><span nz-icon nzType="loading"></span></ng-template>
+		<nz-spin [nzIndicator]="indicatorTemplate" [nzSpinning]="isLoading" nzSimple></nz-spin>
+		<span
+			*ngIf="isCompleted"
+			[nzTheme]="'twotone'"
+			[nzTwotoneColor]="'#52c41a'"
+			[nzType]="'check-circle'"
+			nz-icon>
+		</span>
+	</div>
+</div>

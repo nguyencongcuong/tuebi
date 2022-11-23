@@ -1,0 +1,27 @@
+<div class="grid grid-cols-12 w-screen h-screen overflow-y-scroll">
+
+	<div class="col-span-1">
+		<div class="h-screen flex flex-col justify-center items-center" [ngStyle]="{background: 'white'}">
+
+			<div
+				class="flex justify-center items-center cursor-pointer opacity-80 hover:opacity-100 hover:bg-neutral-800 hover:text-white transition-all duration-300 w-full h-10"
+				[routerLink]="ROUTE.CATEGORIES"
+				[routerLinkActive]="'bg-neutral-800 text-white'">
+				<ng-icon class="cursor-pointer" name="oct-bookmark"></ng-icon>
+			</div>
+
+			<div
+				class="flex justify-center items-center cursor-pointer opacity-80 hover:opacity-100 hover:bg-neutral-800 hover:text-white transition-all duration-300 w-full h-10"
+				[routerLink]="ROUTE.SETTINGS"
+				[routerLinkActive]="'bg-neutral-800 text-white'">
+				<ng-icon class="cursor-pointer" name="oct-sliders"></ng-icon>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="col-span-11">
+		<router-outlet></router-outlet>
+	</div>
+
+</div>

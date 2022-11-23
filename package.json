@@ -1,0 +1,23 @@
+{
+	"name": "tuebi",
+	"version": "1.0.0",
+	"description": "A minimal bookmark manager",
+	"main": "index.js",
+	"scripts": {
+		"install:api": "cd tuebi-api && npm install",
+		"install:ui": "cd tuebi-ui && npm install",
+		"build:api": "cd tuebi-api && npm run build",
+		"build:ui": "cd tuebi-ui && npm run build",
+		"start:dev:ui": "cd tuebi-ui && npm run start:dev",
+		"start:dev:api": "cd tuebi-api && npm run start:dev"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/tuebi"
+	},
+	"keywords": [
+		"bookmarks"
+	],
+	"author": "Nguyen Cong Cuong",
+	"license": "ISC"
+}

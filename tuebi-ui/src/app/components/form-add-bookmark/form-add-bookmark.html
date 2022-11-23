@@ -1,0 +1,59 @@
+<ng-icon name="oct-plus-circle" class="cursor-pointer" (click)="openModal()"></ng-icon>
+
+<nz-modal
+	(nzOnCancel)="closeModal()"
+	(nzOnOk)="submit()"
+	[(nzVisible)]="isVisible"
+	nzTitle="New Bookmark"
+>
+	<ng-container *nzModalContent>
+		<form (ngSubmit)="submit()" [formGroup]="form" nz-form>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please fill the bookmark name.">
+					<nz-input-group nzSuffixIcon="book">
+						<input
+							formControlName="bookmark_name"
+							nz-input
+							placeholder="Bookmark Name"
+							type="text"
+						/>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please fill the bookmark url.">
+					<nz-input-group nzSuffixIcon="link">
+						<input
+							formControlName="bookmark_url"
+							nz-input
+							placeholder="Bookmark URL"
+							type="text"
+						/>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+
+			<nz-form-item>
+				<nz-form-control>
+					<nz-select
+						[(ngModel)]="selectedCategoryId"
+						formControlName="category_id"
+						nzPlaceHolder="Choose a Category"
+						nzSuffixIcon="unordered-list"
+					>
+						<nz-option
+							*ngFor="let category of categories$ | async"
+							[nzLabel]="category.category_name"
+							[nzValue]="category.id"
+						>
+						</nz-option>
+						<nz-option [nzLabel]="selectedCategoryName" [nzValue]="selectedCategoryId" nzHide></nz-option>
+					</nz-select>
+				</nz-form-control>
+			</nz-form-item>
+
+			<button class="hidden" type="submit"></button>
+		</form>
+	</ng-container>
+</nz-modal>

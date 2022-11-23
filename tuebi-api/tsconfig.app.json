@@ -1,0 +1,15 @@
+{
+  "extends": "tsconfig.json",
+  "compilerOptions": {
+    "declaration": false,
+    "outDir": "dist",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"allowSyntheticDefaultImports": true,
+		"allowJs": true,
+		"target": "ES2015",
+		"moduleResolution": "Node",
+	},
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
+}
