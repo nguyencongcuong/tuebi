@@ -40,7 +40,7 @@ export class AuthService {
 	
 	generateJwt(userId: string, userEmail: string): JwtI {
 		try {
-			const EXPIRE_TIME = '2 days';
+			const EXPIRE_TIME = '7 days';
 			const options: JwtSignOptions = {
 				secret: this.SECRET_JWT_TOKEN_KEY,
 				expiresIn: EXPIRE_TIME,

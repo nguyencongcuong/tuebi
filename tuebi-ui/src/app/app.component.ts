@@ -8,6 +8,7 @@ import {
 	Router,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { AUTH_LOCAL_STORAGE_KEY } from 'src/app/contansts/authorization';
 import { features, featuresAtGlance } from './contansts/features';
 import { ROUTE, routeList } from './contansts/routes';
 import { themes } from './contansts/theme';
@@ -51,21 +52,6 @@ export class AppComponent implements OnInit {
 			console.log('Production!');
 		}
 		
-		const auth = localStorage.getItem('auth');
-		
-		if (auth && auth !== 'undefined') {
-			this.authService.isLoggedIn.next(true);
-			const user = JSON.parse(auth);
-			this.store.dispatch(login({user: user}));
-			this.router.navigateByUrl(ROUTE.SPACE + '/categories/all');
-		} else {
-			localStorage.removeItem('auth');
-		}
-		
-		this.route.params.subscribe((res) => {
-			console.log('pram', res);
-		});
-		
 		this.router.events.subscribe((event: any) => {
 			switch (true) {
 				case event instanceof NavigationStart: {
@@ -85,6 +71,34 @@ export class AppComponent implements OnInit {
 				}
 			}
 		});
+		
+		const auth = localStorage.getItem(AUTH_LOCAL_STORAGE_KEY);
+		
+		if(!auth) {
+			return;
+		}
+		
+		if(auth && auth === 'undefined') {
+			this.authService.isLoggedIn.next(false);
+			localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
+			this.router.navigateByUrl(ROUTE.LOGIN);
+			return;
+		}
+		
+		this.authService.validateJWT().subscribe({
+			next: () => {
+				this.authService.isLoggedIn.next(true);
+				const user = JSON.parse(auth);
+				this.store.dispatch(login({user: user}));
+				this.router.navigateByUrl(ROUTE.SPACE + '/categories/all');
+			},
+			error: (error) => {
+				console.log('ERROR', error);
+				this.authService.isLoggedIn.next(false);
+				localStorage.removeItem(AUTH_LOCAL_STORAGE_KEY);
+				this.router.navigateByUrl(ROUTE.LOGIN);
+			}
+		})
 	}
 	
 	toggleNav(bool: boolean) {

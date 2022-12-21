@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthedUserI } from './auth.models';
 import { ROUTE } from '../../contansts/routes';
 import { AppState } from '../../reducers';
 import { logout } from './auth.actions';
@@ -21,6 +22,16 @@ export class AuthService {
 		private router: Router,
 		private store: Store<AppState>
 	) {}
+	
+	genOptions() {
+		const authedUser = JSON.parse(localStorage.getItem('auth') as string) as AuthedUserI;
+		const token = authedUser?.access_token || '';
+		return {
+			headers: {
+				Authorization: `Bearer ${token}`,
+			},
+		};
+	}
 	
 	login(
 		userEmail: string | null | undefined,
@@ -67,5 +78,11 @@ export class AuthService {
 		this.store.dispatch(logout());
 		localStorage.clear();
 		this.router.navigateByUrl(ROUTE.ROOT);
+	}
+	
+	validateJWT(): Observable<any> {
+		const options = this.genOptions();
+		const url = `${this.API_URL}/auth/jwt-validation`;
+		return this.http.get(url, options);
 	}
 }

@@ -27,6 +27,8 @@ export class CategoriesResolver implements Resolve<boolean> {
 					const authedUser = this.userService.getAuthedUser();
 					if (authedUser) {
 						this.userEntityService.getByKey(authedUser.id);
+					} else {
+						localStorage.removeItem('auth');
 					}
 				}
 			}),
