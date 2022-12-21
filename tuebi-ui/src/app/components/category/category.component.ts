@@ -39,6 +39,7 @@ export class CategoryComponent implements OnInit {
 	FIXED_CATEGORIES = FIXED_CATEGORIES;
 	
 	userSettings$: Observable<UserSettings | undefined> = of({
+		is_compact_mode_on: false,
 		is_favicon_shown: true,
 		is_bookmark_url_shorten: false,
 		is_bookmark_count_shown: true

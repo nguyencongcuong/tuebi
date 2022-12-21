@@ -4,6 +4,19 @@
 
 		<div class="flex flex-col gap-2">
 			<div class="flex flex-wrap justify-between items-center gap-2">
+				<span>Compact Mode</span>
+				<nz-switch
+					(ngModelChange)="toggleCompactMode()"
+					[(ngModel)]="isCompactModeOn"
+				></nz-switch>
+			</div>
+			<span class="text-gray-400 text-xs">
+				Can't see enough bookmarks? Let's use compact mode
+			</span>
+		</div>
+		
+		<div class="flex flex-col gap-2">
+			<div class="flex flex-wrap justify-between items-center gap-2">
 				<span>Show Favicon</span>
 				<nz-switch
 					(ngModelChange)="toggleFaviconShown()"

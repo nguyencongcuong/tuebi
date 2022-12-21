@@ -117,7 +117,10 @@ export class BookmarkComponent implements OnInit {
 	}
 	
 	open() {
-		window.open(this.bookmark.bookmark_url);
+		const url = this.bookmark.bookmark_url.includes('https://') 
+			? this.bookmark.bookmark_url
+			: `https://${this.bookmark.bookmark_url}`
+		window.open(url);
 	}
 	
 	copy() {

@@ -1,6 +1,7 @@
 // Base User: Data structure saved in database
 
 export interface UserSettings {
+	is_compact_mode_on: boolean;
 	is_favicon_shown: boolean;
 	is_bookmark_url_shorten: boolean;
 	is_bookmark_count_shown: boolean;

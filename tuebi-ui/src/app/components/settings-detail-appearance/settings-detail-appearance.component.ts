@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
@@ -17,10 +17,11 @@ import { UserService } from 'src/app/modules/categories/services/user.service';
 	templateUrl: './settings-detail-appearance.component.html',
 	styleUrls: ['./settings-detail-appearance.component.scss']
 })
-export class SettingsDetailAppearanceComponent implements OnInit {
+export class SettingsDetailAppearanceComponent {
 	user$ = new Observable<User>();
 	
 	// Default value, check API
+	isCompactModeOn = false;
 	isFaviconShown = true;
 	isBookmarkURLShorten = false;
 	isBookmarkCountShown = true;
@@ -33,6 +34,7 @@ export class SettingsDetailAppearanceComponent implements OnInit {
 			map(users => users[0]),
 			tap((user) => {
 				if (user) {
+					this.isCompactModeOn = user.user_settings.is_compact_mode_on;
 					this.isFaviconShown = user.user_settings.is_favicon_shown;
 					this.isBookmarkURLShorten = user.user_settings.is_bookmark_url_shorten;
 					this.isBookmarkCountShown = user.user_settings.is_bookmark_count_shown;
@@ -41,7 +43,15 @@ export class SettingsDetailAppearanceComponent implements OnInit {
 		);
 	}
 	
-	ngOnInit(): void {
+	async toggleCompactMode() {
+		const user = await firstValueFrom(this.user$);
+		this.userEntityService.update({
+			id: user.id,
+			user_settings: {
+				...user.user_settings,
+				is_compact_mode_on: !user.user_settings.is_compact_mode_on
+			}
+		});
 	}
 	
 	async toggleFaviconShown() {

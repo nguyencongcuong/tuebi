@@ -81,6 +81,7 @@ export class UsersController {
 				user_subscription_id: '',
 				user_name: '',
 				user_settings: {
+					is_compact_mode_on: false,
 					is_favicon_shown: true,
 					is_bookmark_url_shorten: false,
 					is_bookmark_count_shown: true,
