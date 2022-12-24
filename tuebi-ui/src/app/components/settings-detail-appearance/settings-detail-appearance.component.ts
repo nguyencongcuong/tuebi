@@ -7,8 +7,8 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { firstValueFrom, map, Observable, tap } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
-import { UserEntityService } from 'src/app/modules/categories/services/user-entity.service';
-import { UserService } from 'src/app/modules/categories/services/user.service';
+import { UserEntityService } from 'src/app/services/user-entity.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
 	selector: 'app-settings-detail-appearance',

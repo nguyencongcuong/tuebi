@@ -3,8 +3,8 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { THEME } from 'src/app/contansts/theme';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
 import { NzZorroModule } from 'src/app/nz-zorro.module';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
 @Component({
 	standalone: true,

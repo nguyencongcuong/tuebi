@@ -1,4 +1,5 @@
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { LayoutModule } from '@angular/cdk/layout';
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import en from '@angular/common/locales/en';
@@ -18,7 +19,6 @@ import { AppComponent } from './app.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { CategoriesModule } from './modules/categories/categories.module';
-import { SearchModule } from './modules/search/search.module';
 import { SubscriptionModule } from './modules/subscription/subscription.module';
 import { NgIconModule } from './ng-icon.module';
 import { metaReducers, reducers } from './reducers';
@@ -70,12 +70,12 @@ registerLocaleData(en);
 		ReactiveFormsModule,
 		HttpClientModule,
 		
-		SearchModule,
 		CategoriesModule,
 		SubscriptionModule,
 		
 		BrowserModule,
 		BrowserAnimationsModule,
+		LayoutModule,
 		AppRoutingModule,
 	],
 	exports: [RouterModule],

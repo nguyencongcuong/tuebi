@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Bookmark } from 'src/app/interfaces/bookmark.interface';
+import { AuthedUserI } from 'src/app/modules/auth/auth.models';
+import { Category } from 'src/app/modules/categories/categories.model';
 import { environment } from 'src/environments/environment';
-import { AuthedUserI } from '../../auth/auth.models';
 
 @Injectable({
 	providedIn: 'root',
 })
-export class BookmarksService {
-	API_URL = environment.backend_url;
+export class CategoriesService {
+	public API_URL = environment.backend_url;
 	
 	constructor(private http: HttpClient) {}
 	
@@ -25,36 +25,28 @@ export class BookmarksService {
 		};
 	}
 	
-	createOne(entity: Bookmark): Observable<any> {
+	createOne(entity: Category): Observable<any> {
 		const options = this.genOptions();
-		const url = `${this.API_URL}/bookmarks`;
+		const url = `${this.API_URL}/categories`;
 		return this.http.post(url, entity, options);
 	}
 	
 	readAll(): Observable<any> {
 		const options = this.genOptions();
-		const url = `${this.API_URL}/bookmarks`;
+		const url = this.API_URL + '/categories';
 		return this.http.get(url, options);
 	}
 	
-	updateOne(entity: Partial<Bookmark>): Observable<any> {
+	updateOne(entity: Partial<Category>): Observable<any> {
 		const options = this.genOptions();
 		const {id, ...body} = entity;
-		const url = this.API_URL + `/bookmarks/${id}`;
+		const url = this.API_URL + `/categories/${id}`;
 		return this.http.put(url, body, options);
 	}
 	
 	deleteOne(id: string): Observable<any> {
 		const options = this.genOptions();
-		const url = this.API_URL + `/bookmarks/${id}`;
+		const url = this.API_URL + `/categories/${id}`;
 		return this.http.delete(url, options);
-	}
-	
-	getFavicon(domain: string) {
-		try {
-			return `https://www.google.com/s2/favicons?domain=${domain}`;
-		} catch (e) {
-			return undefined;
-		}
 	}
 }

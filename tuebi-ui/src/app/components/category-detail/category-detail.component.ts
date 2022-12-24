@@ -6,8 +6,8 @@ import { combineLatest, firstValueFrom, map, Observable, of } from 'rxjs';
 import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.component';
 import { FormAddBookmark } from 'src/app/components/form-add-bookmark/form-add-bookmark';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
-import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
 @Component({
   standalone: true,

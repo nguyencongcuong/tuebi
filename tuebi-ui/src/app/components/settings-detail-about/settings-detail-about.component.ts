@@ -4,8 +4,8 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
-import { UserEntityService } from 'src/app/modules/categories/services/user-entity.service';
-import { UserService } from 'src/app/modules/categories/services/user.service';
+import { UserEntityService } from 'src/app/services/user-entity.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
 	selector: 'app-settings-detail-about',

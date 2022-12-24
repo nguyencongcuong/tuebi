@@ -5,8 +5,8 @@ import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { CategoryType } from 'src/app/contansts/categories';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
 @Component({
 	standalone: true,

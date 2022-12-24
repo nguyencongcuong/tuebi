@@ -7,15 +7,15 @@ import { CategoryComponent } from 'src/app/components/category/category.componen
 import { FormAddBookmark } from 'src/app/components/form-add-bookmark/form-add-bookmark';
 import { FormAddCategory } from 'src/app/components/form-add-category/form-add-category';
 import { NgIconModule } from 'src/app/ng-icon.module';
+import { BookmarksDataService } from 'src/app/services/bookmarks-data.service';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { CategoriesDataService } from 'src/app/services/categories-data.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
+import { CategoriesResolver } from 'src/app/services/categories.resolver';
+import { UserDataService } from 'src/app/services/user-data.service';
+import { UserEntityService } from 'src/app/services/user-entity.service';
 import { NzZorroModule } from '../../nz-zorro.module';
 import { CategoriesRoutingModule } from './categories-routing.module';
-import { BookmarksDataService } from './services/bookmarks-data.service';
-import { BookmarksEntityService } from './services/bookmarks-entity.service';
-import { CategoriesDataService } from './services/categories-data.service';
-import { CategoriesEntityService } from './services/categories-entity.service';
-import { CategoriesResolver } from './services/categories.resolver';
-import { UserDataService } from './services/user-data.service';
-import { UserEntityService } from './services/user-entity.service';
 
 export const ENTITY = {
 	CATEGORIES: 'Categories',

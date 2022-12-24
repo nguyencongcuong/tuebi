@@ -3,8 +3,8 @@ import { Injectable } from '@angular/core';
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Update } from '@ngrx/entity';
 import { map, Observable } from 'rxjs';
-import { Category } from '../categories.model';
-import { ENTITY } from '../categories.module';
+import { Category } from 'src/app/modules/categories/categories.model';
+import { ENTITY } from 'src/app/modules/categories/categories.module';
 import { CategoriesService } from './categories.service';
 
 @Injectable()

@@ -8,8 +8,9 @@ import { FormAddCategory } from 'src/app/components/form-add-category/form-add-c
 import { themes } from 'src/app/contansts/theme';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { BreakpointService } from 'src/app/services/breakpoint.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
 @Component({
 	standalone: true,
@@ -23,12 +24,16 @@ export class CategoryListComponent {
 	bookmarks$: Observable<Bookmark[]> = of([]);
 	theme = themes[0];
 	
+	isXs$;
+	
 	constructor(
 		private categoryEntityService: CategoriesEntityService,
 		private bookmarkEntityService: BookmarksEntityService,
+		private breakpointService: BreakpointService
 	) {
 		this.categories$ = this.categoryEntityService.entities$;
 		this.bookmarks$ = this.bookmarkEntityService.entities$;
+		this.isXs$ = this.breakpointService.isXs;
 	}
 	
 	async dropCategory(event: CdkDragDrop<string[]>) {

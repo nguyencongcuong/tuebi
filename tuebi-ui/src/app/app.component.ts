@@ -9,6 +9,7 @@ import {
 } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AUTH_LOCAL_STORAGE_KEY } from 'src/app/contansts/authorization';
+import { BreakpointService } from 'src/app/services/breakpoint.service';
 import { features, featuresAtGlance } from './contansts/features';
 import { ROUTE, routeList } from './contansts/routes';
 import { themes } from './contansts/theme';
@@ -42,8 +43,11 @@ export class AppComponent implements OnInit {
 		private authService: AuthService,
 		private router: Router,
 		private route: ActivatedRoute,
-		private store: Store<AppState>
-	) {}
+		private store: Store<AppState>,
+		private breakpointService: BreakpointService
+	) {
+		this.breakpointService.ngOnInit()
+	}
 	
 	ngOnInit() {
 		if (isDevMode()) {
@@ -90,7 +94,7 @@ export class AppComponent implements OnInit {
 				this.authService.isLoggedIn.next(true);
 				const user = JSON.parse(auth);
 				this.store.dispatch(login({user: user}));
-				this.router.navigateByUrl(ROUTE.SPACE + '/categories/all');
+				this.router.navigateByUrl(`${ROUTE.SPACE}/${ROUTE.CATEGORIES}`);
 			},
 			error: (error) => {
 				console.log('ERROR', error);

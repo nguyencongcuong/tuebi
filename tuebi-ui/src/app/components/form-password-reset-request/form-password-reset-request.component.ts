@@ -4,10 +4,10 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators, }
 import { RouterModule } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { tap } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 import { ROUTE } from '../../contansts/routes';
 import { themes } from '../../contansts/theme';
 import { AuthService } from '../../modules/auth/auth.service';
-import { UserService } from '../../modules/categories/services/user.service';
 import { NzZorroModule } from '../../nz-zorro.module';
 
 @Component({

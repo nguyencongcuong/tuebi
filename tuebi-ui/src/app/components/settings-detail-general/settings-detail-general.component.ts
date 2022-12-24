@@ -14,9 +14,9 @@ import { ROUTE } from 'src/app/contansts/routes';
 import { User } from 'src/app/interfaces/user.interface';
 import { logout } from 'src/app/modules/auth/auth.actions';
 import { AuthService } from 'src/app/modules/auth/auth.service';
-import { UserEntityService } from 'src/app/modules/categories/services/user-entity.service';
-import { UserService } from 'src/app/modules/categories/services/user.service';
 import { AppState } from 'src/app/reducers';
+import { UserEntityService } from 'src/app/services/user-entity.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-settings-detail-general',

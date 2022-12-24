@@ -8,10 +8,10 @@ import { FIXED_CATEGORIES } from 'src/app/contansts/categories';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { UserSettings } from 'src/app/interfaces/user.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
-import { UserEntityService } from 'src/app/modules/categories/services/user-entity.service';
 import { NzZorroModule } from 'src/app/nz-zorro.module';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
+import { UserEntityService } from 'src/app/services/user-entity.service';
 
 @Component({
 	selector: 'app-category',

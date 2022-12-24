@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Category } from '../categories.model';
-import { ENTITY } from '../categories.module';
+import { Category } from 'src/app/modules/categories/categories.model';
+import { ENTITY } from 'src/app/modules/categories/categories.module';
 
 @Injectable()
 export class CategoriesEntityService extends EntityCollectionServiceBase<Category> {

@@ -5,10 +5,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
-import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
-import { UserService } from 'src/app/modules/categories/services/user.service';
 import { NgIconModule } from 'src/app/ng-icon.module';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
+import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 
 @Component({

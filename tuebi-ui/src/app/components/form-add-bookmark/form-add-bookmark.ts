@@ -8,9 +8,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { firstValueFrom, map, Observable } from 'rxjs';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
 import { NgIconModule } from 'src/app/ng-icon.module';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
 @Component({
 	standalone: true,

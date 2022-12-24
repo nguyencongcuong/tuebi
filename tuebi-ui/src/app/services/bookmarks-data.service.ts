@@ -4,7 +4,7 @@ import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Update } from '@ngrx/entity';
 import { map, Observable } from 'rxjs';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
-import { ENTITY } from '../categories.module';
+import { ENTITY } from 'src/app/modules/categories/categories.module';
 import { BookmarksService } from './bookmarks.service';
 
 @Injectable()

@@ -4,7 +4,7 @@ import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Update } from '@ngrx/entity';
 import { map, Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
-import { ENTITY } from '../categories.module';
+import { ENTITY } from 'src/app/modules/categories/categories.module';
 import { UserService } from './user.service';
 
 @Injectable({

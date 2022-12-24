@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
+import { AuthedUserI } from 'src/app/modules/auth/auth.models';
 import { environment } from 'src/environments/environment';
-import { AuthedUserI } from '../../auth/auth.models';
 
 @Injectable({
 	providedIn: 'root',

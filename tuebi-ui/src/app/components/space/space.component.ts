@@ -5,9 +5,10 @@ import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { ROUTE } from 'src/app/contansts/routes';
 import { themes } from 'src/app/contansts/theme';
 import { SpaceItem } from 'src/app/interfaces/space';
-import { BookmarksEntityService } from 'src/app/modules/categories/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/modules/categories/services/categories-entity.service';
 import { NgIconModule } from 'src/app/ng-icon.module';
+import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
+import { BreakpointService } from 'src/app/services/breakpoint.service';
+import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
 @Component({
   standalone: true,
@@ -22,10 +23,14 @@ export class SpaceComponent implements OnInit {
   
   spaceData$: Observable<SpaceItem[]> = of([]);
   
+  isXs$;
+  
   constructor(
     private bookmarkEntityService: BookmarksEntityService,
     private categoryEntityService: CategoriesEntityService,
+    private breakpointService: BreakpointService,
   ) {
+    this.isXs$ = this.breakpointService.isXs;
   }
   
   async ngOnInit() {

@@ -15,8 +15,8 @@ import {
 import { SettingsListComponent } from 'src/app/components/settings-list/settings-list.component';
 import { SpaceComponent } from 'src/app/components/space/space.component';
 import { ROUTE } from 'src/app/contansts/routes';
+import { CategoriesResolver } from 'src/app/services/categories.resolver';
 import { AuthGuard } from '../auth/auth.guard';
-import { CategoriesResolver } from './services/categories.resolver';
 
 const routes: Routes = [
 	{
