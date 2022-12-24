@@ -50,9 +50,9 @@ export const themes: Theme[] = [
 				dark: ''
 			},
 			accent: {
-				light: '',
+				light: '#FCD69C',
 				main: '#FCD69C',
-				dark: '#1d7ba4'
+				dark: '#4e7c90'
 			}
 		}
 	}

@@ -14,7 +14,17 @@ import { UserService } from 'src/app/services/user.service';
 
 @Component({
 	standalone: true,
-	imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NzFormModule, NzIconModule, NgIconModule, NzInputModule, NzAlertModule],
+	imports: [
+		CommonModule, 
+		RouterModule, 
+		FormsModule, 
+		ReactiveFormsModule, 
+		NzFormModule, 
+		NzIconModule, 
+		NgIconModule, 
+		NzInputModule, 
+		NzAlertModule,
+	],
 	selector: 'app-form-change-password',
 	templateUrl: './form-change-password.component.html',
 	styleUrls: ['./form-change-password.component.scss']

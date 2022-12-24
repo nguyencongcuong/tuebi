@@ -8,6 +8,7 @@ import {
 	Router,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { isMatch } from 'lodash';
 import { AUTH_LOCAL_STORAGE_KEY } from 'src/app/contansts/authorization';
 import { BreakpointService } from 'src/app/services/breakpoint.service';
 import { features, featuresAtGlance } from './contansts/features';
@@ -68,6 +69,7 @@ export class AppComponent implements OnInit {
 					this.isLoading = false;
 					console.log('event', event.url);
 					this.currentUrl = event.url;
+					
 					break;
 				}
 				default: {
@@ -94,7 +96,11 @@ export class AppComponent implements OnInit {
 				this.authService.isLoggedIn.next(true);
 				const user = JSON.parse(auth);
 				this.store.dispatch(login({user: user}));
-				this.router.navigateByUrl(`${ROUTE.SPACE}/${ROUTE.CATEGORIES}`);
+				this.breakpointService.isXs.subscribe(isXs => {
+					isXs 
+						? this.router.navigateByUrl(`m/${ROUTE.SPACE}/${ROUTE.CATEGORIES}`)
+						: this.router.navigateByUrl(`${ROUTE.SPACE}/${ROUTE.CATEGORIES}/all`)
+				}).unsubscribe();
 			},
 			error: (error) => {
 				console.log('ERROR', error);

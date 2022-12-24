@@ -2,13 +2,17 @@
 	<div class="col-span-3 w-full h-full bg-white">
 		<div class="flex flex-col gap-4 p-4 h-screen overflow-auto">
 
+			<div class="flex justify-end items-center">
+				<app-form-add-category></app-form-add-category>
+			</div>
+			
 			<!-- All -->
 			<div
 				class="flex flex-col gap-3"
 			>
 				<app-category
 					[routerLink]="['/space/categories/all']"
-					[routerLinkActive]="['opacity-100', 'text-white', 'rounded', 'overflow-hidden']"
+					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
 					[isAll]="true"
 					[bookmarks$]="bookmarks$"
 				>
@@ -21,7 +25,7 @@
 			>
 				<app-category
 					[routerLink]="['/space/categories/uncategorized']"
-					[routerLinkActive]="['opacity-100', 'text-white', 'rounded', 'overflow-hidden']"
+					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
 					[isUncategorized]="true"
 					[bookmarks$]="bookmarks$"
 				>
@@ -34,19 +38,16 @@
 			>
 				<app-category
 					[routerLink]="['/space/categories/trash']"
-					[routerLinkActive]="['opacity-100', 'text-white', 'rounded', 'overflow-hidden']"
+					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
 					[isTrash]="true"
 					[bookmarks$]="bookmarks$"
 				>
 				</app-category>
 			</div>
+			
+			<nz-divider></nz-divider>
 
 			<!-- Categories -->
-			<div class="flex justify-between items-center px-4 mt-6">
-				<div class="font-bold">Category</div>
-				<app-form-add-category></app-form-add-category>
-			</div>
-
 			<div
 				(cdkDropListDropped)="dropCategory($event)"
 				cdkDropList
@@ -56,7 +57,7 @@
 				<app-category
 					*ngFor="let category of categories$ | async"
 					[routerLink]="['/space/categories', category.id]"
-					[routerLinkActive]="['opacity-100', 'text-white', 'rounded', 'overflow-hidden']"
+					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
 					[isCategorized]="true"
 					[category]="category"
 					[bookmarks$]="bookmarks$"

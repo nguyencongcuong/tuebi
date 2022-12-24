@@ -8,13 +8,14 @@ import { FormAddCategory } from 'src/app/components/form-add-category/form-add-c
 import { themes } from 'src/app/contansts/theme';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
+import { NzZorroModule } from 'src/app/nz-zorro.module';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
 import { BreakpointService } from 'src/app/services/breakpoint.service';
 import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
 @Component({
 	standalone: true,
-	imports: [CommonModule, RouterModule, DragDropModule, CategoryComponent, FormAddCategory],
+  imports: [CommonModule, RouterModule, DragDropModule, CategoryComponent, FormAddCategory, NzZorroModule],
 	selector: 'app-category-list',
 	templateUrl: './category-list.component.html',
 	styleUrls: ['./category-list.component.scss']

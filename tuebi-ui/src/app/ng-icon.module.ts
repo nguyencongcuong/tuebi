@@ -1,6 +1,15 @@
 import { NgModule } from '@angular/core';
 import { NgIconsModule } from '@ng-icons/core';
 import {
+	circumBookmark, circumCircleInfo, circumEdit, circumExport,
+	circumFolderOff,
+	circumFolderOn, circumHashtag, circumLogin, circumLogout, circumMaximize1, circumPalette, circumPower, circumSearch,
+	circumSettings, circumSliderHorizontal, circumSquareMore, circumSquarePlus,
+	circumTrash, circumUser,
+	circumViewList
+} from '@ng-icons/circum-icons';
+
+import {
 	octBookmark,
 	octCodeOfConduct,
 	octEye,
@@ -66,7 +75,28 @@ import {
 			octPerson,
 			octInbox,
 			octInfo,
-			octDatabase
+			octDatabase,
+			
+			circumFolderOff,
+			circumFolderOn,
+			circumTrash,
+			circumViewList,
+			circumBookmark,
+			circumSettings,
+			circumSquarePlus,
+			circumSliderHorizontal,
+			circumSearch,
+			circumPower,
+			circumPalette,
+			circumMaximize1,
+			circumHashtag,
+			circumExport,
+			circumCircleInfo,
+			circumUser,
+			circumLogin,
+			circumLogout,
+			circumSquareMore,
+			circumEdit
 		}),
 	],
 	exports: [NgIconsModule],

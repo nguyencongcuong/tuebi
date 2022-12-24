@@ -1,4 +1,4 @@
-<div *ngIf="userSettings$ | async as settings">
+<div class="disable-text-selection" *ngIf="userSettings$ | async as settings">
 	
 	<!-- Normal Bookmark -->
 	<div *ngIf="!settings.is_compact_mode_on" class="grid grid-cols-12 gap-4 rounded p-4" [ngStyle]="{background: 'white'}">
@@ -120,7 +120,7 @@
 				width="12"
 				class="favicon"
 			/>
-			<div class="font-bold">{{ bookmark.bookmark_name }}</div>
+			<span>{{ bookmark.bookmark_name }}</span>
 			<span
 				nz-tooltip
 				[nzTooltipTitle]="bookmark.bookmark_url"

@@ -1,0 +1,15 @@
+<div class="hidden-scrollbar bg-white overflow-y-scroll" [ngStyle]="{height: '90vh'}">
+	<router-outlet></router-outlet>
+</div>
+
+<div class="bg-white shadow" [ngStyle]="{height: '10vh'}">
+	<div class="flex justify-center items-center gap-4 h-full">
+		<div
+			*ngFor="let item of items"
+			class="flex justify-center items-center cursor-pointer opacity-80 hover:opacity-100 duration-75 text-xl p-2 cursor-pointer"
+			[routerLink]="item.routerLink"
+			[routerLinkActive]="'bg-neutral-100 rounded'">
+			<ng-icon [name]="item.icon"></ng-icon>
+		</div>
+	</div>
+</div>

@@ -1,18 +1,16 @@
-<div class="lg:h-screen p-6 overflow-y-scroll">
+<div class="flex flex-col gap-4 lg:h-screen lg:p-6 overflow-y-scroll p-4">
 
-	<div class="mb-4">
-		<div class="flex justify-between items-center">
-			<div class="font-bold">Bookmarks</div>
-			<app-form-add-bookmark></app-form-add-bookmark>
-		</div>
+	<div class="flex justify-end items-center">
+		<app-form-add-bookmark></app-form-add-bookmark>
 	</div>
 
-	<div *ngIf="!(isEmpty$ | async)" (cdkDropListDropped)="dropBookmark($event)" cdkDropList class="flex flex-col gap-2">
-		<app-bookmark
-			*ngFor="let bookmark of filteredBookmarks$ | async"
-			[bookmark]="bookmark"
-			cdkDrag>
-		</app-bookmark>
+	<div *ngIf="!(isEmpty$ | async)" (cdkDropListDropped)="dropBookmark($event)" cdkDropList>
+		<div *ngFor="let bookmark of filteredBookmarks$ | async" cdkDrag [cdkDragStartDelay]="500">
+			<app-bookmark
+				[bookmark]="bookmark"
+			>
+			</app-bookmark>
+		</div>
 	</div>
 
 	<div *ngIf="isEmpty$ | async" class="flex flex-col justify-center items-center w-full h-3/4">

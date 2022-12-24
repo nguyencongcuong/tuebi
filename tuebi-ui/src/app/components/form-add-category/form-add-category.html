@@ -1,4 +1,4 @@
-<ng-icon name="oct-plus" class="cursor-pointer" (click)="openModal()"></ng-icon>
+<ng-icon name="circum-square-plus" class="cursor-pointer text-xl" (click)="openModal()"></ng-icon>
 
 <nz-modal
 	(nzOnCancel)="closeModal()"
@@ -21,7 +21,7 @@
 				</nz-form-control>
 			</nz-form-item>
 
-			<nz-form-item>
+			<nz-form-item class="hidden">
 				<nz-form-control>
 					<nz-tag [nzColor]="theme" class="tag">{{name}}</nz-tag>
 

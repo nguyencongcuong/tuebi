@@ -2,7 +2,11 @@ import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, } from '@angular/core';
 import { NgIconComponent } from '@ng-icons/core';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { NzTagModule } from 'ng-zorro-antd/tag';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { map, Observable } from 'rxjs';
 import { FormEditBookmarkComponent } from 'src/app/components/form-edit-bookmark/form-edit-bookmark.component';
 import { themes } from 'src/app/contansts/theme';
@@ -10,7 +14,6 @@ import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { UserSettings } from 'src/app/interfaces/user.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
 import { NgIconModule } from 'src/app/ng-icon.module';
-import { NzZorroModule } from 'src/app/nz-zorro.module';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
 import { BookmarksService } from 'src/app/services/bookmarks.service';
 import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
@@ -22,10 +25,13 @@ import { UserEntityService } from 'src/app/services/user-entity.service';
 	imports: [
 		CommonModule,
 		FormEditBookmarkComponent,
-		NzZorroModule,
 		NgIconComponent,
 		ClipboardModule,
-		NgIconModule
+		NgIconModule,
+		NzToolTipModule,
+		NzTagModule,
+		NzDropDownModule,
+		NzDividerModule
 	],
 	templateUrl: './bookmark.component.html',
 	styleUrls: ['./bookmark.component.scss'],
