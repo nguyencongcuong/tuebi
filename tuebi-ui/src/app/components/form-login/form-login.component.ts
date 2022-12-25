@@ -7,6 +7,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { tap } from 'rxjs';
 import { ROUTE } from 'src/app/contansts/routes';
 import { login } from 'src/app/modules/auth/auth.actions';
+import { BreakpointService } from 'src/app/services/breakpoint.service';
 import { themes } from '../../contansts/theme';
 import { User } from '../../interfaces/user.interface';
 import { AuthService } from '../../modules/auth/auth.service';
@@ -33,13 +34,19 @@ export class FormLoginComponent {
 	route = ROUTE;
 	isLoading = false;
 	
+	isXs$;
+	
 	constructor(
 		private authService: AuthService,
 		private fb: FormBuilder,
 		private router: Router,
 		private notification: NzNotificationService,
-		private store: Store<{ user: User }>
+		private store: Store<{ user: User }>,
+		private breakpointService: BreakpointService,
 	) {
+		
+		this.isXs$ = this.breakpointService.isXs;
+		
 		this.form = this.fb.group({
 			user_email: ['', [Validators.required, Validators.email]],
 			user_password: ['', [Validators.required]],
@@ -78,7 +85,11 @@ export class FormLoginComponent {
 						if (res.success) {
 							this.authService.isLoggedIn.next(true);
 							this.store.dispatch(login({user: res.data}));
-							this.router.navigate([ROUTE.SPACE]);
+							this.isXs$.subscribe(isXs => {
+								isXs 
+									? this.router.navigateByUrl(`m/${ROUTE.SPACE}/${ROUTE.CATEGORIES}`)
+									: this.router.navigateByUrl(`${ROUTE.SPACE}/${ROUTE.CATEGORIES}/all`)
+							}).unsubscribe();
 						} else {
 							this.notification.error(
 								'Login Failed',

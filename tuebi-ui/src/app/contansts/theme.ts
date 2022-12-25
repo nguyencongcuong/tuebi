@@ -52,7 +52,7 @@ export const themes: Theme[] = [
 			accent: {
 				light: '#FCD69C',
 				main: '#FCD69C',
-				dark: '#4e7c90'
+				dark: '#85c6da'
 			}
 		}
 	}

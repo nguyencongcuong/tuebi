@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-4 lg:h-screen lg:p-6 overflow-y-scroll p-4">
+<div class="flex flex-col gap-4 lg:h-screen lg:p-6 overflow-y-scroll p-4" [ngStyle]="{ background: theme.color.primary.light }">
 
 	<div class="flex justify-end items-center">
 		<app-form-add-bookmark></app-form-add-bookmark>
@@ -6,10 +6,7 @@
 
 	<div *ngIf="!(isEmpty$ | async)" (cdkDropListDropped)="dropBookmark($event)" cdkDropList class="flex flex-col gap-2">
 		<div *ngFor="let bookmark of filteredBookmarks$ | async" cdkDrag [cdkDragStartDelay]="500">
-			<app-bookmark
-				[bookmark]="bookmark"
-			>
-			</app-bookmark>
+			<app-bookmark [bookmark]="bookmark"></app-bookmark>
 		</div>
 	</div>
 
