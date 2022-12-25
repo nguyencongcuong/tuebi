@@ -10,7 +10,7 @@
 		<form (ngSubmit)="submit()" [formGroup]="form" nz-form>
 			<nz-form-item>
 				<nz-form-control nzErrorTip="Please fill the bookmark name.">
-					<nz-input-group nzSuffixIcon="book">
+					<nz-input-group>
 						<input
 							formControlName="bookmark_name"
 							nz-input
@@ -23,7 +23,7 @@
 
 			<nz-form-item>
 				<nz-form-control nzErrorTip="Please fill the bookmark url.">
-					<nz-input-group nzSuffixIcon="link">
+					<nz-input-group>
 						<input
 							formControlName="bookmark_url"
 							nz-input
@@ -40,7 +40,6 @@
 						[(ngModel)]="selectedCategoryId"
 						formControlName="category_id"
 						nzPlaceHolder="Choose a Category"
-						nzSuffixIcon="unordered-list"
 					>
 						<nz-option
 							*ngFor="let category of categories$ | async"

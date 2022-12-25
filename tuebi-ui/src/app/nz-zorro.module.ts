@@ -5,7 +5,6 @@ import { NzBackTopModule } from 'ng-zorro-antd/back-top';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzDrawerModule } from 'ng-zorro-antd/drawer';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -45,7 +44,6 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 		NzSelectModule,
 		NzIconModule,
 		NzDropDownModule,
-		NzDrawerModule,
 		NzSwitchModule,
 		NzTypographyModule,
 		NzAvatarModule,
@@ -74,7 +72,6 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 		NzSelectModule,
 		NzIconModule,
 		NzDropDownModule,
-		NzDrawerModule,
 		NzSwitchModule,
 		NzTypographyModule,
 		NzAvatarModule,
