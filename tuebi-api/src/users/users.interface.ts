@@ -5,6 +5,7 @@ export interface UserSettings {
 	is_favicon_shown: boolean;
 	is_bookmark_url_shorten: boolean;
 	is_bookmark_count_shown: boolean;
+	is_bookmark_url_shown: boolean;
 }
 
 export interface User {

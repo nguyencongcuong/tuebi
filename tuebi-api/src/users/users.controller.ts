@@ -85,6 +85,7 @@ export class UsersController {
 					is_favicon_shown: true,
 					is_bookmark_url_shorten: false,
 					is_bookmark_count_shown: true,
+					is_bookmark_url_shown: true,
 				},
 				_iv: ivString,
 			};

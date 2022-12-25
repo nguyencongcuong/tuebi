@@ -30,6 +30,19 @@
 
 		<div class="flex flex-col gap-2">
 			<div class="flex flex-wrap justify-between items-center gap-2">
+				<span>Show Bookmark URL</span>
+				<nz-switch
+					(ngModelChange)="toggleBookmarkUrl()"
+					[(ngModel)]="isBookmarkUrlShown"
+				></nz-switch>
+			</div>
+			<span class="text-gray-400 text-xs">
+				Display the bookmark url
+			</span>
+		</div>
+
+		<div class="flex flex-col gap-2">
+			<div class="flex flex-wrap justify-between items-center gap-2">
 				<span>Shorten Bookmark URL</span>
 				<nz-switch
 					(ngModelChange)="toggleBookmarkURLShorten()"

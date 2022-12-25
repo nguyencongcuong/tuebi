@@ -1,7 +1,11 @@
 <div class="disable-text-selection" *ngIf="userSettings$ | async as settings">
 	
 	<!-- Normal Bookmark -->
-	<div *ngIf="!settings.is_compact_mode_on" class="grid grid-cols-12 gap-4 rounded p-4" [ngStyle]="{background: 'white'}">
+	<div
+		class="grid grid-cols-12 gap-4 rounded p-4"
+		*ngIf="!settings.is_compact_mode_on"
+		[ngStyle]="{background: 'white'}"
+	>
 		<!-- Bookmark Information -->
 		<div class="col-span-8">
 			<div class="flex justify-start items-center gap-4">
@@ -18,7 +22,7 @@
 					<a
 						nz-tooltip
 						[nzTooltipTitle]="bookmark.bookmark_url"
-						*ngIf="bookmark.bookmark_url"
+						*ngIf="settings.is_bookmark_url_shown && bookmark.bookmark_url"
 						class="text-gray-400"
 						href="{{ bookmark.bookmark_url }}"
 						rel="noreferrer nofollow"
@@ -118,7 +122,7 @@
 			<span
 				nz-tooltip
 				[nzTooltipTitle]="bookmark.bookmark_url"
-				*ngIf="bookmark.bookmark_url"
+				*ngIf="settings.is_bookmark_url_shown && bookmark.bookmark_url"
 				class="text-gray-400"
 			>
 				{{

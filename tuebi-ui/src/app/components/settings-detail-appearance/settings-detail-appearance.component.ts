@@ -25,6 +25,7 @@ export class SettingsDetailAppearanceComponent {
 	isFaviconShown = true;
 	isBookmarkURLShorten = false;
 	isBookmarkCountShown = true;
+	isBookmarkUrlShown = true;
 	
 	constructor(
 		private userService: UserService,
@@ -38,6 +39,7 @@ export class SettingsDetailAppearanceComponent {
 					this.isFaviconShown = user.user_settings.is_favicon_shown;
 					this.isBookmarkURLShorten = user.user_settings.is_bookmark_url_shorten;
 					this.isBookmarkCountShown = user.user_settings.is_bookmark_count_shown;
+					this.isBookmarkUrlShown = user.user_settings.is_bookmark_url_shown;
 				}
 			})
 		);
@@ -83,6 +85,17 @@ export class SettingsDetailAppearanceComponent {
 			user_settings: {
 				...user.user_settings,
 				is_bookmark_count_shown: !user.user_settings.is_bookmark_count_shown
+			}
+		});
+	}
+	
+	async toggleBookmarkUrl() {
+		const user = await firstValueFrom(this.user$);
+		this.userEntityService.update({
+			id: user.id,
+			user_settings: {
+				...user.user_settings,
+				is_bookmark_url_shown: !user.user_settings.is_bookmark_url_shown
 			}
 		});
 	}
