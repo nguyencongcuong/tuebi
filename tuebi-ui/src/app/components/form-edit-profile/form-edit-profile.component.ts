@@ -7,8 +7,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { debounceTime, firstValueFrom, map, Observable, tap } from 'rxjs';
-import { User } from 'src/app/interfaces/user.interface';
-import { UserEntityService } from 'src/app/services/user-entity.service';
+import { User } from '../../interfaces/user.interface';
+import { UserEntityService } from '../../services/user-entity.service';
 
 @Component({
 	standalone: true,

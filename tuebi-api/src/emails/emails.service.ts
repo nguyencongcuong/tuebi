@@ -79,7 +79,7 @@ export class EmailsService {
 	
 	async genResetPasswordEmail(confirmationCode: string) {
 		try {
-			const FRONT_END_URL = azAppSettings.TUEBI_FRONTEND_URL + 'pw/reset';
+			const FRONT_END_URL = azAppSettings.TUEBI_FRONTEND_URL + '/pw/reset';
 			const year = new Date().getFullYear();
 			const {html} = mjml2html(`
 			  <mjml>

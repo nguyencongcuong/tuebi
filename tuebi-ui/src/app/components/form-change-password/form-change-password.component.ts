@@ -8,8 +8,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { map, tap } from 'rxjs';
-import { AuthService } from 'src/app/modules/auth/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import { AuthService } from '../../modules/auth/auth.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
 	standalone: true,

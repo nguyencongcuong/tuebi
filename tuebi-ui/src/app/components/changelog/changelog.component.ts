@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NzTimelineModule } from 'ng-zorro-antd/timeline';
 import { Observable, of } from 'rxjs';
-import { ChangeLog } from 'src/app/interfaces/changelog.interface';
-import { ChangelogService } from 'src/app/services/changelog.service';
+import { ChangeLog } from '../../interfaces/changelog.interface';
+import { ChangelogService } from '../../services/changelog.service';
 
 @Component({
   selector: 'app-changelog',

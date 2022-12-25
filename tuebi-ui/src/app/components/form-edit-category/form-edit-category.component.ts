@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IconComponent } from 'src/app/components/icon/icon.component';
-import { THEME } from 'src/app/contansts/theme';
-import { Category } from 'src/app/modules/categories/categories.model';
-import { NzZorroModule } from 'src/app/nz-zorro.module';
-import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
+import { ThemeEnum } from '../../enums/theme.enum';
+import { Category } from '../../interfaces/category.interface';
+import { NzZorroModule } from '../../nz-zorro.module';
+import { CategoryEntityService } from '../../services/category-entity.service';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
 	standalone: true,
@@ -23,7 +23,7 @@ export class FormEditCategoryComponent implements OnInit, OnChanges {
 	
 	constructor(
 		private fb: FormBuilder,
-		private categoryEntityService: CategoriesEntityService
+		private categoryEntityService: CategoryEntityService
 	) {
 		this.form = this.fb.group({
 			id: [this.category.id, [Validators.required]],
@@ -41,7 +41,7 @@ export class FormEditCategoryComponent implements OnInit, OnChanges {
 	}
 	
 	ngOnInit(): void {
-		this.themes = Object.entries(THEME.COLOR);
+		this.themes = Object.entries(ThemeEnum.COLOR);
 	}
 	
 	ngOnChanges(changes: SimpleChanges) {

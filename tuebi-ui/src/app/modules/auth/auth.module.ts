@@ -6,8 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { FormLoginComponent } from '../../components/form-login/form-login.component';
-import { FormSignupComponent } from '../../components/form-signup/form-signup.component';
+import { PageLoginComponent } from '../../pages/page-login/page-login.component';
+import { PageSignupComponent } from '../../pages/page-signup/page-signup.component';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthEffects } from './auth.effects';
 import { AuthGuard } from './auth.guard';
@@ -23,12 +23,12 @@ import { AuthService } from './auth.service';
 		ReactiveFormsModule,
 		FormsModule,
 		
-		RouterModule.forChild([{path: 'login', component: FormLoginComponent}]),
+		RouterModule.forChild([{path: 'login', component: PageLoginComponent}]),
 		StoreModule.forFeature('auth', authReducer),
 		EffectsModule.forFeature([AuthEffects]),
 		
-		FormLoginComponent,
-		FormSignupComponent,
+		PageLoginComponent,
+		PageSignupComponent,
 		AuthRoutingModule,
 	],
 	providers: [AuthService, AuthGuard],

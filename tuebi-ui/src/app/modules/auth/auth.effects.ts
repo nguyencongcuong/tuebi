@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { tap } from 'rxjs';
-import { ROUTE } from '../../contansts/routes';
+import { ROUTE } from '../../enums/routes.enum';
 import { AuthActions } from './auth.action-types';
 
 /*

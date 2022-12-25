@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { AuthedUserI } from './auth.models';
-import { ROUTE } from '../../contansts/routes';
+import { environment } from '../../../environments/environment';
+import { AuthedUserI } from '../../interfaces/auth.interface';
+import { ROUTE } from '../../enums/routes.enum';
 import { AppState } from '../../reducers';
 import { logout } from './auth.actions';
 

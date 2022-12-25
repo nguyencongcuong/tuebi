@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IconComponent } from 'src/app/components/icon/icon.component';
-import { THEME } from 'src/app/contansts/theme';
-import { NzZorroModule } from 'src/app/nz-zorro.module';
-import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
+import { ThemeEnum } from '../../enums/theme.enum';
+import { NzZorroModule } from '../../nz-zorro.module';
+import { CategoryEntityService } from '../../services/category-entity.service';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
 		standalone: true,
@@ -21,7 +21,7 @@ export class FormAddCategory implements OnInit {
 	
 	constructor(
 		private fb: FormBuilder,
-		private categoryEntityService: CategoriesEntityService
+		private categoryEntityService: CategoryEntityService
 	) {
 		this.form = this.fb.group({
 			category_name: ['', [Validators.required]],
@@ -38,7 +38,7 @@ export class FormAddCategory implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		this.themes = Object.entries(THEME.COLOR);
+		this.themes = Object.entries(ThemeEnum.COLOR);
 	}
 	
 	submit() {

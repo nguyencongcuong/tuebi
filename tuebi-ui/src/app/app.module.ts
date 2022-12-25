@@ -14,13 +14,12 @@ import { RouterState, StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { en_US, NZ_I18N } from 'ng-zorro-antd/i18n';
-import { IconComponent } from 'src/app/components/icon/icon.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { IconComponent } from './components/icon/icon.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { AuthModule } from './modules/auth/auth.module';
 import { CategoriesModule } from './modules/categories/categories.module';
-import { SubscriptionModule } from './modules/subscription/subscription.module';
 import { metaReducers, reducers } from './reducers';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -71,8 +70,6 @@ registerLocaleData(en);
     HttpClientModule,
     
     CategoriesModule,
-    SubscriptionModule,
-    
     BrowserModule,
     BrowserAnimationsModule,
     LayoutModule,

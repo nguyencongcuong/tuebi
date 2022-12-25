@@ -6,15 +6,15 @@ import { RouterModule } from '@angular/router';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
-import { FormEditCategoryComponent } from 'src/app/components/form-edit-category/form-edit-category.component';
-import { IconComponent } from 'src/app/components/icon/icon.component';
-import { FIXED_CATEGORIES } from 'src/app/contansts/categories';
-import { Bookmark } from 'src/app/interfaces/bookmark.interface';
-import { UserSettings } from 'src/app/interfaces/user.interface';
-import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
-import { UserEntityService } from 'src/app/services/user-entity.service';
+import { FIXED_CATEGORIES } from '../../enums/categories.enum';
+import { Bookmark } from '../../interfaces/bookmark.interface';
+import { UserSettings } from '../../interfaces/user.interface';
+import { Category } from '../../interfaces/category.interface';
+import { BookmarkEntityService } from '../../services/bookmark-entity.service';
+import { CategoryEntityService } from '../../services/category-entity.service';
+import { UserEntityService } from '../../services/user-entity.service';
+import { FormEditCategoryComponent } from '../form-edit-category/form-edit-category.component';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
 	selector: 'app-category',
@@ -63,8 +63,8 @@ export class CategoryComponent implements OnInit {
 	name: string = '';
 	
 	constructor(
-		private categoriesEntityService: CategoriesEntityService,
-		private bookmarksEntityService: BookmarksEntityService,
+		private categoryEntityService: CategoryEntityService,
+		private bookmarkEntityService: BookmarkEntityService,
 		private userEntityService: UserEntityService
 	) {
 		this.userSettings$ = this.userEntityService.entities$.pipe(
@@ -118,7 +118,7 @@ export class CategoryComponent implements OnInit {
 		
 		if (bookmarksToDelete.length) {
 			for (const bookmark of bookmarksToDelete) {
-				this.bookmarksEntityService.update({
+				this.bookmarkEntityService.update({
 					id: bookmark.id,
 					bookmark_deleted: true,
 					category_id: ''
@@ -127,7 +127,7 @@ export class CategoryComponent implements OnInit {
 		}
 		
 		// Delete Category
-		this.categoriesEntityService.delete(id);
+		this.categoryEntityService.delete(id);
 	}
 	
 }

@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FormLoginComponent } from '../../components/form-login/form-login.component';
-import { FormSignupComponent } from '../../components/form-signup/form-signup.component';
-import { ROUTE } from '../../contansts/routes';
+import { PageLoginComponent } from '../../pages/page-login/page-login.component';
+import { PageSignupComponent } from '../../pages/page-signup/page-signup.component';
+import { ROUTE } from '../../enums/routes.enum';
 
 const routes: Routes = [
 	{
 		path: ROUTE.SIGNUP,
-		component: FormSignupComponent,
+		component: PageSignupComponent,
 	},
 	{
 		path: ROUTE.LOGIN,
-		component: FormLoginComponent,
+		component: PageLoginComponent,
 	},
 ];
 

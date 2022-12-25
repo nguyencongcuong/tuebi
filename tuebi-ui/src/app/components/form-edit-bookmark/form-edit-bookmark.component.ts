@@ -7,11 +7,11 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
-import { IconComponent } from 'src/app/components/icon/icon.component';
-import { Bookmark } from 'src/app/interfaces/bookmark.interface';
-import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
+import { Bookmark } from '../../interfaces/bookmark.interface';
+import { Category } from '../../interfaces/category.interface';
+import { BookmarkEntityService } from '../../services/bookmark-entity.service';
+import { CategoryEntityService } from '../../services/category-entity.service';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
 	standalone: true,
@@ -32,8 +32,8 @@ export class FormEditBookmarkComponent implements OnChanges {
 	
 	constructor(
 		private fb: FormBuilder,
-		private bookmarkEntityService: BookmarksEntityService,
-		private categoryEntityService: CategoriesEntityService
+		private bookmarkEntityService: BookmarkEntityService,
+		private categoryEntityService: CategoryEntityService
 	) {
 		this.categories$ = this.categoryEntityService.entities$;
 		

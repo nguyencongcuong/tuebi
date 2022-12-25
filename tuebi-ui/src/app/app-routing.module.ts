@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
-import { FormLoginComponent } from './components/form-login/form-login.component';
+import { PageAboutComponent } from 'src/app/pages/page-about/page-about.component';
+import { PageContactComponent } from 'src/app/pages/page-contact/page-contact.component';
+import { PageLoginComponent } from './pages/page-login/page-login.component';
 import {
-	FormPasswordResetRequestComponent
-} from './components/form-password-reset-request/form-password-reset-request.component';
-import { FormPasswordResetComponent } from './components/form-password-reset/form-password-reset.component';
-import { FormSignupComponent } from './components/form-signup/form-signup.component';
-import { PageAboutComponent } from './components/page-about/page-about.component';
-import { PageContactComponent } from './components/page-contact/page-contact.component';
-import { ROUTE } from './contansts/routes';
+	PagePasswordResetRequestComponent
+} from './pages/page-password-reset-request/page-password-reset-request.component';
+import { PageSignupComponent } from './pages/page-signup/page-signup.component';
+import { ROUTE } from './enums/routes.enum';
 
 const routes: Routes = [
 	{
@@ -18,11 +17,11 @@ const routes: Routes = [
 	},
 	{
 		path: ROUTE.LOGIN,
-		component: FormLoginComponent,
+		component: PageLoginComponent,
 	},
 	{
 		path: ROUTE.SIGNUP,
-		component: FormSignupComponent,
+		component: PageSignupComponent,
 	},
 	{
 		path: ROUTE.ABOUT,
@@ -30,12 +29,8 @@ const routes: Routes = [
 	},
 	{
 		path: ROUTE.PASSWORD_RESET_REQUEST,
-		component: FormPasswordResetRequestComponent,
-	},
-	{
-		path: ROUTE.PASSWORD_RESET,
-		component: FormPasswordResetComponent,
-	},
+		component: PagePasswordResetRequestComponent,
+	}
 	// {
 	//   path: "**",
 	//   component: Page404Component,

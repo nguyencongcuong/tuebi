@@ -1,0 +1,60 @@
+<div class="grid grid-cols-4 gap-4">
+
+	<div class="col-span-4 md:col-span-2">
+
+		<div class="rounded-xl p-6 bg-white h-ull">
+			<h3 class="uppercase font-bold mb-6">About Teubi</h3>
+			<p class="mb-6">Tuebi is your online bookmark manager designed with privacy and simplicity in mind.</p>
+			<div class="flex flex-col mb-6 gap-2" *ngFor="let feature of featuresAtGlance">
+				<div class="flex items-center gap-2">
+					<app-icon [name]="feature.icon"></app-icon>
+					<div class="font-semibold">{{feature.name}}</div>
+				</div>
+				<div>{{feature.desc}}</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-span-4 md:col-span-2">
+
+		<div class="rounded-xl p-6 bg-white h-ull">
+			<h3 class="uppercase font-bold mb-6">QaEnum</h3>
+			<nz-collapse [nzBordered]="false">
+				<nz-collapse-panel *ngFor="let item of qa" [nzHeader]="item.question" [nzActive]="item.active">
+					<p *ngFor="let a of item.answer">{{a}}</p>
+				</nz-collapse-panel>
+			</nz-collapse>
+		</div>
+
+	</div>
+
+	<div class="col-span-4">
+
+		<div class="rounded-xl p-6 bg-white h-full">
+			<h3 class="uppercase font-bold mb-6">Meet Author</h3>
+			<div class="flex items-center gap-4">
+				<div class="">
+					<img src="assets/images/author_cuongnc.jpeg" class="avatar" alt="Nguyen Cong Cuong"/>
+				</div>
+				<div class="">
+					<div class=""><strong>Nguyen Cong Cuong</strong></div>
+					<div class="">Founder</div>
+					<div class="">Full-Stack developer</div>
+					<a href="mailto:cuongnc.fe@gmail.com">cuongnc.fe@gmail.com</a>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="col-span-4">
+
+		<!-- Changelog -->
+		<div class="rounded-xl p-6 bg-white">
+			<h3 class="uppercase font-bold mb-6">Our journey:</h3>
+			<app-changelog></app-changelog>
+		</div>
+
+	</div>
+</div>

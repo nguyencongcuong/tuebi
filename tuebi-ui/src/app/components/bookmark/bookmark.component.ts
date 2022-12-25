@@ -8,16 +8,16 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { map, Observable } from 'rxjs';
-import { FormEditBookmarkComponent } from 'src/app/components/form-edit-bookmark/form-edit-bookmark.component';
-import { IconComponent } from 'src/app/components/icon/icon.component';
-import { themes } from 'src/app/contansts/theme';
-import { Bookmark } from 'src/app/interfaces/bookmark.interface';
-import { UserSettings } from 'src/app/interfaces/user.interface';
-import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
-import { BookmarksService } from 'src/app/services/bookmarks.service';
-import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
-import { UserEntityService } from 'src/app/services/user-entity.service';
+import { themes } from '../../enums/theme.enum';
+import { Bookmark } from '../../interfaces/bookmark.interface';
+import { UserSettings } from '../../interfaces/user.interface';
+import { Category } from '../../interfaces/category.interface';
+import { BookmarkEntityService } from '../../services/bookmark-entity.service';
+import { BookmarkService } from '../../services/bookmark.service';
+import { CategoryEntityService } from '../../services/category-entity.service';
+import { UserEntityService } from '../../services/user-entity.service';
+import { FormEditBookmarkComponent } from '../form-edit-bookmark/form-edit-bookmark.component';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
 	standalone: true,
@@ -77,9 +77,9 @@ export class BookmarkComponent implements OnInit {
 	
 	constructor(
 		private userEntityService: UserEntityService,
-		private bookmarksService: BookmarksService,
-		private bookmarksEntityService: BookmarksEntityService,
-		private categoryEntityService: CategoriesEntityService,
+		private bookmarkService: BookmarkService,
+		private bookmarkEntityService: BookmarkEntityService,
+		private categoryEntityService: CategoryEntityService,
 		private clipboard: Clipboard,
 		private notificationService: NzNotificationService
 	) {
@@ -105,18 +105,18 @@ export class BookmarkComponent implements OnInit {
 	}
 	
 	remove() {
-		this.bookmarksEntityService.update({
+		this.bookmarkEntityService.update({
 			id: this.bookmark.id,
 			bookmark_deleted: true,
 		});
 	}
 	
 	delete() {
-		this.bookmarksEntityService.delete(this.bookmark.id);
+		this.bookmarkEntityService.delete(this.bookmark.id);
 	}
 	
 	restore() {
-		this.bookmarksEntityService.update({
+		this.bookmarkEntityService.update({
 			id: this.bookmark.id,
 			bookmark_deleted: false,
 		});
@@ -139,7 +139,7 @@ export class BookmarkComponent implements OnInit {
 	}
 	
 	getFavicon(domain: string) {
-		return this.bookmarksService.getFavicon(domain);
+		return this.bookmarkService.getFavicon(domain);
 	}
 	
 	handleUrl(url: string, isShorten: boolean) {

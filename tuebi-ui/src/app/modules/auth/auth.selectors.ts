@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { AuthState } from './auth.models';
+import { AuthState } from '../../interfaces/auth.interface';
 
 /*
  * By using Feature Selector, we can add safe type to our auth state.

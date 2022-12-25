@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ROUTE } from 'src/app/contansts/routes';
+import { ROUTE } from '../../enums/routes.enum';
 
 @Component({
 	standalone: true,

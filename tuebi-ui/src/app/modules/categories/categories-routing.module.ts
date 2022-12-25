@@ -1,68 +1,66 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CategoryDetailComponent } from 'src/app/components/category-detail/category-detail.component';
-import { CategoryListComponent } from 'src/app/components/category-list/category-list.component';
-import { SettingsDetailAboutComponent } from 'src/app/components/settings-detail-about/settings-detail-about.component';
+import { PageBookmarksComponent } from '../../pages/page-bookmarks/page-bookmarks.component';
+import { PageCategoriesComponent } from '../../pages/page-categories/page-categories.component';
+import { PageSettingsAboutComponent } from '../../pages/page-settings-about/page-settings-about.component';
 import {
-	SettingsDetailAppearanceComponent
-} from 'src/app/components/settings-detail-appearance/settings-detail-appearance.component';
+	PageSettingsAppearanceComponent
+} from '../../pages/page-settings-appearance/page-settings-appearance.component';
 import {
-	SettingsDetailGeneralComponent
-} from 'src/app/components/settings-detail-general/settings-detail-general.component';
+	PageSettingsGeneralComponent
+} from '../../pages/page-settings-general/page-settings-general.component';
 import {
-	SettingsDetailImportExportComponent
-} from 'src/app/components/settings-detail-import-export/settings-detail-import-export.component';
-import { SettingsListComponent } from 'src/app/components/settings-list/settings-list.component';
-import {
-	XsCategoryDetailComponent
-} from 'src/app/components/small-screens/xs-category-detail/xs-category-detail.component';
-import { XsCategoryListComponent } from 'src/app/components/small-screens/xs-category-list/xs-category-list.component';
-import { XsSettingListComponent } from 'src/app/components/small-screens/xs-setting-list/xs-setting-list.component';
-import { XsSpaceComponent } from 'src/app/components/small-screens/xs-space/xs-space.component';
-import { SpaceComponent } from 'src/app/components/space/space.component';
-import { ROUTE } from 'src/app/contansts/routes';
-import { CategoriesResolver } from 'src/app/services/categories.resolver';
+	PageSettingsImportExportComponent
+} from '../../pages/page-settings-import-export/page-settings-import-export.component';
+import { PageSettingsComponent } from '../../pages/page-settings/page-settings.component';
+import { PageXsBookmarksComponent } from '../../pages/page-xs-bookmarks/page-xs-bookmarks.component';
+import { PageXsCategoriesComponent } from '../../pages/page-xs-categories/page-xs-categories.component';
+import { PageXsSettingsComponent } from '../../pages/page-xs-settings/page-xs-settings.component';
+import { ROUTE } from '../../enums/routes.enum';
+import { PageSpaceComponent } from '../../pages/page-space/page-space.component';
+import { PageXsSpaceComponent } from '../../pages/page-xs-space/page-xs-space.component';
+import { CategoryResolver } from '../../services/category.resolver';
 import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
 	// Large Screen
 	{
 		path: ROUTE.SPACE,
-		component: SpaceComponent,
+		component: PageSpaceComponent,
 		canActivate: [AuthGuard],
 		resolve: {
-			categories: CategoriesResolver
+			categories: CategoryResolver
 		},
 		children: [
 			{
 				path: ROUTE.CATEGORIES,
-				component: CategoryListComponent,
+				component: PageCategoriesComponent,
 				children: [
 					{
 						path: `:id`,
-						component: CategoryDetailComponent
+						component: PageBookmarksComponent
 					}
 				]
 			},
 			{
 				path: ROUTE.SETTINGS,
-				component: SettingsListComponent,
+				component: PageSettingsComponent,
 				children: [
 					{
 						path: ROUTE.SETTINGS_GENERAL,
-						component: SettingsDetailGeneralComponent
+						component: PageSettingsGeneralComponent
 					},
 					{
 						path: ROUTE.SETTINGS_APPEARANCE,
-						component: SettingsDetailAppearanceComponent
+						component: PageSettingsAppearanceComponent
 					},
 					{
 						path: ROUTE.SETTINGS_ABOUT,
-						component: SettingsDetailAboutComponent
+						component: PageSettingsAboutComponent
 					},
 					{
 						path: ROUTE.SETTINGS_IMPORT_EXPORT,
-						component: SettingsDetailImportExportComponent
+						component: PageSettingsImportExportComponent
 					}
 				]
 			},
@@ -72,39 +70,39 @@ const routes: Routes = [
 	// Small Screen
 	{
 		path: `m/${ROUTE.SPACE}`,
-		component: XsSpaceComponent,
+		component: PageXsSpaceComponent,
 		canActivate: [AuthGuard],
 		resolve: {
-			categories: CategoriesResolver
+			categories: CategoryResolver
 		},
 		children: [
 			{
 				path: ROUTE.CATEGORIES + '/:id',
-				component: XsCategoryDetailComponent
+				component: PageXsBookmarksComponent
 			},
 			{
 				path: ROUTE.CATEGORIES,
-				component: XsCategoryListComponent
+				component: PageXsCategoriesComponent
 			},
 			{
 				path: ROUTE.SETTINGS + '/general',
-				component: SettingsDetailGeneralComponent
+				component: PageSettingsGeneralComponent
 			},
 			{
 				path: ROUTE.SETTINGS + '/appearance',
-				component: SettingsDetailAppearanceComponent
+				component: PageSettingsAppearanceComponent
 			},
 			{
 				path: ROUTE.SETTINGS + '/import-export',
-				component: SettingsDetailImportExportComponent
+				component: PageSettingsImportExportComponent
 			},
 			{
 				path: ROUTE.SETTINGS + '/about',
-				component: SettingsDetailAboutComponent
+				component: PageSettingsAboutComponent
 			},
 			{
 				path: ROUTE.SETTINGS,
-				component: XsSettingListComponent
+				component: PageXsSettingsComponent
 			},
 		]
 	}

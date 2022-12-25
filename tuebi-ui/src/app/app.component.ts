@@ -8,11 +8,11 @@ import {
 	Router,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { AUTH_LOCAL_STORAGE_KEY } from 'src/app/contansts/authorization';
+import { AUTH_LOCAL_STORAGE_KEY } from 'src/app/enums/authorization.enum';
 import { BreakpointService } from 'src/app/services/breakpoint.service';
-import { features, featuresAtGlance } from './contansts/features';
-import { ROUTE, routeList } from './contansts/routes';
-import { themes } from './contansts/theme';
+import { featuresEnum, featuresAtGlance } from './enums/features.enum';
+import { ROUTE, routeList } from './enums/routes.enum';
+import { themes } from './enums/theme.enum';
 import { login } from './modules/auth/auth.actions';
 import { AuthService } from './modules/auth/auth.service';
 import { AppState } from './reducers';
@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
 	
 	ROUTE = ROUTE;
 	isShown: boolean = false;
-	features = features;
+	features = featuresEnum;
 	featuresAtGlance = featuresAtGlance;
 	routeList = routeList;
 	

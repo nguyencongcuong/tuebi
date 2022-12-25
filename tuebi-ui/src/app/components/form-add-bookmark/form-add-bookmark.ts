@@ -7,10 +7,10 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { firstValueFrom, map, Observable } from 'rxjs';
-import { IconComponent } from 'src/app/components/icon/icon.component';
-import { Category } from 'src/app/modules/categories/categories.model';
-import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
-import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
+import { Category } from '../../interfaces/category.interface';
+import { BookmarkEntityService } from '../../services/bookmark-entity.service';
+import { CategoryEntityService } from '../../services/category-entity.service';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
 	standalone: true,
@@ -41,8 +41,8 @@ export class FormAddBookmark implements OnInit {
 	constructor(
 		private fb: FormBuilder,
 		private route: ActivatedRoute,
-		private bookmarkEntityService: BookmarksEntityService,
-		private categoryEntityService: CategoriesEntityService
+		private bookmarkEntityService: BookmarkEntityService,
+		private categoryEntityService: CategoryEntityService
 	) {
 		this.categories$ = this.categoryEntityService.entities$;
 		
