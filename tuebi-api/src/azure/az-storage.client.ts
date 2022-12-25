@@ -19,7 +19,18 @@ export class AzBlobStorageClient {
 		const blobClient = this.containerClient.getBlobClient(blobName);
 		const downloadBlockBlobResponse = await blobClient.download();
 		const downloaded = (await this.streamToBuffer(downloadBlockBlobResponse.readableStreamBody)).toString();
-		return downloadBlockBlobResponse;
+		return downloaded;
+	}
+	
+	async uploadBlob(blobName: string, blobContent: any) {
+		const blockBlobClient = this.containerClient.getBlockBlobClient(blobName);
+		const uploadBlobResponse = await blockBlobClient.upload(blobContent, blobContent.length);
+		return uploadBlobResponse;
+	}
+	
+	async deleteBlob(blobName: string) {
+		const deleteBlobResponse = this.containerClient.deleteBlob(blobName);
+		return deleteBlobResponse;
 	}
 	
 	// [Node.js only] A helper method used to read a Node.js readable stream into a Buffer

@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-import { map, Observable } from 'rxjs';
+import { map, Observable} from 'rxjs';
+import { ChangelogComponent } from 'src/app/components/changelog/changelog.component';
 import { User } from 'src/app/interfaces/user.interface';
 import { UserEntityService } from 'src/app/services/user-entity.service';
 import { UserService } from 'src/app/services/user.service';
@@ -10,11 +11,11 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
 	selector: 'app-settings-detail-about',
 	standalone: true,
-	imports: [CommonModule, NzSpinModule, NzDividerModule],
+	imports: [CommonModule, NzSpinModule, NzDividerModule, ChangelogComponent],
 	templateUrl: './settings-detail-about.component.html',
 	styleUrls: ['./settings-detail-about.component.scss']
 })
-export class SettingsDetailAboutComponent implements OnInit {
+export class SettingsDetailAboutComponent {
 	user$ = new Observable<User>();
 	
 	constructor(
@@ -24,9 +25,6 @@ export class SettingsDetailAboutComponent implements OnInit {
 		this.user$ = this.userEntityService.entities$.pipe(
 			map(users => users[0])
 		);
-	}
-	
-	ngOnInit(): void {
 	}
 	
 }

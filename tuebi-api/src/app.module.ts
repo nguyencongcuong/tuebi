@@ -11,6 +11,7 @@ import { SecurityModule } from './security/security.module';
 import { SecurityService } from './security/security.service';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { UsersModule } from './users/users.module';
+import { ChangelogModule } from './changelog/changelog.module';
 
 @Module({
 	controllers: [AppController],
@@ -28,7 +29,8 @@ import { UsersModule } from './users/users.module';
 		SubscriptionsModule,
 		CategoriesModule,
 		BookmarksModule,
-		EmailsModule
+		EmailsModule,
+		ChangelogModule
 	]
 })
 export class AppModule {

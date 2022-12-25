@@ -1,0 +1,30 @@
+<nz-timeline *ngIf="changelog$ | async as changelog">
+	<nz-timeline-item *ngFor="let item of changelog" nzColor="green">
+		<div class="font-bold">{{item.version}}</div>
+		<div class="font-bold mb-4">{{item.release_date}}</div>
+		<div class="flex flex-col gap-4" *ngFor="let change of item.changes">
+			
+			<div class="flex flex-col gap-2" *ngIf="change.new.length">
+				<div *ngFor="let newItem of change.new">
+					<span class="bg-blue-200 rounded px-2 mr-2">New</span>
+					<span>{{newItem}}</span>
+				</div>
+			</div>
+			
+			<div class="flex flex-col gap-2" *ngIf="change.fixed.length">
+				<div *ngFor="let fixedItem of change.fixed">
+					<span class="bg-amber-200 rounded px-2 mr-2">Fixed</span>
+					<span>{{fixedItem}}</span>
+				</div>
+			</div>
+			
+			<div class="flex flex-col gap-2" *ngIf="change.improved.length">
+				<div *ngFor="let improvedItem of change.improved">
+					<span class="bg-orange-200 rounded px-2 mr-2">Improved</span>
+					<span>{{improvedItem}}</span>
+				</div>
+			</div>
+		
+		</div>
+	</nz-timeline-item>
+</nz-timeline>

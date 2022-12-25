@@ -12,8 +12,9 @@ Backend built for tuebi.io
 
 # NESTJS SCRIPT
 
+- `nest`: Show help commands
 - `nest new <name>`: Generate a new NestJS application
-- `nest g resource`: Generate new resource with REST API
+- `nest g resource`: Generate new resource with REST API https://docs.nestjs.com/recipes/crud-generator
 - `nest g service`: Generate a new service
 
 # MORE DOCS
