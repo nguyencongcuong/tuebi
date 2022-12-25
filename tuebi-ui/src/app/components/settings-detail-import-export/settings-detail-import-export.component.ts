@@ -5,7 +5,6 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
-import { NgIconModule } from 'src/app/ng-icon.module';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
 import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,7 +12,7 @@ import { environment } from 'src/environments/environment';
 
 @Component({
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzUploadModule, NzSpinModule, NzButtonModule, NgIconModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzUploadModule, NzSpinModule, NzButtonModule],
 	selector: 'app-settings-detail-import-export',
 	templateUrl: './settings-detail-import-export.component.html',
 	styleUrls: ['./settings-detail-import-export.component.scss']

@@ -1,7 +1,7 @@
 import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, } from '@angular/core';
-import { NgIconComponent } from '@ng-icons/core';
+import { MatIconModule } from '@angular/material/icon';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
@@ -9,11 +9,11 @@ import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { map, Observable } from 'rxjs';
 import { FormEditBookmarkComponent } from 'src/app/components/form-edit-bookmark/form-edit-bookmark.component';
+import { IconComponent } from 'src/app/components/icon/icon.component';
 import { themes } from 'src/app/contansts/theme';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { UserSettings } from 'src/app/interfaces/user.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { NgIconModule } from 'src/app/ng-icon.module';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
 import { BookmarksService } from 'src/app/services/bookmarks.service';
 import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
@@ -25,13 +25,13 @@ import { UserEntityService } from 'src/app/services/user-entity.service';
 	imports: [
 		CommonModule,
 		FormEditBookmarkComponent,
-		NgIconComponent,
 		ClipboardModule,
-		NgIconModule,
 		NzToolTipModule,
 		NzTagModule,
 		NzDropDownModule,
-		NzDividerModule
+		NzDividerModule,
+		MatIconModule,
+		IconComponent
 	],
 	templateUrl: './bookmark.component.html',
 	styleUrls: ['./bookmark.component.scss'],
@@ -62,13 +62,13 @@ export class BookmarkComponent implements OnInit {
 	
 	quickActionItems = [
 		{
-			icon: 'oct-copy',
+			icon: 'content_copy',
 			handleClick: () => {
 				this.copy()
 			}
 		},
 		{
-			icon: 'oct-link',
+			icon: 'link',
 			handleClick: () => {
 				this.open()
 			}

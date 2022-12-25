@@ -4,23 +4,23 @@
 >
 	<div class="flex justify-between items-center gap-2 w-full">
 		<div class="flex items-center gap-2 w-full" [routerLink]="isAll ? 'all' : isUncategorized ? 'uncategorized' : isTrash ? 'trash' : category.id">
-			<ng-icon *ngIf="isCategorized" name="circum-folder-on"></ng-icon>
-			<ng-icon *ngIf="isAll" name="circum-view-list"></ng-icon>
-			<ng-icon *ngIf="isUncategorized" name="circum-folder-off"></ng-icon>
-			<ng-icon *ngIf="isTrash" name="circum-trash"></ng-icon>
+			<app-icon *ngIf="isCategorized" name="folder"></app-icon>
+			<app-icon *ngIf="isAll" name="collections_bookmark"></app-icon>
+			<app-icon *ngIf="isUncategorized" name="folder_off"></app-icon>
+			<app-icon *ngIf="isTrash" name="delete"></app-icon>
 			<div>{{name}}</div>
 		</div>
 		<div class="flex items-center justify-end gap-2">
 			<span *ngIf="settings.is_bookmark_count_shown" class="text-xs text-neutral-500">
 				{{count$ | async}}
 			</span>
-			<ng-icon
+			<app-icon
 				*ngIf="!FIXED_CATEGORIES.ids.includes(name)"
 				[nzDropdownMenu]="menu"
 				nz-dropdown
 				nz-icon
-				name="circum-square-more">
-			</ng-icon>
+				name="more">
+			</app-icon>
 		</div>
 	</div>
 
@@ -29,7 +29,7 @@
 		<ul nz-menu>
 			<li nz-menu-item>
 				<div (click)="deleteOneCategory(category.id)" class="flex items-center gap-2">
-					<ng-icon name="circum-trash"></ng-icon>
+					<app-icon name="delete"></app-icon>
 					<span>Delete</span>
 				</div>
 			</li>

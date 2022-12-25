@@ -8,12 +8,11 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { debounceTime, firstValueFrom, map, Observable, tap } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
-import { NgIconModule } from 'src/app/ng-icon.module';
 import { UserEntityService } from 'src/app/services/user-entity.service';
 
 @Component({
 	standalone: true,
-	imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzIconModule, NgIconModule],
+	imports: [CommonModule, RouterModule, FormsModule, ReactiveFormsModule, NzFormModule, NzInputModule, NzSpinModule, NzIconModule],
 	selector: 'app-form-edit-profile',
 	templateUrl: './form-edit-profile.component.html',
 	styleUrls: ['./form-edit-profile.component.scss']

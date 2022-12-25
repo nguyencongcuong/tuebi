@@ -6,7 +6,6 @@ import { BookmarkComponent } from 'src/app/components/bookmark/bookmark.componen
 import { CategoryComponent } from 'src/app/components/category/category.component';
 import { FormAddBookmark } from 'src/app/components/form-add-bookmark/form-add-bookmark';
 import { FormAddCategory } from 'src/app/components/form-add-category/form-add-category';
-import { NgIconModule } from 'src/app/ng-icon.module';
 import { BookmarksDataService } from 'src/app/services/bookmarks-data.service';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
 import { CategoriesDataService } from 'src/app/services/categories-data.service';
@@ -88,7 +87,6 @@ export const entityMetadata: EntityMetadataMap = {
 		FormsModule,
 		CategoriesRoutingModule,
 		NzZorroModule,
-		NgIconModule,
 		CategoryComponent,
 		BookmarkComponent,
 		FormAddCategory,

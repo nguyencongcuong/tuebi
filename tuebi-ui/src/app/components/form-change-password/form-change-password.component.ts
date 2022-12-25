@@ -9,7 +9,6 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { map, tap } from 'rxjs';
 import { AuthService } from 'src/app/modules/auth/auth.service';
-import { NgIconModule } from 'src/app/ng-icon.module';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -21,7 +20,6 @@ import { UserService } from 'src/app/services/user.service';
 		ReactiveFormsModule, 
 		NzFormModule, 
 		NzIconModule, 
-		NgIconModule, 
 		NzInputModule, 
 		NzAlertModule,
 	],

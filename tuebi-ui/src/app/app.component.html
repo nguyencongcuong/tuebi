@@ -15,7 +15,7 @@
 		</div>
 
 		<div class="flex flex-col items-end gap-4 lg:hidden">
-			<ng-icon name="oct-grabber" size="40" (click)="toggleNav(isShown)" class="cursor-pointer"></ng-icon>
+			<app-icon name="menu" (click)="toggleNav(isShown)"></app-icon>
 			<div [ngClass]="isShown ? 'animation--in' : 'hidden'">
 				<div class="flex flex-col items-end gap-2 text-end">
 					<a
@@ -74,7 +74,7 @@
 				<img [src]="item.imageSrc" [alt]="item.title" class="w-3/4">
 				<div class="flex justify-between items-center mb-6">
 					<div class="font-bold text-xl lg:text-2xl">{{item.title}}</div>
-					<ng-icon [name]="item.icon" size="30"></ng-icon>
+					<app-icon [name]="item.icon"></app-icon>
 				</div>
 				<p class="lg:text-xl">{{item.desc}}</p>
 			</div>
@@ -87,7 +87,7 @@
 						*ngFor="let item of featuresAtGlance"
 						class="flex items-center basis-1/2 gap-4 flex-shrink mb-4"
 					>
-						<ng-icon [name]="item.icon" size="20"></ng-icon>
+						<app-icon [name]="item.icon"></app-icon>
 						<div class="lg:text-xl">{{item.name}}</div>
 					</div>
 				</div>

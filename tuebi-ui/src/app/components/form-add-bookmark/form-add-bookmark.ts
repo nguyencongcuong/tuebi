@@ -1,14 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, ParamMap, Route, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { firstValueFrom, map, Observable } from 'rxjs';
+import { IconComponent } from 'src/app/components/icon/icon.component';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { NgIconModule } from 'src/app/ng-icon.module';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
 import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 
@@ -23,7 +23,7 @@ import { CategoriesEntityService } from 'src/app/services/categories-entity.serv
 		NzFormModule,
 		NzInputModule,
 		NzSelectModule,
-		NgIconModule
+		IconComponent,
 	],
 	templateUrl: './form-add-bookmark.html',
 	styleUrls: ['./form-add-bookmark.scss']

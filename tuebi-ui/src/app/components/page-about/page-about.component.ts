@@ -2,16 +2,16 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzTimelineModule } from 'ng-zorro-antd/timeline';
+import { IconComponent } from 'src/app/components/icon/icon.component';
 import { changelog } from '../../contansts/changelog';
 import { features, featuresAtGlance } from '../../contansts/features';
 import { qa } from '../../contansts/qa';
 import { themes } from '../../contansts/theme';
-import { NgIconModule } from '../../ng-icon.module';
 
 @Component({
 	selector: 'app-page-about',
 	standalone: true,
-	imports: [CommonModule, NzTimelineModule, NgIconModule, NzCollapseModule],
+	imports: [CommonModule, NzTimelineModule, NzCollapseModule, IconComponent],
 	templateUrl: './page-about.component.html',
 	styleUrls: ['./page-about.component.scss'],
 })

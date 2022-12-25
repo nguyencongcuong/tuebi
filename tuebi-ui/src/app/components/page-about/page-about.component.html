@@ -7,7 +7,7 @@
 			<p class="mb-6">Tuebi is your online bookmark manager designed with privacy and simplicity in mind.</p>
 			<div class="flex flex-col mb-6 gap-2" *ngFor="let feature of featuresAtGlance">
 				<div class="flex items-center gap-2">
-					<ng-icon [name]="feature.icon"></ng-icon>
+					<app-icon [name]="feature.icon"></app-icon>
 					<div class="font-semibold">{{feature.name}}</div>
 				</div>
 				<div>{{feature.desc}}</div>

@@ -3,37 +3,13 @@
 		<div class="flex flex-col gap-4 p-4 h-screen overflow-auto">
 
 			<div
+				*ngFor="let item of items"
 				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
-				[routerLink]="['/space/settings/general']"
+				[routerLink]="[item.routerLink]"
 			>
-				<ng-icon name="oct-person"></ng-icon>
-				<div>General</div>
+				<app-icon [name]="item.icon"></app-icon>
+				<div>{{item.title}}</div>
 			</div>
-
-			<div
-				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
-				[routerLink]="['/space/settings/appearance']"
-			>
-				<ng-icon name="oct-eye"></ng-icon>
-				<div>Appearance</div>
-			</div>
-
-			<div
-				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
-				[routerLink]="['/space/settings/import-export']"
-			>
-				<ng-icon name="oct-database"></ng-icon>
-				<div>Import/Export</div>
-			</div>
-
-			<div
-				class="flex items-center gap-4 cursor-pointer p-4 bg-neutral-50 rounded opacity-70 hover:opacity-100 transition-all"
-				[routerLink]="['/space/settings/about']"
-			>
-				<ng-icon name="oct-info"></ng-icon>
-				<div>About Tuebi</div>
-			</div>
-
 
 		</div>
 	</div>

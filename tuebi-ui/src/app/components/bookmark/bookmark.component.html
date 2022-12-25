@@ -48,23 +48,18 @@
 		<!-- Bookmark Options -->
 		<div class="col-span-1">
 			<div class="flex justify-end items-center">
-				<ng-icon
-					class="cursor-pointer opacity-80 hover:opacity-100"
-					name="oct-kebab-horizontal"
-					nz-dropdown
-					[nzDropdownMenu]="menu">
-				</ng-icon>
+				<app-icon name="more" nz-dropdown [nzDropdownMenu]="menu"></app-icon>
 				<nz-dropdown-menu #menu="nzDropdownMenu">
 					<ul nz-menu>
 						<li class="flex gap-2" nz-menu-item>
 					<span (click)="open()" class="flex items-center gap-2">
-						<ng-icon class="cursor-pointer" name="oct-link"></ng-icon>
+						<app-icon name="link"></app-icon>
 						<span>Open in new tab</span>
 					</span>
 						</li>
 						<li class="flex gap-2" nz-menu-item>
 							<div (click)="copy()" class="flex items-center gap-2 w-full">
-								<ng-icon class="cursor-pointer" name="oct-copy"></ng-icon>
+								<app-icon name="content_copy"></app-icon>
 								<span>Copy URL</span>
 							</div>
 						</li>
@@ -73,13 +68,13 @@
 						</li>
 						<li class="flex gap-2" nz-menu-item>
 							<div (click)="bookmark.bookmark_deleted ? delete() : remove()" class="flex items-center gap-2 w-full">
-								<ng-icon class="cursor-pointer" name="oct-trash"></ng-icon>
+								<app-icon name="delete"></app-icon>
 								<span>{{bookmark.bookmark_deleted ? 'Delete' : 'Move to Trash'}}</span>
 							</div>
 						</li>
 						<li *ngIf="bookmark.bookmark_deleted" class="flex gap-2" nz-menu-item>
 							<div (click)="restore()" class="flex items-center gap-2 w-full">
-								<ng-icon class="cursor-pointer" name="oct-history"></ng-icon>
+								<app-icon name="history"></app-icon>
 								<span>Restore</span>
 							</div>
 						</li>
@@ -98,12 +93,11 @@
 			<div class="flex justify-between items-center px-2">
 				<div class=""></div>
 				<div class="flex items-center gap-4">
-					<ng-icon
+					<app-icon
 						*ngFor="let item of quickActionItems"
 						[name]="item.icon"
-						(click)="item.handleClick()"
-						class="cursor-pointer opacity-80 hover:opacity-100 duration-150 transition">
-					</ng-icon>
+						(click)="item.handleClick()">
+					</app-icon>
 				</div>
 			</div>
 		</div>		
@@ -135,23 +129,18 @@
 			</span>
 		</div>
 		<div class="flex justify-end items-center">
-			<ng-icon
-				class="cursor-pointer opacity-80 hover:opacity-100"
-				name="oct-kebab-horizontal"
-				nz-dropdown
-				[nzDropdownMenu]="menu">
-			</ng-icon>
+			<app-icon name="more" nz-dropdown [nzDropdownMenu]="menu"></app-icon>
 			<nz-dropdown-menu #menu="nzDropdownMenu">
 				<ul nz-menu>
 					<li class="flex gap-2" nz-menu-item>
 					<span (click)="open()" class="flex items-center gap-2">
-						<ng-icon class="cursor-pointer" name="oct-link"></ng-icon>
+						<app-icon name="link"></app-icon>
 						<span>Open in new tab</span>
 					</span>
 					</li>
 					<li class="flex gap-2" nz-menu-item>
 						<div (click)="copy()" class="flex items-center gap-2 w-full">
-							<ng-icon class="cursor-pointer" name="oct-copy"></ng-icon>
+							<app-icon name="content_copy"></app-icon>
 							<span>Copy URL</span>
 						</div>
 					</li>
@@ -160,13 +149,13 @@
 					</li>
 					<li class="flex gap-2" nz-menu-item>
 						<div (click)="bookmark.bookmark_deleted ? delete() : remove()" class="flex items-center gap-2 w-full">
-							<ng-icon class="cursor-pointer" name="oct-trash"></ng-icon>
+							<app-icon name="delete"></app-icon>
 							<span>{{bookmark.bookmark_deleted ? 'Delete' : 'Move to Trash'}}</span>
 						</div>
 					</li>
 					<li *ngIf="bookmark.bookmark_deleted" class="flex gap-2" nz-menu-item>
 						<div (click)="restore()" class="flex items-center gap-2 w-full">
-							<ng-icon class="cursor-pointer" name="oct-history"></ng-icon>
+							<app-icon name="history"></app-icon>
 							<span>Restore</span>
 						</div>
 					</li>

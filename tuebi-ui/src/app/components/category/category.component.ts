@@ -3,16 +3,15 @@ import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { NgIconComponent } from '@ng-icons/core';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { FormEditCategoryComponent } from 'src/app/components/form-edit-category/form-edit-category.component';
+import { IconComponent } from 'src/app/components/icon/icon.component';
 import { FIXED_CATEGORIES } from 'src/app/contansts/categories';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { UserSettings } from 'src/app/interfaces/user.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
-import { NgIconModule } from 'src/app/ng-icon.module';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
 import { CategoriesEntityService } from 'src/app/services/categories-entity.service';
 import { UserEntityService } from 'src/app/services/user-entity.service';
@@ -20,18 +19,17 @@ import { UserEntityService } from 'src/app/services/user-entity.service';
 @Component({
 	selector: 'app-category',
 	standalone: true,
-	imports: [
-		CommonModule,
-		RouterModule,
-		FormsModule, 
-		ReactiveFormsModule, 
-		FormEditCategoryComponent, 
-		DragDropModule,
-		NzDropDownModule,
-		NgIconComponent,
-		NgIconModule,
-		NzIconModule
-	],
+  imports: [
+    CommonModule,
+    RouterModule,
+    FormsModule,
+    ReactiveFormsModule,
+    FormEditCategoryComponent,
+    DragDropModule,
+    NzDropDownModule,
+    NzIconModule,
+    IconComponent
+  ],
 	templateUrl: './category.component.html',
 	styleUrls: ['./category.component.scss']
 })

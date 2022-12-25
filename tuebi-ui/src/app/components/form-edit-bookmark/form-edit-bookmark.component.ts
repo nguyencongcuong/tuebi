@@ -7,6 +7,7 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
+import { IconComponent } from 'src/app/components/icon/icon.component';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { Category } from 'src/app/modules/categories/categories.model';
 import { BookmarksEntityService } from 'src/app/services/bookmarks-entity.service';
@@ -15,7 +16,7 @@ import { CategoriesEntityService } from 'src/app/services/categories-entity.serv
 @Component({
 	standalone: true,
 	selector: 'app-form-edit-bookmark',
-	imports: [CommonModule, ReactiveFormsModule, FormsModule, NzFormModule, NzModalModule, NzInputModule, NzSelectModule, NzIconModule],
+	imports: [CommonModule, ReactiveFormsModule, FormsModule, NzFormModule, NzModalModule, NzInputModule, NzSelectModule, NzIconModule, IconComponent],
 	templateUrl: './form-edit-bookmark.component.html',
 	styleUrls: ['./form-edit-bookmark.component.scss']
 })

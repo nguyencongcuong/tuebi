@@ -4,6 +4,6 @@
 		height="60px"
 		src="assets/logo/tuebi.io-logo-dark.svg"
 		width="60px"
-		[ngClass]="light ? 'invert' : 'invert-0'"
+		[ngStyle]="{ filter: light ? 'invert(1)' : 'invert(0)' }"
 	>
 </a>

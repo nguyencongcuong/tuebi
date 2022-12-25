@@ -8,7 +8,6 @@ import {
 	Router,
 } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { isMatch } from 'lodash';
 import { AUTH_LOCAL_STORAGE_KEY } from 'src/app/contansts/authorization';
 import { BreakpointService } from 'src/app/services/breakpoint.service';
 import { features, featuresAtGlance } from './contansts/features';

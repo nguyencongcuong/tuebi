@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import { NgIconComponent } from '@ng-icons/core';
+import { IconComponent } from 'src/app/components/icon/icon.component';
 import { THEME } from 'src/app/contansts/theme';
 import { Category } from 'src/app/modules/categories/categories.model';
 import { NzZorroModule } from 'src/app/nz-zorro.module';
@@ -9,7 +9,7 @@ import { CategoriesEntityService } from 'src/app/services/categories-entity.serv
 
 @Component({
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzZorroModule, NgIconComponent],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NzZorroModule, IconComponent],
 	selector: 'app-form-edit-category',
 	templateUrl: './form-edit-category.component.html',
 	styleUrls: ['./form-edit-category.component.scss']
