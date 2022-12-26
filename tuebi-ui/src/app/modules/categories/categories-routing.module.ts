@@ -12,6 +12,9 @@ import {
 import {
 	PageSettingsImportExportComponent
 } from '../../pages/page-settings-import-export/page-settings-import-export.component';
+import {
+	PageSettingsPrivacySecurityComponent
+} from '../../pages/page-settings-privacy-security/page-settings-privacy-security.component';
 import { PageSettingsComponent } from '../../pages/page-settings/page-settings.component';
 import { PageXsBookmarksComponent } from '../../pages/page-xs-bookmarks/page-xs-bookmarks.component';
 import { PageXsCategoriesComponent } from '../../pages/page-xs-categories/page-xs-categories.component';
@@ -61,6 +64,10 @@ const routes: Routes = [
 					{
 						path: ROUTE.SETTINGS_IMPORT_EXPORT,
 						component: PageSettingsImportExportComponent
+					},
+					{
+						path: ROUTE.SETTINGS_PRIVACY_SECURITY,
+						component: PageSettingsPrivacySecurityComponent
 					}
 				]
 			},
@@ -99,6 +106,10 @@ const routes: Routes = [
 			{
 				path: ROUTE.SETTINGS + '/about',
 				component: PageSettingsAboutComponent
+			},
+			{
+				path: ROUTE.SETTINGS + '/privacy-security',
+				component: PageSettingsPrivacySecurityComponent
 			},
 			{
 				path: ROUTE.SETTINGS,

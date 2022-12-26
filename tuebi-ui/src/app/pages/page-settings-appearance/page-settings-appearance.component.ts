@@ -6,6 +6,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { firstValueFrom, map, Observable, tap } from 'rxjs';
+import { IconComponent } from '../../components/icon/icon.component';
 import { User } from '../../interfaces/user.interface';
 import { UserEntityService } from '../../services/user-entity.service';
 import { UserService } from '../../services/user.service';
@@ -13,7 +14,7 @@ import { UserService } from '../../services/user.service';
 @Component({
 	selector: 'app-settings-detail-appearance',
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzInputModule, NzSwitchModule, NzDividerModule, NzIconModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, NzInputModule, NzSwitchModule, NzDividerModule, NzIconModule, IconComponent],
 	templateUrl: './page-settings-appearance.component.html',
 	styleUrls: ['./page-settings-appearance.component.scss']
 })
@@ -26,6 +27,39 @@ export class PageSettingsAppearanceComponent {
 	isBookmarkURLShorten = false;
 	isBookmarkCountShown = true;
 	isBookmarkUrlShown = true;
+	
+	items = [
+		{
+			title: 'Compact Mode',
+			isActive: this.isCompactModeOn,
+			onToggle: () => this.toggleCompactMode(),
+			desc: 'Can\'t see enough bookmarks? Let\'s use compact mode'
+		},
+		{
+			title: 'Show Favicon',
+			isActive: this.isFaviconShown,
+			onToggle: () => this.toggleFaviconShown(),
+			desc: 'Display an icon to the left of your bookmark URL'
+		},
+		{
+			title: 'Show Bookmark URL',
+			isActive: this.isBookmarkUrlShown,
+			onToggle: () => this.toggleBookmarkUrl(),
+			desc: 'Display the bookmark URL'
+		},
+		{
+			title: 'Shorten Bookmark URL',
+			isActive: this.isBookmarkURLShorten,
+			onToggle: () => this.toggleBookmarkURLShorten(),
+			desc: 'Hide \'http\', \'https\' at the beginning and \'/\' at the ending of your bookmark URL'
+		},
+		{
+			title: 'Show Bookmark Count',
+			isActive: this.isBookmarkCountShown,
+			onToggle: () => this.toggleBookmarkCount(),
+			desc: 'Display the total number of bookmarks for each category'
+		}
+	]
 	
 	constructor(
 		private userService: UserService,

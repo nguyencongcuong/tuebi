@@ -25,6 +25,11 @@ export class PageSettingsComponent {
       icon: 'slider'
     },
     {
+      title: 'Privacy and Security',
+      routerLink: '/space/settings/privacy-security',
+      icon: 'lock'
+    },
+    {
       title: 'Import/Export',
       routerLink: '/space/settings/import-export',
       icon: 'export'

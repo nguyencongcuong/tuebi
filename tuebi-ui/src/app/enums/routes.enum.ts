@@ -16,6 +16,7 @@ export enum ROUTE {
 	SETTINGS_APPEARANCE = 'appearance',
 	SETTINGS_ABOUT = 'about',
 	SETTINGS_IMPORT_EXPORT = 'import-export',
+	SETTINGS_PRIVACY_SECURITY = 'privacy-security'
 }
 
 export const routeList = [

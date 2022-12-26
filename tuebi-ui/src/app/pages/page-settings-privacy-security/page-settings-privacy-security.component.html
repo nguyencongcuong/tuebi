@@ -1,0 +1,22 @@
+<div class="bg-neutral-50 p-4">
+	
+	<!-- Action Item -->
+	<div class="bg-white rounded p-4" (click)="toggleModal(true)">
+		<div class="flex justify-between items-center gap-2 cursor-pointer">
+			<div class="font-semibold">Delete Account</div>
+			<app-icon name="navigate_next"></app-icon>
+		</div>
+		<nz-modal
+			[nzCentered]="true"
+			[nzVisible]="isVisible"
+			nzTitle="Delete Your Tuebi Account"
+			nzContent="Are you sure to delete all your data from tuebi.io?"
+			nzOkText="Sure"
+			(nzOnOk)="delete()"
+			(nzOnCancel)="toggleModal(false)"
+			[nzOkLoading]="isLoading"
+		>
+		</nz-modal>
+	</div>
+	
+</div>

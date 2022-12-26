@@ -6,10 +6,9 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
-import { map, Observable, tap } from 'rxjs';
-import { ROUTE } from '../../enums/routes.enum';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { firstValueFrom, map, Observable, tap } from 'rxjs';
 import { User } from '../../interfaces/user.interface';
-import { logout } from '../../modules/auth/auth.actions';
 import { AuthService } from '../../modules/auth/auth.service';
 import { AppState } from '../../reducers';
 import { UserEntityService } from '../../services/user-entity.service';
@@ -30,6 +29,7 @@ import { IconComponent } from '../../components/icon/icon.component';
     FormEditProfileComponent,
     FormChangePasswordComponent,
     IconComponent,
+    NzModalModule,
   ],
   templateUrl: './page-settings-general.component.html',
   styleUrls: ['./page-settings-general.component.scss']
@@ -41,8 +41,6 @@ export class PageSettingsGeneralComponent {
     private userService: UserService,
     private userEntityService: UserEntityService,
     private authService: AuthService,
-    private router: Router,
-    private store: Store<AppState>
   ) {
     this.user$ = this.userEntityService.entities$.pipe(
       map(users => users[0])
@@ -51,18 +49,5 @@ export class PageSettingsGeneralComponent {
   
   logout() {
     this.authService.logout();
-  }
-  
-  delete(): void {
-    const id = '';
-    this.userService.deleteOne(id).pipe(
-      tap({
-        next: () => {
-          localStorage.clear();
-          this.store.dispatch(logout());
-          this.router.navigateByUrl(ROUTE.ROOT);
-        }
-      })
-    ).subscribe();
   }
 }

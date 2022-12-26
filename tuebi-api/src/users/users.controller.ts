@@ -417,24 +417,21 @@ export class UsersController {
 			const bearerToken = req.headers.authorization;
 			const decoded = await this.authService.parseJwtToken(bearerToken);
 			
-			// Delete an user means deleting all category-list, bookmarks
+			// Delete an user means deleting all categories and all bookmarks
 			const querySpec: SqlQuerySpec = {
 				query: 'SELECT c.id, c.partition_key FROM c',
 			};
 			
-			const bookmarks = await this.bookmarksService.readMany<{
-				id: string;
-				partition_key: string;
-			}>(querySpec);
+			const bookmarks = await this.bookmarksService.readMany<{ id: string; partition_key: string; }>(querySpec);
+			
 			if (bookmarks.length) {
 				for (const item of bookmarks) {
 					await this.bookmarksService.deleteOne(item.id, item.partition_key);
 				}
 			}
 			
-			const categories = await this.categoriesService.readMany<Category>(
-				querySpec
-			);
+			const categories = await this.categoriesService.readMany<Category>(querySpec);
+			
 			if (categories.length) {
 				for (const item of categories) {
 					await this.categoriesService.deleteOne(item.id, item.partition_key);

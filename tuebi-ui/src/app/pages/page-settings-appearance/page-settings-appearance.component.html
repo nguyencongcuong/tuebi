@@ -1,73 +1,1 @@
-<div *ngIf="user$ | async as user" class="flex flex-col gap-4 p-6 h-screen overflow-y-scroll">
-	<!-- Appearance -->
-	<div class="flex flex-col gap-4">
-
-		<div class="flex flex-col gap-2">
-			<div class="flex flex-wrap justify-between items-center gap-2">
-				<span>Compact Mode</span>
-				<nz-switch
-					(ngModelChange)="toggleCompactMode()"
-					[(ngModel)]="isCompactModeOn"
-				></nz-switch>
-			</div>
-			<span class="text-gray-400 text-xs">
-				Can't see enough bookmarks? Let's use compact mode
-			</span>
-		</div>
-		
-		<div class="flex flex-col gap-2">
-			<div class="flex flex-wrap justify-between items-center gap-2">
-				<span>Show Favicon</span>
-				<nz-switch
-					(ngModelChange)="toggleFaviconShown()"
-					[(ngModel)]="isFaviconShown"
-				></nz-switch>
-			</div>
-			<span class="text-gray-400 text-xs">
-				Display an icon to the left of your bookmark URL
-			</span>
-		</div>
-
-		<div class="flex flex-col gap-2">
-			<div class="flex flex-wrap justify-between items-center gap-2">
-				<span>Show Bookmark URL</span>
-				<nz-switch
-					(ngModelChange)="toggleBookmarkUrl()"
-					[(ngModel)]="isBookmarkUrlShown"
-				></nz-switch>
-			</div>
-			<span class="text-gray-400 text-xs">
-				Display the bookmark url
-			</span>
-		</div>
-
-		<div class="flex flex-col gap-2">
-			<div class="flex flex-wrap justify-between items-center gap-2">
-				<span>Shorten Bookmark URL</span>
-				<nz-switch
-					(ngModelChange)="toggleBookmarkURLShorten()"
-					[(ngModel)]="isBookmarkURLShorten"
-				></nz-switch>
-			</div>
-			<span class="text-gray-400 text-xs">
-				Hide 'http', 'https' at the beginning and '/' at the ending of your bookmark URL
-			</span>
-		</div>
-
-		<div class="flex flex-col gap-2">
-			<div class="flex flex-wrap justify-between items-center gap-2">
-				<span>Show Bookmark Count</span>
-				<nz-switch
-					(ngModelChange)="toggleBookmarkCount()"
-					[(ngModel)]="isBookmarkCountShown"
-				></nz-switch>
-			</div>
-			<span class="text-gray-400 text-xs">
-				Display the total number of bookmarks for each category
-			</span>
-		</div>
-
-	</div>
-
-	<nz-divider></nz-divider>
-</div>
+<div *ngIf="user$ | async as user" class="flex flex-col gap-4 p-4 h-screen overflow-y-scroll rounded bg-neutral-50">	<!-- Appearance -->	<div class="flex flex-col gap-2">		<!-- Action Item -->		<div *ngFor="let item of items" class="bg-white rounded p-4">			<div class="flex justify-between items-center gap-2 cursor-pointer">				<div class="font-semibold">{{item.title}}</div>				<nz-switch (ngModelChange)="item.onToggle()" [(ngModel)]="item.isActive"></nz-switch>			</div>			<div class="text-xs text-neutral-400">{{item.desc}}</div>		</div>	</div></div>

@@ -75,6 +75,10 @@ export class IconComponent implements OnInit {
       mapped_icon_name: 'lock_open'
     },
     {
+      icon_name: 'lock',
+      mapped_icon_name: 'lock'
+    },
+    {
       icon_name: 'menu',
       mapped_icon_name: 'menu'
     },
@@ -125,6 +129,10 @@ export class IconComponent implements OnInit {
     {
       icon_name: 'history',
       mapped_icon_name: 'history'
+    },
+    {
+      icon_name: 'navigate_next',
+      mapped_icon_name: 'navigate_next'
     }
   ]
   
