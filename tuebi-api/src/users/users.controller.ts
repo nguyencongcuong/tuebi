@@ -72,6 +72,7 @@ export class UsersController {
 				user_password: hashedPassword,
 				user_created_time: date,
 				user_last_modified_time: date,
+				user_last_active_time: date,
 				user_is_confirmed: false,
 				user_confirmation_code: confirmationCode,
 				user_roles:

@@ -17,6 +17,7 @@ export interface User {
 	user_name: string;
 	user_created_time: string;
 	user_last_modified_time: string;
+	user_last_active_time: string;
 	user_is_confirmed: boolean;
 	user_confirmation_code: string;
 	user_subscription_id: string;
@@ -59,3 +60,4 @@ export interface AuthedUserI {
 	token_type: string;
 	expired_in: string;
 }
+
