@@ -153,6 +153,6 @@ export class BookmarkComponent implements OnInit {
 			result = url.replace(urlShortenRegex, '').replace(regex, '');
 		}
 		
-		return result;
+		return result.slice(0,32) + '...';
 	}
 }

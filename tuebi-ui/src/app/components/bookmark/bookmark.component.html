@@ -23,7 +23,7 @@
 						nz-tooltip
 						[nzTooltipTitle]="bookmark.bookmark_url"
 						*ngIf="settings.is_bookmark_url_shown && bookmark.bookmark_url"
-						class="text-gray-400"
+						class="text-gray-400 line-break"
 						href="{{ bookmark.bookmark_url }}"
 						rel="noreferrer nofollow"
 						target="_blank"
@@ -123,7 +123,7 @@
 				nz-tooltip
 				[nzTooltipTitle]="bookmark.bookmark_url"
 				*ngIf="settings.is_bookmark_url_shown && bookmark.bookmark_url"
-				class="text-gray-400"
+				class="text-gray-400 line-break"
 			>
 				{{
 				settings.is_bookmark_url_shorten
