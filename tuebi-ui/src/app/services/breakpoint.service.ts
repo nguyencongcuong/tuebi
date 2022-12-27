@@ -11,7 +11,7 @@ export class BreakpointService implements OnInit{
   constructor(private responsive: BreakpointObserver) { }
   
   public ngOnInit() {
-    this.responsive.observe(Breakpoints.HandsetLandscape)
+    this.responsive.observe(Breakpoints.HandsetPortrait)
       .subscribe(result => {
       
         if (result.matches) {
