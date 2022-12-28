@@ -144,13 +144,16 @@ export class BookmarkComponent implements OnInit {
 	
 	handleUrl(url: string, isShorten: boolean) {
 		let result = url;
+		
 		const urlShortenRegex = new RegExp(
 			/(http:\/\/)|(https:\/\/)|(www.)|(\/*$)/gm
 		);
+		
 		const regex = new RegExp(/(\/)(.+)/gm);
 		
 		if (isShorten) {
 			result = url.replace(urlShortenRegex, '').replace(regex, '');
+			return result.slice(0,32);
 		}
 		
 		return result.slice(0,32) + '...';
