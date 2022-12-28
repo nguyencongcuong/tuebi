@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { JwtModule, JwtService } from '@nestjs/jwt';
+import { ScheduleModule } from '@nestjs/schedule';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
@@ -12,6 +13,7 @@ import { SecurityService } from './security/security.service';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { UsersModule } from './users/users.module';
 import { ChangelogModule } from './changelog/changelog.module';
+import { TaskService } from './task/task.service';
 
 @Module({
 	controllers: [AppController],
@@ -19,7 +21,8 @@ import { ChangelogModule } from './changelog/changelog.module';
 		JwtService,
 		AppService,
 		AuthService,
-		SecurityService
+		SecurityService,
+		TaskService
 	],
 	imports: [
 		JwtModule,
@@ -30,7 +33,8 @@ import { ChangelogModule } from './changelog/changelog.module';
 		CategoriesModule,
 		BookmarksModule,
 		EmailsModule,
-		ChangelogModule
+		ChangelogModule,
+		ScheduleModule.forRoot()
 	]
 })
 export class AppModule {
