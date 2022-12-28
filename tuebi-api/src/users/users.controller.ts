@@ -8,9 +8,6 @@ import { AuthService } from '../auth/auth.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { PatchPayload } from '../azure/az-db.service';
 import { azAppSettings } from '../azure/azure-application-settings';
-import { BookmarksService } from '../bookmarks/bookmarks.service';
-import { Category } from '../categories/categories.interface';
-import { CategoriesService } from '../categories/categories.service';
 import { EmailsService } from '../emails/emails.service';
 import { SecurityService } from '../security/security.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
@@ -32,8 +29,6 @@ export class UsersController {
 		private authService: AuthService,
 		private subscriptionService: SubscriptionsService,
 		private securityService: SecurityService,
-		private bookmarksService: BookmarksService,
-		private categoriesService: CategoriesService
 	) {}
 	
 	@Post('users')
@@ -87,6 +82,7 @@ export class UsersController {
 					is_bookmark_url_shorten: false,
 					is_bookmark_count_shown: true,
 					is_bookmark_url_shown: true,
+					user_month_to_delete: 3,
 				},
 				_iv: ivString,
 			};
@@ -418,28 +414,7 @@ export class UsersController {
 			const bearerToken = req.headers.authorization;
 			const decoded = await this.authService.parseJwtToken(bearerToken);
 			
-			// Delete an user means deleting all categories and all bookmarks
-			const querySpec: SqlQuerySpec = {
-				query: 'SELECT c.id, c.partition_key FROM c',
-			};
-			
-			const bookmarks = await this.bookmarksService.readMany<{ id: string; partition_key: string; }>(querySpec);
-			
-			if (bookmarks.length) {
-				for (const item of bookmarks) {
-					await this.bookmarksService.deleteOne(item.id, item.partition_key);
-				}
-			}
-			
-			const categories = await this.categoriesService.readMany<Category>(querySpec);
-			
-			if (categories.length) {
-				for (const item of categories) {
-					await this.categoriesService.deleteOne(item.id, item.partition_key);
-				}
-			}
-			
-			await this.userService.deleteOne(decoded.id, '');
+			await this.userService.deleteAllUserData(decoded.id, '');
 			
 			return sendSuccess();
 		} catch (e) {

@@ -4,6 +4,7 @@ export interface UserSettings {
 	is_bookmark_url_shorten: boolean;
 	is_bookmark_count_shown: boolean;
 	is_bookmark_url_shown: boolean;
+	user_month_to_delete: 3 | 6 | 9 | 12;
 }
 
 export interface User {

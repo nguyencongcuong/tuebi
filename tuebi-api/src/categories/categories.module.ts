@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule, JwtService } from '@nestjs/jwt';
 import { AuthModule } from '../auth/auth.module';
 import { AuthService } from '../auth/auth.service';
+import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { SecurityService } from '../security/security.service';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
@@ -17,6 +18,7 @@ import { CategoriesService } from './categories.service';
 		UsersService,
 		JwtService,
 		SecurityService,
+		BookmarksService
 	],
 	imports: [AuthModule, UsersModule, JwtModule],
 })

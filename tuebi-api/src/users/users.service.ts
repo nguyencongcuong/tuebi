@@ -1,12 +1,20 @@
 import { SqlQuerySpec } from '@azure/cosmos';
 import { Injectable, Logger } from '@nestjs/common';
 import { AzDbService, PatchPayload } from '../azure/az-db.service';
+import { BookmarksService } from '../bookmarks/bookmarks.service';
+import { Category } from '../categories/categories.interface';
+import { CategoriesService } from '../categories/categories.service';
 import { User } from './users.interface';
 
 @Injectable()
 export class UsersService {
 	private logger = new Logger(UsersService.name);
 	private db = new AzDbService('users');
+	
+	constructor(
+		private bookmarksService: BookmarksService,
+		private categoriesService: CategoriesService
+	) {}
 	
 	async createOne(user: User): Promise<User> {
 		try {
@@ -55,5 +63,28 @@ export class UsersService {
 			this.logger.error(e);
 			throw e;
 		}
+	}
+	
+	async deleteAllUserData(id: string, partitionKey: string) : Promise<void> {
+		const querySpec: SqlQuerySpec = { query: 'SELECT c.id, c.partition_key FROM c' };
+		
+		// Delete all bookmarks by user
+		const bookmarks = await this.bookmarksService.readMany<{ id: string; partition_key: string; }>(querySpec);
+		if (bookmarks.length) {
+			for (const item of bookmarks) {
+				await this.bookmarksService.deleteOne(item.id, item.partition_key);
+			}
+		}
+		
+		// Delete all categories by user
+		const categories = await this.categoriesService.readMany<Category>(querySpec);
+		if (categories.length) {
+			for (const item of categories) {
+				await this.categoriesService.deleteOne(item.id, item.partition_key);
+			}
+		}
+		
+		// Delete user
+		await this.deleteOne(id, partitionKey);
 	}
 }

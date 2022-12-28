@@ -56,7 +56,8 @@ export class CategoryComponent implements OnInit {
 		is_favicon_shown: true,
 		is_bookmark_url_shorten: false,
 		is_bookmark_count_shown: true,
-		is_bookmark_url_shown: true
+		is_bookmark_url_shown: true,
+		user_month_to_delete: 3,
 	});
 	
 	count$: Observable<number> = of(0);

@@ -6,7 +6,9 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/auth.service';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
+import { BookmarksService } from './bookmarks/bookmarks.service';
 import { CategoriesModule } from './categories/categories.module';
+import { CategoriesService } from './categories/categories.service';
 import { EmailsModule } from './emails/emails.module';
 import { SecurityModule } from './security/security.module';
 import { SecurityService } from './security/security.service';
@@ -14,6 +16,7 @@ import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 import { UsersModule } from './users/users.module';
 import { ChangelogModule } from './changelog/changelog.module';
 import { TaskService } from './task/task.service';
+import { UsersService } from './users/users.service';
 
 @Module({
 	controllers: [AppController],
@@ -22,6 +25,9 @@ import { TaskService } from './task/task.service';
 		AppService,
 		AuthService,
 		SecurityService,
+		BookmarksService,
+		CategoriesService,
+		UsersService,
 		TaskService
 	],
 	imports: [

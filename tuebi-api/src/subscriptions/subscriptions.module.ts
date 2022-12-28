@@ -1,6 +1,9 @@
 import { Module } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { AuthService } from '../auth/auth.service';
+import { BookmarksModule } from '../bookmarks/bookmarks.module';
+import { BookmarksService } from '../bookmarks/bookmarks.service';
+import { CategoriesService } from '../categories/categories.service';
 import { SecurityService } from '../security/security.service';
 import { UsersService } from '../users/users.service';
 
@@ -15,8 +18,10 @@ import { SubscriptionsService } from './subscriptions.service';
 		AuthService,
 		UsersService,
 		SecurityService,
+		BookmarksService,
+		CategoriesService
 	],
-	imports: [],
+	imports: [BookmarksModule],
 	exports: [SubscriptionsService],
 })
 export class SubscriptionsModule {}
