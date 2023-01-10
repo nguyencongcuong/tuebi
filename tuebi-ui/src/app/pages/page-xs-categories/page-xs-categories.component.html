@@ -8,7 +8,7 @@
 	<app-form-add-category></app-form-add-category>
 </div>
 
-<div>
+<div class="p-4">
 	<app-category
 		[isAll]="true"
 		[bookmarks$]="bookmarks$"
@@ -32,6 +32,7 @@
 	(cdkDropListDropped)="dropCategory($event)"
 	cdkDropList
 	cdkDropListOrientation="vertical"
+	class="p-4"
 >
 	<div cdkDrag [cdkDragStartDelay]="500" *ngFor="let category of categories$ | async">
 		<app-category

@@ -46,7 +46,7 @@ export class AppComponent implements OnInit {
 		private store: Store<AppState>,
 		private breakpointService: BreakpointService
 	) {
-		this.breakpointService.ngOnInit()
+		this.breakpointService.ngOnInit();
 	}
 	
 	ngOnInit() {

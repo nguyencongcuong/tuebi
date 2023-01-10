@@ -89,9 +89,9 @@
 			</nz-form-item>
 
 			<button
+				nz-button
+				nzType="primary"
 				type="submit"
-				class="px-8 py-2 rounded text-white opacity-60 hover:opacity-100 duration-300 ease-in-out"
-				[ngStyle]="{background: theme.color.primary.dark}"
 			>
 				Confirm
 			</button>
@@ -107,9 +107,9 @@
 	<p class="text-lg">Your email has already been confirmed.</p>
 	<p class="mb-8 text-lg">You can now login to the application.</p>
 	<button
+		nz-button
+		nzType="primary"
 		[routerLink]="['/', route.LOGIN]"
-		class="px-8 py-2 rounded text-white opacity-60 hover:opacity-100 duration-300 ease-in-out"
-		[ngStyle]="{background: theme.color.primary.dark}"
 	>
 		Sign in
 	</button>

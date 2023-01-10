@@ -1,15 +1,12 @@
 <div class="grid grid-cols-12 w-full w-full">
 	<div class="col-span-3 w-full h-full bg-white">
-		<div class="flex flex-col gap-4 p-4 h-screen overflow-auto">
+		<div class="flex flex-col gap-1 p-4 h-screen overflow-auto">
 
 			<div class="flex justify-end items-center">
 				<app-form-add-category></app-form-add-category>
 			</div>
 			
 			<!-- All -->
-			<div
-				class="flex flex-col gap-3"
-			>
 				<app-category
 					[routerLink]="['/space/categories/all']"
 					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
@@ -17,12 +14,8 @@
 					[bookmarks$]="bookmarks$"
 				>
 				</app-category>
-			</div>
 
 			<!-- Uncategorized -->
-			<div
-				class="flex flex-col gap-3"
-			>
 				<app-category
 					[routerLink]="['/space/categories/uncategorized']"
 					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
@@ -30,12 +23,8 @@
 					[bookmarks$]="bookmarks$"
 				>
 				</app-category>
-			</div>
 
 			<!-- Trash -->
-			<div
-				class="flex flex-col gap-3"
-			>
 				<app-category
 					[routerLink]="['/space/categories/trash']"
 					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
@@ -43,7 +32,6 @@
 					[bookmarks$]="bookmarks$"
 				>
 				</app-category>
-			</div>
 			
 			<nz-divider></nz-divider>
 

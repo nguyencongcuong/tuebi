@@ -22,6 +22,7 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { metaReducers, reducers } from './reducers';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NzZorroModule } from './nz-zorro.module';
 
 registerLocaleData(en);
 
@@ -81,6 +82,7 @@ registerLocaleData(en);
       registrationStrategy: 'registerWhenStable:30000'
     }),
     IconComponent,
+    NzZorroModule,
   ],
 	exports: [RouterModule],
 	providers: [{provide: NZ_I18N, useValue: en_US}],

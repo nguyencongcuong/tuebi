@@ -11,14 +11,10 @@ export class BreakpointService implements OnInit{
   constructor(private responsive: BreakpointObserver) { }
   
   public ngOnInit() {
-    this.responsive.observe(Breakpoints.HandsetPortrait)
+    // Match Medium and up
+    this.responsive.observe(Breakpoints.Medium)
       .subscribe(result => {
-      
-        if (result.matches) {
-          this.isXs.next(true);
-          console.log("screens matches HandsetLandscape");
-        }
-      
+        return result.matches ? this.isXs.next(false) : this.isXs.next(true);
       });
   }
 }

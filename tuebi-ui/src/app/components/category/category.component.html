@@ -1,6 +1,6 @@
 <div
 	*ngIf="userSettings$ | async as settings"
-	class="tag w-full border-0 p-4 disable-text-selection"
+	class="tag w-full border-0 p-2 disable-text-selection"
 >
 	<div class="flex justify-between items-center gap-2 w-full">
 		<div class="flex items-center gap-2 w-full" [routerLink]="isAll ? 'all' : isUncategorized ? 'uncategorized' : isTrash ? 'trash' : category.id">
