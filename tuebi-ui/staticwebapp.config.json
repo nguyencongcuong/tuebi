@@ -1,4 +1,20 @@
 {
+  "routes": [
+    {
+      "route": "/*",
+      "methods": ["GET"]
+    }
+  ],
+  "globalHeaders": {
+    "Cache-Control": "no-cache, no-store, must-revalidate",
+    "Pragma": "no-cache",
+    "Access-Control-Allow-Origin": "https://tuebi.io",
+    "Access-Control-Allow-Methods": "GET",
+    "Allow": "GET",
+    "X-Frame-Options": "SAMEORIGIN",
+    "X-XSS-Protection": "1; mode=block",
+    "X-Content-Type-Options": "nosniff"
+  },
   "navigationFallback": {
     "rewrite": "/index.html"
   }
