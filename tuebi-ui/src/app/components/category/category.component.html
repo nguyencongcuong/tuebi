@@ -1,6 +1,7 @@
-<div
+<div 
 	*ngIf="userSettings$ | async as settings"
-	class="tag w-full border-0 p-2 disable-text-selection"
+	class="w-full border-0 p-2 bg-neutral-100 rounded hover:bg-neutral-200 duration-300 cursor-pointer opacity-70"
+	[routerLinkActive]="['bg-neutral-200', 'opacity-100']"
 >
 	<div class="flex justify-between items-center gap-2 w-full">
 		<div class="flex items-center gap-2 w-full" [routerLink]="isAll ? 'all' : isUncategorized ? 'uncategorized' : isTrash ? 'trash' : category.id">

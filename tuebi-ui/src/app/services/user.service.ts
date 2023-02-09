@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from 'src/app/interfaces/user.interface';
-import { AuthedUserI } from 'src/app/interfaces/auth.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -11,18 +10,29 @@ import { environment } from 'src/environments/environment';
 export class UserService {
 	API_URL = environment.backend_url;
 	
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient,
+	) {}
 	
 	genOptions() {
-		const authedUser = JSON.parse(
-			localStorage.getItem('auth') as string
-		) as AuthedUserI;
-		const token = authedUser?.access_token || '';
+		const b2cPayload = JSON.parse(localStorage.getItem('b2c_payload') as string);
 		return {
 			headers: {
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${b2cPayload.accessToken}`,
 			},
 		};
+	}
+	
+	createOne(accessToken: string, userObjectId: string): Observable<any> {
+		const url = this.API_URL + `/users`;
+		const body = {
+			user_object_id: userObjectId
+		}
+		return this.http.post(url, body, {
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+			},
+		});
 	}
 	
 	readOne(): Observable<any> {
@@ -44,33 +54,7 @@ export class UserService {
 		return this.http.delete(url, options);
 	}
 	
-	sendPasswordResetRequestEmail(userEmail: string): Observable<any> {
-		const url = this.API_URL + '/users/pw/reset';
-		const options = {
-			params: {
-				user_email: userEmail,
-			},
-		};
-		return this.http.get(url, options);
-	}
-	
-	resetPassword(
-		userEmail: string,
-		userUpdatedPassword: string,
-		userConfirmedPassword: string,
-		userConfirmationCode: string
-	): Observable<any> {
-		const body = {
-			user_email: userEmail,
-			user_updated_password: userUpdatedPassword,
-			user_confirmed_password: userConfirmedPassword,
-			user_confirmation_code: userConfirmationCode,
-		};
-		const url = this.API_URL + '/users/pw/update';
-		return this.http.put(url, body);
-	}
-	
 	getAuthedUser() {
-		return JSON.parse(localStorage.getItem('auth') as string) as AuthedUserI;
+		return JSON.parse(localStorage.getItem('b2c_payload') as string)
 	}
 }

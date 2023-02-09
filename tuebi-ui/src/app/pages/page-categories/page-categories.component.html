@@ -34,18 +34,17 @@
 				</app-category>
 			
 			<nz-divider></nz-divider>
-
+			
 			<!-- Categories -->
 			<div
 				(cdkDropListDropped)="dropCategory($event)"
 				cdkDropList
 				cdkDropListOrientation="vertical"
-				class="flex flex-col gap-3"
+				class="flex flex-col gap-1"
 			>
 				<app-category
 					*ngFor="let category of categories$ | async"
 					[routerLink]="['/space/categories', category.id]"
-					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
 					[isCategorized]="true"
 					[category]="category"
 					[bookmarks$]="bookmarks$"

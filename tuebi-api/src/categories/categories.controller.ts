@@ -2,7 +2,7 @@ import { PatchOperation, SqlQuerySpec } from '@azure/cosmos';
 import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards, } from '@nestjs/common';
 import { isEmpty, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
 import { SecurityService } from '../security/security.service';
 import { sendError, sendSuccess } from '../utilities';
@@ -17,19 +17,19 @@ export class CategoriesController {
 	constructor(
 		private categoriesService: CategoriesService,
 		private authService: AuthService,
-		private securityService: SecurityService
+		private securityService: SecurityService,
 	) {}
 	
 	// CATEGORY
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Post('categories')
 	async createOne(@Body() category: CreateCategoryQueryI, @Request() req: any) {
+		const user = req.user;
+		
 		try {
 			if (isEmpty(category)) {
 				return sendError('No category item provided');
 			}
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
 			const payload: Category = {
 				partition_key: user.id,
 				user_id: user.id,
@@ -60,13 +60,12 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Get('categories/:id')
 	async readOne(@Request() req: any, @Param('id') id: string) {
+		const user = req.user;
+		
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
-			
 			const data = await this.categoriesService.readOne(id, user.id);
 			
 			const decrypted = await this.securityService.decryptObject(
@@ -80,19 +79,16 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Get('categories')
 	async readAll(@Request() req: any) {
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
-			
 			const querySpec: SqlQuerySpec = {
 				query: 'SELECT * FROM c WHERE c.user_id = @userId',
 				parameters: [
 					{
 						name: '@userId',
-						value: user.id,
+						value: req.user.id,
 					},
 				],
 			};
@@ -101,7 +97,7 @@ export class CategoriesController {
 			
 			const decrypted = await this.securityService.decryptArray(
 				categories,
-				user._iv,
+				req.user._iv,
 				this.ENCRYPTED_FIELDS
 			);
 			
@@ -111,17 +107,16 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Put('categories/:id')
 	async updateOne(
 		@Request() req: any,
 		@Param('id') id: string,
 		@Body() category: UpdateCategoryQueryI
 	) {
+		const user = req.user;
+		
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
-			
 			const updatedCategory = {
 				...category,
 				category_last_modified_time: new Date().toISOString(),
@@ -165,12 +160,12 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Delete('categories/:id')
 	async deleteOne(@Request() req: any, @Param('id') id: string) {
+		const user = req.user;
+		
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
 			await this.categoriesService.deleteOne(id, user.id);
 			return sendSuccess();
 		} catch (e) {

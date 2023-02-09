@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
-import { AuthedUserI } from 'src/app/interfaces/auth.interface';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -14,13 +13,10 @@ export class BookmarkService {
 	constructor(private http: HttpClient) {}
 	
 	genOptions() {
-		const authedUser = JSON.parse(
-			localStorage.getItem('auth') as string
-		) as AuthedUserI;
-		const token = authedUser?.access_token || '';
+		const b2cPayload = JSON.parse(localStorage.getItem('b2c_payload') as string)
 		return {
 			headers: {
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${b2cPayload.accessToken}`,
 			},
 		};
 	}

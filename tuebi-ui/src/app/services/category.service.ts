@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 import { Observable } from 'rxjs';
-import { AuthedUserI } from 'src/app/interfaces/auth.interface';
 import { Category } from 'src/app/interfaces/category.interface';
 import { environment } from 'src/environments/environment';
 
@@ -11,18 +11,25 @@ import { environment } from 'src/environments/environment';
 export class CategoryService {
 	public API_URL = environment.backend_url;
 	
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient,
+		private msalService: MsalService
+	) {}
 	
 	genOptions() {
-		const authedUser = JSON.parse(
-			localStorage.getItem('auth') as string
-		) as AuthedUserI;
-		const token = authedUser?.access_token || '';
+		const b2cPayload = JSON.parse(localStorage.getItem('b2c_payload') as string);
 		return {
 			headers: {
-				Authorization: `Bearer ${token}`,
+				Authorization: `Bearer ${b2cPayload.accessToken}`,
 			},
 		};
+	}
+	
+	test() {
+		const token = this.msalService.instance.acquireTokenSilent({scopes: []});
+		console.log('token', token)
+		const url = `${this.API_URL}/categories-test`;
+		return this.http.get(url);
 	}
 	
 	createOne(entity: Category): Observable<any> {

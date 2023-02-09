@@ -15,11 +15,6 @@ export class PageSettingsComponent {
   theme = themes[0];
   items = [
     {
-      title: 'General',
-      routerLink: '/space/settings/general',
-      icon: 'user'
-    },
-    {
       title: 'Appearance',
       routerLink: '/space/settings/appearance',
       icon: 'slider'

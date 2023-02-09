@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { MsalGuard } from '@azure/msal-angular';
+import { ROUTE } from '../../enums/routes.enum';
 import { PageBookmarksComponent } from '../../pages/page-bookmarks/page-bookmarks.component';
 import { PageCategoriesComponent } from '../../pages/page-categories/page-categories.component';
 import { PageSettingsAboutComponent } from '../../pages/page-settings-about/page-settings-about.component';
@@ -7,30 +9,25 @@ import {
 	PageSettingsAppearanceComponent
 } from '../../pages/page-settings-appearance/page-settings-appearance.component';
 import {
-	PageSettingsGeneralComponent
-} from '../../pages/page-settings-general/page-settings-general.component';
-import {
 	PageSettingsImportExportComponent
 } from '../../pages/page-settings-import-export/page-settings-import-export.component';
 import {
 	PageSettingsPrivacySecurityComponent
 } from '../../pages/page-settings-privacy-security/page-settings-privacy-security.component';
 import { PageSettingsComponent } from '../../pages/page-settings/page-settings.component';
+import { PageSpaceComponent } from '../../pages/page-space/page-space.component';
 import { PageXsBookmarksComponent } from '../../pages/page-xs-bookmarks/page-xs-bookmarks.component';
 import { PageXsCategoriesComponent } from '../../pages/page-xs-categories/page-xs-categories.component';
 import { PageXsSettingsComponent } from '../../pages/page-xs-settings/page-xs-settings.component';
-import { ROUTE } from '../../enums/routes.enum';
-import { PageSpaceComponent } from '../../pages/page-space/page-space.component';
 import { PageXsSpaceComponent } from '../../pages/page-xs-space/page-xs-space.component';
 import { CategoryResolver } from '../../services/category.resolver';
-import { AuthGuard } from '../auth/auth.guard';
 
 const routes: Routes = [
 	// Large Screen
 	{
 		path: ROUTE.SPACE,
 		component: PageSpaceComponent,
-		canActivate: [AuthGuard],
+		canActivate: [MsalGuard],
 		resolve: {
 			categories: CategoryResolver
 		},
@@ -49,10 +46,6 @@ const routes: Routes = [
 				path: ROUTE.SETTINGS,
 				component: PageSettingsComponent,
 				children: [
-					{
-						path: ROUTE.SETTINGS_GENERAL,
-						component: PageSettingsGeneralComponent
-					},
 					{
 						path: ROUTE.SETTINGS_APPEARANCE,
 						component: PageSettingsAppearanceComponent
@@ -78,7 +71,7 @@ const routes: Routes = [
 	{
 		path: `m/${ROUTE.SPACE}`,
 		component: PageXsSpaceComponent,
-		canActivate: [AuthGuard],
+		canActivate: [MsalGuard],
 		resolve: {
 			categories: CategoryResolver
 		},
@@ -90,10 +83,6 @@ const routes: Routes = [
 			{
 				path: ROUTE.CATEGORIES,
 				component: PageXsCategoriesComponent
-			},
-			{
-				path: ROUTE.SETTINGS + '/general',
-				component: PageSettingsGeneralComponent
 			},
 			{
 				path: ROUTE.SETTINGS + '/appearance',

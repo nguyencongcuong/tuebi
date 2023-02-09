@@ -16,7 +16,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import axios from 'axios';
 import { groupBy, isEmpty, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
 import { azAppSettings } from '../azure/azure-application-settings';
 import { CategoriesService } from '../categories/categories.service';
@@ -43,7 +43,7 @@ export class BookmarksController {
 	) {
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@UseInterceptors(FileInterceptor('file'))
 	@Post('bookmarks/import')
 	async import(
@@ -85,16 +85,15 @@ export class BookmarksController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Post('bookmarks')
 	async createOne(
 		@Request() req: any,
 		@Body() bookmark: CreateBookmarkRequestBodyI
 	) {
+		const user = req.user;
+		
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
-			
 			if (isEmpty(bookmark)) {
 				return sendError('Your input is invalid');
 			}
@@ -129,13 +128,12 @@ export class BookmarksController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Get('bookmarks/:id')
 	async readOne(@Param('id') id: string, @Request() req: any) {
+		const user = req.user;
+		
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
-			
 			const data = await this.bookmarksService.readOne(id, user.id);
 			
 			const decryptedData = await this.securityService.decryptObject(
@@ -150,13 +148,12 @@ export class BookmarksController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Get('bookmarks')
 	async readAll(@Request() req: any) {
+		const user = req.user;
+		
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
-			
 			const query: SqlQuerySpec = {
 				query: 'SELECT * FROM c WHERE c.user_id = @userId',
 				parameters: [
@@ -180,13 +177,13 @@ export class BookmarksController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Put('bookmarks/:id')
 	async updateOne(@Request() req: any, @Param('id') id: string) {
+		const user = req.user;
+		
 		try {
-			const bearerToken = req.headers.authorization;
 			const updatedFields = req.body;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
 			
 			const doc: UpdateBookmarkQueryI = {
 				...updatedFields,
@@ -231,12 +228,11 @@ export class BookmarksController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Delete('bookmarks/:id')
 	async deleteOne(@Request() req: any, @Param('id') id: string) {
+		const user = req.user;
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
 			await this.bookmarksService.deleteOne(id, user.id);
 			return sendSuccess();
 		} catch (e) {

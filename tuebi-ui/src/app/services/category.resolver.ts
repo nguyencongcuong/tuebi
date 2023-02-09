@@ -24,9 +24,9 @@ export class CategoryResolver implements Resolve<boolean> {
 				if (!loaded) {
 					this.categoryEntityService.getAll();
 					this.bookmarkEntityService.getAll();
-					const authedUser = this.userService.getAuthedUser();
-					if (authedUser) {
-						this.userEntityService.getByKey(authedUser.id);
+					const b2cPayload = this.userService.getAuthedUser();
+					if (b2cPayload) {
+						this.userEntityService.getByKey(b2cPayload.uniqueId);
 					} else {
 						localStorage.removeItem('auth');
 					}

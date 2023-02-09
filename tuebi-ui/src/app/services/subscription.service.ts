@@ -15,11 +15,11 @@ export class SubscriptionService {
 	}
 	
 	findOneSubscriptionById(id: string): Observable<any> {
-		const token = localStorage.getItem('token');
+		const b2cPayload = JSON.parse(localStorage.getItem('b2c_payload') as string)
 		const url = this.API_URL + `/subscriptions/${id}`;
 		const options = {
 			headers: {
-				Authorization: `Bearer ${token}`
+				Authorization: `Bearer ${b2cPayload.accessToken}`
 			}
 		};
 		return this.http.get(url, options);

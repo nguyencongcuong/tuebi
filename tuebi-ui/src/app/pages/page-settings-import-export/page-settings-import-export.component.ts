@@ -40,7 +40,7 @@ export class PageSettingsImportExportComponent implements OnInit {
 	}
 	
 	ngOnInit(): void {
-		this.authorization = 'Bearer ' + this.userService.getAuthedUser().access_token;
+		this.authorization = 'Bearer ' + this.userService.getAuthedUser().accessToken;
 	}
 	
 	handleChange(info: NzUploadChangeParam): void {

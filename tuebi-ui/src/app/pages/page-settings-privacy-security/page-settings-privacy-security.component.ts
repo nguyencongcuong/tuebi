@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MsalService } from '@azure/msal-angular';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { firstValueFrom, map, Observable, tap } from 'rxjs';
 import { IconComponent } from '../../components/icon/icon.component';
 import { User } from '../../interfaces/user.interface';
-import { AuthService } from '../../modules/auth/auth.service';
 import { UserEntityService } from '../../services/user-entity.service';
 import { UserService } from '../../services/user.service';
 
@@ -29,7 +29,7 @@ export class PageSettingsPrivacySecurityComponent {
   constructor(
     private userService: UserService,
     private userEntityService: UserEntityService,
-    private authService: AuthService,
+    private msalService: MsalService,
   ) {
     this.user$ = this.userEntityService.entities$.pipe(
       map(users => users[0])
@@ -48,7 +48,7 @@ export class PageSettingsPrivacySecurityComponent {
       tap({
         next: () => {
           this.isLoading = false;
-          this.authService.logout();
+          this.msalService.logout();
         }
       })
     ).subscribe();

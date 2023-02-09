@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Update } from '@ngrx/entity';
 import { map, Observable } from 'rxjs';
@@ -13,10 +14,11 @@ export class CategoryDataService extends DefaultDataService<Category> {
 	
 	constructor(
 		http: HttpClient,
-		httpUrlGenerator: HttpUrlGenerator
+		httpUrlGenerator: HttpUrlGenerator,
+		msalService: MsalService,
 	) {
 		super(ENTITY.CATEGORIES, http, httpUrlGenerator);
-		this.categoriesHttpService = new CategoryService(http);
+		this.categoriesHttpService = new CategoryService(http, msalService);
 	}
 	
 	override add(entity: Category): Observable<Category> {

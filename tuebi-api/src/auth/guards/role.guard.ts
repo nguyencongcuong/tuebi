@@ -1,6 +1,5 @@
 import { CanActivate, ExecutionContext, Injectable, Logger, } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { JwtService } from '@nestjs/jwt';
 import { ROLES_KEY } from '../../decorators/role.decorator';
 import { Role } from '../../enums/role.enum';
 import { UsersService } from '../../users/users.service';
@@ -12,7 +11,6 @@ export class RolesGuard implements CanActivate {
 	
 	constructor(
 		private reflector: Reflector,
-		private jwtService: JwtService,
 		private userService: UsersService,
 		private authService: AuthService
 	) {}
@@ -25,10 +23,10 @@ export class RolesGuard implements CanActivate {
 		if (!requiredRoles) {
 			return true;
 		}
-		const bearerToken = context.switchToHttp().getRequest()
-			.headers.authorization;
-		const decodedUser = await this.authService.parseJwtToken(bearerToken);
-		const user = await this.userService.readOne(decodedUser.id, '');
+		const req = context.switchToHttp().getRequest()
+		const jwt =	req.headers.authorization;
+		const decodedJwt = await this.authService.decodeJwt(jwt);
+		const user = await this.userService.readOne(decodedJwt.sub, '');
 		const isValidated = requiredRoles.some((role) =>
 			user.user_roles.includes(role)
 		);

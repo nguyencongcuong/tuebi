@@ -2,10 +2,11 @@ import { SqlQuerySpec } from '@azure/cosmos';
 import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards, } from '@nestjs/common';
 import { transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
-import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
+import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
 import { Roles } from '../decorators/role.decorator';
 import { Role } from '../enums/role.enum';
+import { UsersService } from '../users/users.service';
 import { sendError, sendSuccess } from '../utilities';
 import { Subscription } from './subscriptions.interface';
 import { SubscriptionsService } from './subscriptions.service';
@@ -14,7 +15,8 @@ import { SubscriptionsService } from './subscriptions.service';
 export class SubscriptionsController {
 	constructor(
 		private subscriptionService: SubscriptionsService,
-		private authService: AuthService
+		private authService: AuthService,
+		private usersService: UsersService,
 	) {}
 	
 	@Roles(Role.Admin)
@@ -28,20 +30,15 @@ export class SubscriptionsController {
 		}
 	}
 	
-	@UseGuards(JwtAuthGuard)
+	@UseGuards(AzureB2cJwt)
 	@Get('subscriptions')
 	async readAll(@Request() req: any) {
 		try {
-			const bearerToken = req.headers.authorization;
-			const user = await this.authService.getUserByJwtToken(bearerToken);
-			
-			if (user) {
+			if (req.user) {
 				const querySpec: SqlQuerySpec = {
 					query: 'SELECT * FROM c',
 				};
-				const subscriptions = await this.subscriptionService.readMany(
-					querySpec
-				);
+				const subscriptions = await this.subscriptionService.readMany(querySpec);
 				return sendSuccess(subscriptions);
 			} else {
 				return sendError('No user match your authorization credential');

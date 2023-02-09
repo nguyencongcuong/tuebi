@@ -1,13 +1,8 @@
 export enum ROUTE {
 	ROOT = '',
-	LOGIN = 'login',
-	PASSWORD_RESET_REQUEST = 'pw/reset-request',
-	PASSWORD_RESET = 'pw/reset',
 	SIGNUP = 'signup',
 	ABOUT = 'about',
 	CONTACT = 'contact',
-	PRIVACY_POLICY = 'privacy',
-	LEGAL_NOTICE = 'legal',
 	SPACE = 'space',
 	CATEGORIES = 'categories',
 	
@@ -27,13 +22,5 @@ export const routeList = [
 	{
 		name: 'Contact',
 		routerLink: ROUTE.CONTACT,
-	},
-	{
-		name: 'Login',
-		routerLink: ROUTE.LOGIN,
-	},
-	{
-		name: 'Sign up',
-		routerLink: ROUTE.SIGNUP,
-	},
+	}
 ];
