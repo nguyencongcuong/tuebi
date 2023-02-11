@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { firstValueFrom, map, Observable, of } from 'rxjs';
+import { firstValueFrom, map, Observable, of, take } from 'rxjs';
 import { FIXED_CATEGORIES } from '../../enums/categories.enum';
 import { Bookmark } from '../../interfaces/bookmark.interface';
 import { UserSettings } from '../../interfaces/user.interface';
@@ -129,6 +129,21 @@ export class CategoryComponent implements OnInit {
 		
 		// Delete Category
 		this.categoryEntityService.delete(id);
+	}
+	
+	open(bookmarkURL: string) {
+		const url = bookmarkURL.includes('https://')
+			? bookmarkURL
+			: `https://${bookmarkURL}`
+		window.open(url);
+	}
+	
+	openAllInNewTab() {
+		this.bookmarks$.pipe(
+			take(1),
+			map((bookmarks) => bookmarks.filter(bookmark => bookmark.category_id === this.category.id && !bookmark.bookmark_deleted)),
+			map((bookmarks) => bookmarks.forEach(bookmark => this.open(bookmark.bookmark_url)))
+		).subscribe();
 	}
 	
 }

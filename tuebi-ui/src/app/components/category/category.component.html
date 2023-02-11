@@ -29,6 +29,13 @@
 	<nz-dropdown-menu #menu="nzDropdownMenu">
 		<ul nz-menu>
 			<li nz-menu-item>
+				<div (click)="openAllInNewTab()" class="flex items-center gap-2">
+					<app-icon name="link"></app-icon>
+					<span>Open all in new tab</span>
+				</div>
+			</li>
+			
+			<li nz-menu-item>
 				<div (click)="deleteOneCategory(category.id)" class="flex items-center gap-2">
 					<app-icon name="delete"></app-icon>
 					<span>Delete</span>

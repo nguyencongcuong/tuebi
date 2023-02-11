@@ -42,7 +42,7 @@ export class PageHomeComponent implements OnInit, OnDestroy {
         // Check database, if this is new user, create an initial user data.
         const payload = result.payload as any;
         localStorage.setItem('b2c_payload', JSON.stringify(payload))
-        this.userService.createOne(payload['accessToken'], payload['uniqueId']).subscribe();
+        this.userService.createOne(payload).subscribe();
       });
   
     this.msalBroadcastService.inProgress$

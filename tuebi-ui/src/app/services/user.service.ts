@@ -23,14 +23,15 @@ export class UserService {
 		};
 	}
 	
-	createOne(accessToken: string, userObjectId: string): Observable<any> {
+	createOne(payload: any): Observable<any> {
 		const url = this.API_URL + `/users`;
 		const body = {
-			user_object_id: userObjectId
+			user_object_id: payload.account.idTokenClaims.oid,
+			user_emails: payload.account.idTokenClaims.emails
 		}
 		return this.http.post(url, body, {
 			headers: {
-				Authorization: `Bearer ${accessToken}`,
+				Authorization: `Bearer ${payload.accessToken}`,
 			},
 		});
 	}

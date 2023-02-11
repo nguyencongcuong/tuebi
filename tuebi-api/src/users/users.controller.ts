@@ -40,11 +40,11 @@ export class UsersController {
 				
 				const payload: User = {
 					id: user.user_object_id,
+					user_emails: user.user_emails,
 					partition_key: '',
 					user_created_time: date,
 					user_last_modified_time: date,
 					user_last_active_time: date,
-					user_is_confirmed: false,
 					user_roles: ['user'],
 					user_subscription_id: '',
 					user_name: '',
