@@ -5,6 +5,7 @@ export enum ROUTE {
 	CONTACT = 'contact',
 	SPACE = 'space',
 	CATEGORIES = 'categories',
+	SEARCH = 'search',
 	
 	SETTINGS = 'settings',
 	SETTINGS_GENERAL = 'general',

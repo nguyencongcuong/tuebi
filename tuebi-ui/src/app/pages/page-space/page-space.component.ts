@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
+import { MsalService } from '@azure/msal-angular';
+import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { IconComponent } from '../../components/icon/icon.component';
 import { ROUTE } from '../../enums/routes.enum';
@@ -13,7 +15,7 @@ import { CategoryEntityService } from '../../services/category-entity.service';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, MatIconModule, IconComponent],
+  imports: [CommonModule, RouterModule, MatIconModule, IconComponent, NzDividerModule],
   selector: 'app-space',
   templateUrl: './page-space.component.html',
   styleUrls: ['./page-space.component.scss']
@@ -30,6 +32,7 @@ export class PageSpaceComponent implements OnInit {
     private bookmarkEntityService: BookmarkEntityService,
     private categoryEntityService: CategoryEntityService,
     private breakpointService: BreakpointService,
+    private msalService: MsalService,
   ) {
     this.isXs$ = this.breakpointService.isXs;
   }
@@ -51,4 +54,7 @@ export class PageSpaceComponent implements OnInit {
     
   }
   
+  logout() {
+    this.msalService.logout();
+  }
 }

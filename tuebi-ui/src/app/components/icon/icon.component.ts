@@ -133,6 +133,10 @@ export class IconComponent implements OnInit {
     {
       icon_name: 'navigate_next',
       mapped_icon_name: 'navigate_next'
+    },
+    {
+      icon_name: 'home',
+      mapped_icon_name: 'home'
     }
   ]
   

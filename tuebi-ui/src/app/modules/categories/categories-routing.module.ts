@@ -4,6 +4,7 @@ import { MsalGuard } from '@azure/msal-angular';
 import { ROUTE } from '../../enums/routes.enum';
 import { PageBookmarksComponent } from '../../pages/page-bookmarks/page-bookmarks.component';
 import { PageCategoriesComponent } from '../../pages/page-categories/page-categories.component';
+import { PageSearchComponent } from '../../pages/page-search/page-search.component';
 import { PageSettingsAboutComponent } from '../../pages/page-settings-about/page-settings-about.component';
 import {
 	PageSettingsAppearanceComponent
@@ -64,6 +65,10 @@ const routes: Routes = [
 					}
 				]
 			},
+			{
+				path: ROUTE.SEARCH,
+				component: PageSearchComponent
+			}
 		]
 	},
 	
@@ -104,6 +109,10 @@ const routes: Routes = [
 				path: ROUTE.SETTINGS,
 				component: PageXsSettingsComponent
 			},
+			{
+				path: ROUTE.SEARCH,
+				component: PageSearchComponent
+			}
 		]
 	}
 ];
