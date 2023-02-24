@@ -77,9 +77,7 @@ export class PageHomeComponent implements OnInit, OnDestroy {
   }
   
   logout() {
-    this.msalService.logoutRedirect({
-      postLogoutRedirectUri: 'http://localhost:4200'
-    });
+    this.msalService.logoutRedirect();
   }
   
   setLoginDisplay() {
