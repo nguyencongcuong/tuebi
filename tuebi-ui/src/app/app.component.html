@@ -1,1 +1,28 @@
+<div *ngIf="!isB2CLoggedIn" class="p-6">
+	<div class="flex gap-4 justify-between items-center">
+		<app-logo></app-logo>
+		<ul
+			nz-menu
+			nzMode="horizontal"
+			class="bg-transparent text-gray-800 flex justify-end"
+			[nzInlineCollapsed]="isCollapsed"
+		>
+			<li
+				nz-menu-item
+				nzSelected
+				(click)="login()"
+			>
+				<span nz-icon nzType="login"></span>
+				<span>Login</span>
+			</li>
+			<li nz-submenu nzTitle="Resources" nzIcon="ellipsis">
+				<ul>
+					<li nz-menu-item *ngFor="let item of routeList" [routerLink]="['/', item.routerLink]">{{item.name}}</li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+
+</div>
+
 <router-outlet></router-outlet>

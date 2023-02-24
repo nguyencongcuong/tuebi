@@ -1,40 +1,4 @@
-<div [ngStyle]="{'background': theme.color.primary.light}"
-     class="flex flex-col gap-6 p-6">
-
-	<!-- Header -->
-	<div class="flex justify-between gap-4">
-		<app-logo></app-logo>
-		<div class="hidden lg:flex lg:flex-wrap lg:justify-center lg:items-center lg:gap-4 lg:p-4">
-			<a *ngFor="let item of routeList" [routerLink]="['/', item.routerLink]"
-			   [routerLinkActive]="['bg-neutral-300']" class="text-gray-800 font-bold hover:text-gray-800 uppercase">
-				{{item.name}}
-			</a>
-			<a *ngIf="isB2CLoggedIn" 
-			   class="text-gray-800 font-bold hover:text-gray-800 uppercase" 
-			   routerLink="space/categories">
-				My Bookmarks
-			</a>
-			<button nz-button nzType="primary" *ngIf="!isB2CLoggedIn" (click)="login()">Login</button>
-			<button nz-button nzType="dashed" *ngIf="isB2CLoggedIn" (click)="logout()">Logout</button>
-		</div>
-
-		<div class="flex flex-col items-end gap-4 lg:hidden">
-			<app-icon name="menu" (click)="toggleNav(isShown)"></app-icon>
-			<div [ngClass]="isShown ? 'animation--in' : 'hidden'">
-				<div class="flex flex-col items-end gap-2 text-end">
-					<a *ngFor="let item of routeList" [routerLink]="item.routerLink"
-					   [routerLinkActive]="['bg-neutral-300']" [routerLinkActiveOptions]="{ exact: true }"
-					   [ariaCurrentWhenActive]="true"
-					   class="text-gray-800 font-bold hover:text-gray-800 uppercase block">
-						{{item.name}}
-					</a>
-				</div>
-
-			</div>
-		</div>
-
-	</div>
-
+<div [ngStyle]="{'background': theme.color.primary.light}" class="flex flex-col gap-6 p-6">
 	<!-- Title and Description -->
 	<div *ngIf="currentUrl === '/'"
 	     class="flex flex-wrap flex-col justify-center items-center gap-2 rounded-xl p-6 min-h-screen"
