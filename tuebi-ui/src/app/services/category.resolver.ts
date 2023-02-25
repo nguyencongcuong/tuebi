@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/r
 import { filter, first, Observable, tap } from 'rxjs';
 import { BookmarkEntityService } from './bookmark-entity.service';
 import { CategoryEntityService } from './category-entity.service';
+import { TagEntityService } from './tag-entity.service';
 import { UserEntityService } from './user-entity.service';
 import { UserService } from './user.service';
 
@@ -12,7 +13,8 @@ export class CategoryResolver implements Resolve<boolean> {
 		private userService: UserService,
 		private userEntityService: UserEntityService,
 		private categoryEntityService: CategoryEntityService,
-		private bookmarkEntityService: BookmarkEntityService
+		private bookmarkEntityService: BookmarkEntityService,
+		private tagEntityService: TagEntityService,
 	) {
 	}
 	
@@ -24,6 +26,7 @@ export class CategoryResolver implements Resolve<boolean> {
 				if (!loaded) {
 					this.categoryEntityService.getAll();
 					this.bookmarkEntityService.getAll();
+					this.tagEntityService.getAll();
 					const b2cPayload = this.userService.getAuthedUser();
 					if (b2cPayload) {
 						this.userEntityService.getByKey(b2cPayload.uniqueId);

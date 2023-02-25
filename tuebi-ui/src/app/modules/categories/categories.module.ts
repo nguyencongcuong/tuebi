@@ -12,6 +12,8 @@ import { BookmarkEntityService } from '../../services/bookmark-entity.service';
 import { CategoryDataService } from '../../services/category-data.service';
 import { CategoryEntityService } from '../../services/category-entity.service';
 import { CategoryResolver } from '../../services/category.resolver';
+import { TagDataService } from '../../services/tag-data.service';
+import { TagEntityService } from '../../services/tag-entity.service';
 import { UserDataService } from '../../services/user-data.service';
 import { UserEntityService } from '../../services/user-entity.service';
 import { CategoriesRoutingModule } from './categories-routing.module';
@@ -20,6 +22,7 @@ export const ENTITY = {
 	CATEGORIES: 'Categories',
 	BOOKMARKS: 'Bookmarks',
 	USER: 'User',
+	TAGS: 'Tags'
 };
 
 export const entityMetadata: EntityMetadataMap = {
@@ -76,6 +79,14 @@ export const entityMetadata: EntityMetadataMap = {
 			optimisticDelete: true,
 		},
 	},
+	
+	[ENTITY.TAGS]: {
+		selectId: (model) => model.id,
+		entityDispatcherOptions: {
+			optimisticUpdate: true,
+			optimisticDelete: true,
+		},
+	},
 };
 
 @NgModule({
@@ -95,11 +106,13 @@ export const entityMetadata: EntityMetadataMap = {
 	providers: [
 		CategoryResolver,
 		UserEntityService,
-		CategoryEntityService,
-		BookmarkEntityService,
-		CategoryDataService,
-		BookmarkDataService,
 		UserDataService,
+		CategoryEntityService,
+		CategoryDataService,
+		BookmarkEntityService,
+		BookmarkDataService,
+		TagEntityService,
+		TagDataService
 	],
 })
 export class CategoriesModule {
@@ -108,11 +121,13 @@ export class CategoriesModule {
 		private entityDataService: EntityDataService,
 		private userDataService: UserDataService,
 		private categoriesDataService: CategoryDataService,
-		private bookmarksDataService: BookmarkDataService
+		private bookmarksDataService: BookmarkDataService,
+		private tagDataService: TagDataService,
 	) {
 		eds.registerMetadataMap(entityMetadata);
 		entityDataService.registerService(ENTITY.USER, userDataService);
 		entityDataService.registerService(ENTITY.CATEGORIES, categoriesDataService);
 		entityDataService.registerService(ENTITY.BOOKMARKS, bookmarksDataService);
+		entityDataService.registerService(ENTITY.TAGS, tagDataService);
 	}
 }
