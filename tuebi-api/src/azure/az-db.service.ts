@@ -6,7 +6,8 @@ export type ContainerName =
 	| 'users'
 	| 'categories'
 	| 'bookmarks'
-	| 'subscriptions';
+	| 'subscriptions'
+	| 'tags';
 
 export interface PatchPayload {
 	id: string;

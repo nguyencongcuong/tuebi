@@ -17,6 +17,7 @@ import { UsersModule } from './users/users.module';
 import { ChangelogModule } from './changelog/changelog.module';
 import { TaskService } from './task/task.service';
 import { UsersService } from './users/users.service';
+import { TagsModule } from './tags/tags.module';
 
 @Module({
 	controllers: [AppController],
@@ -40,7 +41,8 @@ import { UsersService } from './users/users.service';
 		BookmarksModule,
 		EmailsModule,
 		ChangelogModule,
-		ScheduleModule.forRoot()
+		ScheduleModule.forRoot(),
+		TagsModule
 	]
 })
 export class AppModule {
