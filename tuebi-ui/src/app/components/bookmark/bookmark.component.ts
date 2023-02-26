@@ -7,14 +7,16 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
-import { map, Observable } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
 import { themes } from '../../enums/theme.enum';
 import { Bookmark } from '../../interfaces/bookmark.interface';
-import { UserSettings } from '../../interfaces/user.interface';
 import { Category } from '../../interfaces/category.interface';
+import { Tag } from '../../interfaces/tag.interface';
+import { UserSettings } from '../../interfaces/user.interface';
 import { BookmarkEntityService } from '../../services/bookmark-entity.service';
 import { BookmarkService } from '../../services/bookmark.service';
 import { CategoryEntityService } from '../../services/category-entity.service';
+import { TagEntityService } from '../../services/tag-entity.service';
 import { UserEntityService } from '../../services/user-entity.service';
 import { FormEditBookmarkComponent } from '../form-edit-bookmark/form-edit-bookmark.component';
 import { IconComponent } from '../icon/icon.component';
@@ -59,6 +61,23 @@ export class BookmarkComponent implements OnInit {
 	categories$;
 	categoryName$ = new Observable<string>();
 	category$ = new Observable<Category | undefined>();
+	tags$ = new Observable<Tag[]>();
+	
+	constructor(
+		private userEntityService: UserEntityService,
+		private bookmarkService: BookmarkService,
+		private bookmarkEntityService: BookmarkEntityService,
+		private categoryEntityService: CategoryEntityService,
+		private tagEntityService: TagEntityService,
+		private clipboard: Clipboard,
+		private notificationService: NzNotificationService,
+	) {
+		this.categories$ = this.categoryEntityService.entities$;
+		this.tags$ = this.tagEntityService.entities$;
+		this.userSettings$ = userEntityService.entities$.pipe(
+			map((users) => users[0].user_settings)
+		);
+	}
 	
 	quickActionItems = [
 		{
@@ -74,20 +93,6 @@ export class BookmarkComponent implements OnInit {
 			}
 		}
 	]
-	
-	constructor(
-		private userEntityService: UserEntityService,
-		private bookmarkService: BookmarkService,
-		private bookmarkEntityService: BookmarkEntityService,
-		private categoryEntityService: CategoryEntityService,
-		private clipboard: Clipboard,
-		private notificationService: NzNotificationService
-	) {
-		this.categories$ = this.categoryEntityService.entities$;
-		this.userSettings$ = userEntityService.entities$.pipe(
-			map((users) => users[0].user_settings)
-		);
-	}
 	
 	async ngOnInit() {
 		this.categoryName$ = this.categories$.pipe(
@@ -157,5 +162,13 @@ export class BookmarkComponent implements OnInit {
 		}
 		
 		return result.slice(0,32) + '...';
+	}
+	
+	getTags(): Observable<Tag[]> {
+		if(this.bookmark.bookmark_tags && this.bookmark.bookmark_tags.length) {
+			return this.tags$.pipe(map(tags => tags.filter(tag => this.bookmark.bookmark_tags.includes(tag.id))))
+		} else {
+			return of([])
+		}
 	}
 }

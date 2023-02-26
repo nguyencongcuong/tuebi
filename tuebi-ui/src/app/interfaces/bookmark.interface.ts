@@ -1,13 +1,8 @@
-interface BookmarkTagI {
-	tag_name: string;
-	tag_order: number;
-}
-
 export interface Bookmark {
 	id: string;
 	user_id: string;
 	category_id: string;
-	bookmark_tags: BookmarkTagI[];
+	bookmark_tags: string[];
 	bookmark_name: string;
 	bookmark_url: string;
 	bookmark_description: string;

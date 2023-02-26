@@ -9,8 +9,10 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
 import { Bookmark } from '../../interfaces/bookmark.interface';
 import { Category } from '../../interfaces/category.interface';
+import { Tag } from '../../interfaces/tag.interface';
 import { BookmarkEntityService } from '../../services/bookmark-entity.service';
 import { CategoryEntityService } from '../../services/category-entity.service';
+import { TagEntityService } from '../../services/tag-entity.service';
 import { IconComponent } from '../icon/icon.component';
 
 @Component({
@@ -21,10 +23,10 @@ import { IconComponent } from '../icon/icon.component';
 	styleUrls: ['./form-edit-bookmark.component.scss']
 })
 export class FormEditBookmarkComponent implements OnChanges {
-	
 	@Input() bookmark = {} as Bookmark;
 	
 	categories$ = new Observable<Category[]>();
+	tags$ = new Observable<Tag[]>();
 	
 	form: FormGroup;
 	isVisible = false;
@@ -33,15 +35,18 @@ export class FormEditBookmarkComponent implements OnChanges {
 	constructor(
 		private fb: FormBuilder,
 		private bookmarkEntityService: BookmarkEntityService,
-		private categoryEntityService: CategoryEntityService
+		private categoryEntityService: CategoryEntityService,
+		private tagEntityService: TagEntityService,
 	) {
 		this.categories$ = this.categoryEntityService.entities$;
+		this.tags$ = this.tagEntityService.entities$;
 		
 		this.form = this.fb.group({
 			id: [this.bookmark.id, [Validators.required]],
 			bookmark_name: [this.bookmark.bookmark_name, [Validators.required]],
 			bookmark_url: [this.bookmark.bookmark_url, [Validators.required]],
-			category_id: [this.bookmark.category_id, [Validators.required]]
+			category_id: [this.bookmark.category_id, [Validators.required]],
+			bookmark_tags: [this.bookmark.bookmark_tags, ]
 		});
 	}
 	
@@ -51,11 +56,13 @@ export class FormEditBookmarkComponent implements OnChanges {
 	
 	ngOnChanges(changes: SimpleChanges) {
 		if (changes['bookmark'].firstChange) {
+			const { id, bookmark_name, bookmark_url, category_id, bookmark_tags  } = changes['bookmark'].currentValue;
 			this.form.patchValue({
-				id: changes['bookmark'].currentValue.id,
-				bookmark_name: changes['bookmark'].currentValue.bookmark_name,
-				bookmark_url: changes['bookmark'].currentValue.bookmark_url,
-				category_id: changes['bookmark'].currentValue.category_id
+				id: id,
+				bookmark_name: bookmark_name,
+				bookmark_url: bookmark_url,
+				category_id: category_id,
+				bookmark_tags: bookmark_tags,
 			});
 		}
 	}
