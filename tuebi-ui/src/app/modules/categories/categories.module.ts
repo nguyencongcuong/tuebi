@@ -6,6 +6,7 @@ import { BookmarkComponent } from '../../components/bookmark/bookmark.component'
 import { CategoryComponent } from '../../components/category/category.component';
 import { FormAddBookmark } from '../../components/form-add-bookmark/form-add-bookmark';
 import { FormAddCategory } from '../../components/form-add-category/form-add-category';
+import { AuthGuard } from '../../guards/auth.guard';
 import { NzZorroModule } from '../../nz-zorro.module';
 import { BookmarkDataService } from '../../services/bookmark-data.service';
 import { BookmarkEntityService } from '../../services/bookmark-entity.service';
@@ -112,7 +113,8 @@ export const entityMetadata: EntityMetadataMap = {
 		BookmarkEntityService,
 		BookmarkDataService,
 		TagEntityService,
-		TagDataService
+		TagDataService,
+		AuthGuard
 	],
 })
 export class CategoriesModule {

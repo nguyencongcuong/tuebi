@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
 import { ROUTE } from '../../enums/routes.enum';
+import { AuthGuard } from '../../guards/auth.guard';
 import { PageBookmarksComponent } from '../../pages/page-bookmarks/page-bookmarks.component';
 import { PageCategoriesComponent } from '../../pages/page-categories/page-categories.component';
 import { PageSearchComponent } from '../../pages/page-search/page-search.component';
@@ -17,6 +18,7 @@ import {
 } from '../../pages/page-settings-privacy-security/page-settings-privacy-security.component';
 import { PageSettingsComponent } from '../../pages/page-settings/page-settings.component';
 import { PageSpaceComponent } from '../../pages/page-space/page-space.component';
+import { PageTagsComponent } from '../../pages/page-tags/page-tags.component';
 import { PageXsBookmarksComponent } from '../../pages/page-xs-bookmarks/page-xs-bookmarks.component';
 import { PageXsCategoriesComponent } from '../../pages/page-xs-categories/page-xs-categories.component';
 import { PageXsSettingsComponent } from '../../pages/page-xs-settings/page-xs-settings.component';
@@ -28,7 +30,7 @@ const routes: Routes = [
 	{
 		path: ROUTE.SPACE,
 		component: PageSpaceComponent,
-		canActivate: [MsalGuard],
+		canActivate: [MsalGuard, AuthGuard],
 		resolve: {
 			categories: CategoryResolver
 		},
@@ -42,6 +44,14 @@ const routes: Routes = [
 						component: PageBookmarksComponent
 					}
 				]
+			},
+			{
+				path: ROUTE.SEARCH,
+				component: PageSearchComponent
+			},
+			{
+				path: ROUTE.TAGS,
+				component: PageTagsComponent
 			},
 			{
 				path: ROUTE.SETTINGS,
@@ -65,10 +75,6 @@ const routes: Routes = [
 					}
 				]
 			},
-			{
-				path: ROUTE.SEARCH,
-				component: PageSearchComponent
-			}
 		]
 	},
 	
@@ -76,7 +82,7 @@ const routes: Routes = [
 	{
 		path: `m/${ROUTE.SPACE}`,
 		component: PageXsSpaceComponent,
-		canActivate: [MsalGuard],
+		canActivate: [MsalGuard, AuthGuard],
 		resolve: {
 			categories: CategoryResolver
 		},
@@ -106,13 +112,17 @@ const routes: Routes = [
 				component: PageSettingsPrivacySecurityComponent
 			},
 			{
-				path: ROUTE.SETTINGS,
-				component: PageXsSettingsComponent
+				path: ROUTE.TAGS,
+				component: PageTagsComponent
 			},
 			{
 				path: ROUTE.SEARCH,
 				component: PageSearchComponent
-			}
+			},
+			{
+				path: ROUTE.SETTINGS,
+				component: PageXsSettingsComponent
+			},
 		]
 	}
 ];
