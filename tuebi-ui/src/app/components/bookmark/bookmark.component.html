@@ -94,9 +94,13 @@
 
 		<!-- Quick Action Icon -->
 		<div class="col-span-12">
-			<div class="flex justify-between items-center px-2">
-				<div *ngIf="bookmark.bookmark_tags && bookmark.bookmark_tags.length" class="flex items-center gap-4">
-					<span class="bg-neutral-200 text-xs opacity-80 p-1 rounded" *ngFor="let tag of getTags() | async">
+			<div class="flex justify-between items-center">
+				<div *ngIf="bookmark.bookmark_tags && bookmark.bookmark_tags.length" class="flex items-center gap-2">
+					<span 
+						class="text-xs opacity-80 p-1 rounded" 
+						[ngStyle]="{ 'background-color': tag.tag_color, 'color':  mapColor(tag.tag_color)}"
+						*ngFor="let tag of getTags() | async"
+					>
 						# {{tag.tag_name}}
 					</span>
 				</div>

@@ -1,0 +1,32 @@
+<button
+	class="bg-slate-300 hover:bg-slate-400 duration-150 transition-all rounded text-white border-0 cursor-pointer p-2"
+	(click)="openModal()"
+>
+	Add New Tag
+</button>
+
+<nz-modal
+	(nzOnCancel)="closeModal()"
+	(nzOnOk)="submit()"
+	[(nzVisible)]="isVisible"
+	nzTitle="New Tag"
+>
+	<ng-container *nzModalContent>
+		<form (ngSubmit)="submit()" [formGroup]="form" nz-form>
+			<nz-form-item>
+				<nz-form-control nzErrorTip="Please fill the tag name.">
+					<nz-input-group>
+						<input
+							formControlName="tag_name"
+							nz-input
+							placeholder="Tag Name"
+							type="text"
+						/>
+					</nz-input-group>
+				</nz-form-control>
+			</nz-form-item>
+			
+			<button class="hidden" type="submit"></button>
+		</form>
+	</ng-container>
+</nz-modal>

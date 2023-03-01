@@ -2,6 +2,7 @@
 
 	<div class="col-span-1">
 		<div class="h-screen flex flex-col justify-center items-center" [ngStyle]="{background: 'white'}">
+			<nz-divider></nz-divider>
 			
 			<div
 				class="flex justify-center items-center cursor-pointer opacity-80 hover:opacity-100 transition-all duration-300 w-10 h-10 rounded"
@@ -13,10 +14,10 @@
 
 			<div
 				class="flex justify-center items-center cursor-pointer opacity-80 hover:opacity-100 transition-all duration-300 w-10 h-10 rounded"
-				[routerLink]="ROUTE.SETTINGS"
+				[routerLink]="ROUTE.TAGS"
 				[routerLinkActive]="'bg-neutral-100'"
 			>
-				<app-icon name="settings"></app-icon>
+				<app-icon name="tag"></app-icon>
 			</div>
 
 			<div
@@ -25,6 +26,14 @@
 				[routerLinkActive]="'bg-neutral-100'"
 			>
 				<app-icon name="search"></app-icon>
+			</div>
+
+			<div
+				class="flex justify-center items-center cursor-pointer opacity-80 hover:opacity-100 transition-all duration-300 w-10 h-10 rounded"
+				[routerLink]="ROUTE.SETTINGS"
+				[routerLinkActive]="'bg-neutral-100'"
+			>
+				<app-icon name="settings"></app-icon>
 			</div>
 			
 			<nz-divider></nz-divider>

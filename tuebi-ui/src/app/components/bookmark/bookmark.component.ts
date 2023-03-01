@@ -2,12 +2,14 @@ import { Clipboard, ClipboardModule } from '@angular/cdk/clipboard';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit, } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
+import * as _ from 'lodash';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { map, Observable, of } from 'rxjs';
+import { COLOR_MAPPING } from '../../enums/color-mapping.enum';
 import { themes } from '../../enums/theme.enum';
 import { Bookmark } from '../../interfaces/bookmark.interface';
 import { Category } from '../../interfaces/category.interface';
@@ -56,6 +58,7 @@ export class BookmarkComponent implements OnInit {
 	@Input() isCategorized: boolean = true;
 	
 	theme = themes[0];
+	colorMapping = COLOR_MAPPING;
 	
 	userSettings$ = new Observable<UserSettings>();
 	categories$;
@@ -169,6 +172,14 @@ export class BookmarkComponent implements OnInit {
 			return this.tags$.pipe(map(tags => tags.filter(tag => this.bookmark.bookmark_tags.includes(tag.id))))
 		} else {
 			return of([])
+		}
+	}
+	
+	mapColor(color: string) {
+		if(_.has(this.colorMapping, color)) {
+			return this.colorMapping[color].tc
+		} else {
+			return '#000000'
 		}
 	}
 }

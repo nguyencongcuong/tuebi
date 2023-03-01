@@ -137,6 +137,10 @@ export class IconComponent implements OnInit {
     {
       icon_name: 'home',
       mapped_icon_name: 'home'
+    },
+    {
+      icon_name: 'tag',
+      mapped_icon_name: 'tag'
     }
   ]
   

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
+import { FormAddTag } from '../../components/form-add-tag/form-add-tag';
 import { IconComponent } from '../../components/icon/icon.component';
 import { ROUTE } from '../../enums/routes.enum';
 import { themes } from '../../enums/theme.enum';

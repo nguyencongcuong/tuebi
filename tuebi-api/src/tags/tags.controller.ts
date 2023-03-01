@@ -1,5 +1,5 @@
 import { SqlQuerySpec } from '@azure/cosmos';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
@@ -34,6 +34,7 @@ export class TagsController {
       const payload: Tag = {
         partition_key: user.id,
         tag_name: createTagDto.tag_name,
+        tag_color: createTagDto?.tag_color || '#DCDCDC', 
         tag_created_time: new Date().toISOString(),
         tag_last_modified_time: new Date().toISOString()
       };
@@ -108,7 +109,7 @@ export class TagsController {
   }
   
   @UseGuards(AzureB2cJwt)
-  @Patch(':id')
+  @Put(':id')
   async updateOne(@Request() req: any, @Param('id') id: string, @Body() updateTagDto: UpdateTagDto) {
     const user = req.user;
   
