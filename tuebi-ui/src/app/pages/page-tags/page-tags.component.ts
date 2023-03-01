@@ -59,4 +59,11 @@ export class PageTagsComponent {
       return '#000000'
     }
   }
+  
+  getBookmarkNumberByTag(id: string): Observable<number> {
+    return this.bookmarks$
+      .pipe(map(bookmarks => bookmarks.filter(bookmark => bookmark.bookmark_tags ? bookmark.bookmark_tags.includes(id) : false)))
+      .pipe(map(bookmarks => bookmarks.length))
+  }
+  
 }
