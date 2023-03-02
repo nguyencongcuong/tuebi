@@ -37,6 +37,7 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { NzZorroModule } from './nz-zorro.module';
 import { PageHomeComponent } from './pages/page-home/page-home.component';
 import { PageSpaceComponent } from './pages/page-space/page-space.component';
+import { PrimeNgModule } from './prime-ng.module';
 import { metaReducers, reducers } from './reducers';
 
 registerLocaleData(en);
@@ -102,6 +103,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
     }),
     IconComponent,
     NzZorroModule,
+    PrimeNgModule,
     
     // Initiate the MSAL library with the MSAL configuration object
     MsalModule.forRoot(new PublicClientApplication(msalConfig),

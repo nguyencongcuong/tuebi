@@ -147,6 +147,5 @@ export class IconComponent implements OnInit {
   public ngOnInit() {
     const foundIcon = this.mappedIcons.find(item => item.icon_name === this.name);
     this.mappedIconName = foundIcon?.mapped_icon_name || '';
-    
   }
 }

@@ -1,40 +1,40 @@
-<div class="grid grid-cols-12 w-full w-full">
-	<div class="col-span-3 w-full h-full bg-white">
-		<div class="flex flex-col gap-1 p-4 h-screen overflow-auto">
+<p-splitter class="splitter" [panelSizes]="[20,80]">
+	<ng-template pTemplate>
+		<div class="category-container flex flex-col p-4 h-screen overflow-auto w-full">
 
 			<div class="flex justify-end items-center">
 				<app-form-add-category></app-form-add-category>
 			</div>
-			
+
 			<!-- All -->
-				<app-category
-					[routerLink]="['/space/categories/all']"
-					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
-					[isAll]="true"
-					[bookmarks$]="bookmarks$"
-				>
-				</app-category>
+			<app-category
+				[routerLink]="['/space/categories/all']"
+				[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
+				[isAll]="true"
+				[bookmarks$]="bookmarks$"
+			>
+			</app-category>
 
 			<!-- Uncategorized -->
-				<app-category
-					[routerLink]="['/space/categories/uncategorized']"
-					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
-					[isUncategorized]="true"
-					[bookmarks$]="bookmarks$"
-				>
-				</app-category>
+			<app-category
+				[routerLink]="['/space/categories/uncategorized']"
+				[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
+				[isUncategorized]="true"
+				[bookmarks$]="bookmarks$"
+			>
+			</app-category>
 
 			<!-- Trash -->
-				<app-category
-					[routerLink]="['/space/categories/trash']"
-					[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
-					[isTrash]="true"
-					[bookmarks$]="bookmarks$"
-				>
-				</app-category>
-			
+			<app-category
+				[routerLink]="['/space/categories/trash']"
+				[routerLinkActive]="['opacity-100', 'bg-neutral-100', 'rounded']"
+				[isTrash]="true"
+				[bookmarks$]="bookmarks$"
+			>
+			</app-category>
+
 			<nz-divider></nz-divider>
-			
+
 			<!-- Categories -->
 			<div
 				(cdkDropListDropped)="dropCategory($event)"
@@ -53,8 +53,10 @@
 			</div>
 
 		</div>
-	</div>
-	<div class="col-span-9 w-full h-full" [ngStyle]="{background: theme.color.primary.light}">
+	</ng-template>
+	<ng-template pTemplate>
+		
 		<router-outlet></router-outlet>
-	</div>
-</div>
+		
+	</ng-template>
+</p-splitter>

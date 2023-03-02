@@ -17,11 +17,6 @@ export class PageXsSettingsComponent {
   ROUTE = ROUTE;
   groupOne = [
     {
-      title: 'General',
-      routerLink: 'general',
-      icon: 'user'
-    },
-    {
       title: 'Appearance',
       routerLink: 'appearance',
       icon: 'slider'

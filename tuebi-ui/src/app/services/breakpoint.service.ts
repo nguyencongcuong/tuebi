@@ -12,9 +12,10 @@ export class BreakpointService implements OnInit{
   
   public ngOnInit() {
     // Match Medium and up
-    this.responsive.observe(Breakpoints.Medium)
+    this.responsive.observe(Breakpoints.HandsetPortrait)
       .subscribe(result => {
-        return result.matches ? this.isXs.next(false) : this.isXs.next(true);
+        console.log('match XS', result.matches)
+        return result.matches ? this.isXs.next(true) : this.isXs.next(false);
       });
   }
 }

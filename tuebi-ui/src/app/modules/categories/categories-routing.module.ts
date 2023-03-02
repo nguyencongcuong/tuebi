@@ -19,10 +19,6 @@ import {
 import { PageSettingsComponent } from '../../pages/page-settings/page-settings.component';
 import { PageSpaceComponent } from '../../pages/page-space/page-space.component';
 import { PageTagsComponent } from '../../pages/page-tags/page-tags.component';
-import { PageXsBookmarksComponent } from '../../pages/page-xs-bookmarks/page-xs-bookmarks.component';
-import { PageXsCategoriesComponent } from '../../pages/page-xs-categories/page-xs-categories.component';
-import { PageXsSettingsComponent } from '../../pages/page-xs-settings/page-xs-settings.component';
-import { PageXsSpaceComponent } from '../../pages/page-xs-space/page-xs-space.component';
 import { CategoryResolver } from '../../services/category.resolver';
 
 const routes: Routes = [
@@ -75,56 +71,12 @@ const routes: Routes = [
 					}
 				]
 			},
-		]
-	},
-	
-	// Small Screen
-	{
-		path: `m/${ROUTE.SPACE}`,
-		component: PageXsSpaceComponent,
-		canActivate: [MsalGuard, AuthGuard],
-		resolve: {
-			categories: CategoryResolver
-		},
-		children: [
-			{
-				path: ROUTE.CATEGORIES + '/:id',
-				component: PageXsBookmarksComponent
-			},
-			{
-				path: ROUTE.CATEGORIES,
-				component: PageXsCategoriesComponent
-			},
 			{
 				path: ROUTE.SETTINGS + '/appearance',
 				component: PageSettingsAppearanceComponent
-			},
-			{
-				path: ROUTE.SETTINGS + '/import-export',
-				component: PageSettingsImportExportComponent
-			},
-			{
-				path: ROUTE.SETTINGS + '/about',
-				component: PageSettingsAboutComponent
-			},
-			{
-				path: ROUTE.SETTINGS + '/privacy-security',
-				component: PageSettingsPrivacySecurityComponent
-			},
-			{
-				path: ROUTE.TAGS,
-				component: PageTagsComponent
-			},
-			{
-				path: ROUTE.SEARCH,
-				component: PageSearchComponent
-			},
-			{
-				path: ROUTE.SETTINGS,
-				component: PageXsSettingsComponent
-			},
+			}
 		]
-	}
+	},
 ];
 
 @NgModule({

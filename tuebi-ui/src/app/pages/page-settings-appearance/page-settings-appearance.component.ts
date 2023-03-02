@@ -5,18 +5,12 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
-import { firstValueFrom, map, Observable, of, tap } from 'rxjs';
+import { firstValueFrom, map, Observable } from 'rxjs';
 import { IconComponent } from '../../components/icon/icon.component';
 import { User } from '../../interfaces/user.interface';
+import { BreakpointService } from '../../services/breakpoint.service';
 import { UserEntityService } from '../../services/user-entity.service';
 import { UserService } from '../../services/user.service';
-
-interface SettingItem {
-	title: string,
-	isActive: boolean,
-	onToggle: Function,
-	desc: string
-}
 
 @Component({
 	selector: 'app-settings-detail-appearance',
@@ -34,11 +28,15 @@ export class PageSettingsAppearanceComponent implements OnInit {
 	isBookmarkUrlShorten = false;
 	isBookmarkCountShown = false;
 	
+	isXs$;
+	
 	constructor(
 		private userService: UserService,
 		private userEntityService: UserEntityService,
+		private breakpointService: BreakpointService,
 	) {
 		this.user$ = this.userEntityService.entities$.pipe(map(users => users[0]));
+		this.isXs$ = this.breakpointService.isXs;
 	}
 	
 	public ngOnInit() {

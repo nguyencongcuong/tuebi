@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { MsalService } from '@azure/msal-angular';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
-import { FormAddTag } from '../../components/form-add-tag/form-add-tag';
 import { IconComponent } from '../../components/icon/icon.component';
 import { ROUTE } from '../../enums/routes.enum';
 import { themes } from '../../enums/theme.enum';
@@ -13,10 +12,11 @@ import { SpaceItem } from '../../interfaces/space.interface';
 import { BookmarkEntityService } from '../../services/bookmark-entity.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { CategoryEntityService } from '../../services/category-entity.service';
+import { PageXsSpaceComponent } from '../page-xs-space/page-xs-space.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, MatIconModule, IconComponent, NzDividerModule],
+  imports: [CommonModule, RouterModule, MatIconModule, IconComponent, NzDividerModule, PageXsSpaceComponent],
   selector: 'app-space',
   templateUrl: './page-space.component.html',
   styleUrls: ['./page-space.component.scss']

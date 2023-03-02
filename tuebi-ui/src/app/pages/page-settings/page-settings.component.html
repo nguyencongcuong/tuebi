@@ -1,6 +1,6 @@
-<div class="grid grid-cols-12 w-full w-full">
-	<div class="col-span-3 w-full h-full bg-white">
-		<div class="flex flex-col gap-1 p-4 h-screen overflow-auto">
+<div  class="grid grid-cols-12 w-full h-full">
+	<div class="col-span-2 md:col-span-3 w-full h-full bg-white">
+		<div *ngIf="!(isXs$ | async)" class="flex flex-col gap-1 p-4 h-screen overflow-auto">
 
 			<div
 				*ngFor="let item of items"
@@ -13,8 +13,19 @@
 			</div>
 
 		</div>
+		
+		<div *ngIf="isXs$ | async" class="flex flex-col justify-center items-center gap-4 p-2 h-full">
+			<div
+				*ngFor="let item of items"
+				[routerLink]="[item.routerLink]"
+				[routerLinkActive]="'bg-neutral-200'"
+				class="rounded p-1 w-full flex justify-center items-center"
+			>
+				<app-icon [name]="item.icon"></app-icon>
+			</div>
+		</div>
 	</div>
-	<div class="col-span-9 w-full h-full" [ngStyle]="{background: theme.color.primary.light}">
+	<div class="col-span-10 md:col-span-9 w-full h-full" [ngStyle]="{background: theme.color.primary.light}">
 		<router-outlet></router-outlet>
 	</div>
 </div>

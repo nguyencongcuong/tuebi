@@ -2,6 +2,7 @@ import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { SplitterModule } from 'primeng/splitter';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { themes } from '../../enums/theme.enum';
 import { Bookmark } from '../../interfaces/bookmark.interface';
@@ -12,10 +13,20 @@ import { BreakpointService } from '../../services/breakpoint.service';
 import { CategoryEntityService } from '../../services/category-entity.service';
 import { CategoryComponent } from '../../components/category/category.component';
 import { FormAddCategory } from '../../components/form-add-category/form-add-category';
+import { PageXsCategoriesComponent } from '../page-xs-categories/page-xs-categories.component';
 
 @Component({
 	standalone: true,
-  imports: [CommonModule, RouterModule, DragDropModule, CategoryComponent, FormAddCategory, NzZorroModule],
+  imports: [
+		CommonModule, 
+		RouterModule, 
+		DragDropModule, 
+		CategoryComponent, 
+		FormAddCategory, 
+		NzZorroModule, 
+		PageXsCategoriesComponent, 
+		SplitterModule
+	],
 	selector: 'app-category-list',
 	templateUrl: './page-categories.component.html',
 	styleUrls: ['./page-categories.component.scss']

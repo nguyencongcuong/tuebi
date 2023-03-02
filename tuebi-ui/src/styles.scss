@@ -1,6 +1,9 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  font-size: 14px;
+}
 
 body {
   font-family: 'Nunito', sans-serif;
@@ -11,7 +14,6 @@ app-icon {
   line-height: 0;
 }
 
-
 a {
   @apply text-gray-800 opacity-80 hover:opacity-100 duration-300 transition-all;
 }
@@ -19,7 +21,6 @@ a {
 .disable-text-selection {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
-  -khtml-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
