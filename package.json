@@ -4,8 +4,8 @@
 	"description": "A minimal bookmark manager",
 	"main": "index.js",
 	"scripts": {
-		"install:api": "cd tuebi-api && npm install --force",
-		"install:ui": "cd tuebi-ui && npm install --legacy-peer-deps",
+		"install:api": "cd tuebi-api && npm install",
+		"install:ui": "cd tuebi-ui && npm install",
 		"build:api": "cd tuebi-api && npm run build",
 		"build:ui": "cd tuebi-ui && npm run build",
 		"start:dev:ui": "cd tuebi-ui && npm run start:dev",
