@@ -48,6 +48,7 @@ export class UsersController {
 					user_roles: ['user'],
 					user_subscription_id: '',
 					user_name: '',
+					user_avatar_url: '',
 					user_settings: {
 						is_compact_mode_on: false,
 						is_favicon_shown: true,

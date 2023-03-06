@@ -20,6 +20,7 @@ export interface User {
 	user_last_active_time: string;
 	user_subscription_id: string;
 	user_roles: string[];
+	user_avatar_url: string;
 	user_settings: UserSettings;
 }
 
@@ -37,4 +38,5 @@ export interface UpdateUserRequestBodyI {
 	user_subscription_id: string;
 	user_roles: string[];
 	user_settings: UserSettings;
+	user_avatar_url: string;
 }

@@ -39,8 +39,12 @@ export class IconComponent implements OnInit {
       mapped_icon_name: 'info'
     },
     {
-      icon_name: 'more',
+      icon_name: 'more_horiz',
       mapped_icon_name: 'more_horiz'
+    },
+    {
+      icon_name: 'more_vert',
+      mapped_icon_name: 'more_vert'
     },
     {
       icon_name: 'login',
@@ -141,6 +145,18 @@ export class IconComponent implements OnInit {
     {
       icon_name: 'tag',
       mapped_icon_name: 'tag'
+    },
+    {
+      icon_name: 'palette',
+      mapped_icon_name: 'palette'
+    },
+    {
+      icon_name: 'arrow_upward',
+      mapped_icon_name: 'arrow_upward'
+    },
+    {
+      icon_name: 'arrow_downward',
+      mapped_icon_name: 'arrow_downward'
     }
   ]
   

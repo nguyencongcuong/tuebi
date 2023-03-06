@@ -79,7 +79,7 @@ class AzureApplicationSettings {
 		this.AZURE_COSMOS_DB_DATABASE_NAME = 'tuebidb';
 		
 		this.AZURE_STORAGE_QUEUE_CONNECTION_STRING = 'DefaultEndpointsProtocol=https;AccountName=tuebistorage;AccountKey=PG4NNuzg8oSGT3375cRHDFWQtXr8Et2o1a+6hNd4BjLlauw8oB8SpnwZAbuOSj/wbIcWWk86iRbv+AStIu8HcA==;EndpointSuffix=core.windows.net';
-		this.AZURE_STORAGE_PRIMARY_KEY = 'DefaultEndpointsProtocol=https;AccountName=tuebistorage;AccountKey=PG4NNuzg8oSGT3375cRHDFWQtXr8Et2o1a+6hNd4BjLlauw8oB8SpnwZAbuOSj/wbIcWWk86iRbv+AStIu8HcA==;EndpointSuffix=core.windows.net';
+		this.AZURE_STORAGE_PRIMARY_KEY = 'DefaultEndpointsProtocol=https;AccountName=tuebidevstorage;AccountKey=NYRmkxHf19D/lyPG4B5XW8mXDkQHvc/kHOQQEhXKLONNluGsFUsjWCL4I8Gn7KneX8j38R8z4FDy+AStCieZ/w==;EndpointSuffix=core.windows.net';
 		
 		this.ENCRYPTION_ALGORITHM = 'aes-256-ctr';
 		this.ENCRYPTION_SECRET_KEY = 'vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3';

@@ -1,0 +1,46 @@
+<div class="category-container flex flex-col gap-4 p-6">
+
+	<div class="flex justify-between">
+		<div><strong>Categories</strong></div>
+		<app-form-add-category></app-form-add-category>
+	</div>
+
+	<!-- All -->
+	<div class="">
+		<app-category
+			[isAll]="true"
+			[bookmarks$]="bookmarks$"
+		>
+		</app-category>
+
+		<!-- Uncategorized -->
+		<app-category
+			[isUncategorized]="true"
+			[bookmarks$]="bookmarks$"
+		>
+		</app-category>
+
+		<!-- Trash -->
+		<app-category
+			[isTrash]="true"
+			[bookmarks$]="bookmarks$"
+		>
+		</app-category>
+
+		<!-- Categories -->
+		<div
+			(cdkDropListDropped)="dropCategory($event)"
+			cdkDropList
+			cdkDropListOrientation="vertical"
+			class="flex flex-col gap-1"
+		>
+			<app-category
+				*ngFor="let category of categories$ | async"
+				[isCategorized]="true"
+				[category]="category"
+				[bookmarks$]="bookmarks$"
+				cdkDrag>
+			</app-category>
+		</div>		
+	</div>
+</div>

@@ -1,0 +1,18 @@
+<div class="flex gap-2 justify-center items-center" (click)="openModal()">
+	<app-icon name="edit"></app-icon>
+	<span>Edit Tags</span>
+</div>
+
+<nz-modal
+	nzTitle="Edit Tags"
+	[nzVisible]="isVisible"
+	[nzClosable]="true"
+	[nzCancelText]="null"
+	[nzOkText]="null"
+	[nzFooter]="null"
+	(nzOnCancel)="closeModal()"
+>
+	<div *nzModalContent>
+		<app-form-edit-tag *ngFor="let tag of tags$ | async" [tag]="tag"></app-form-edit-tag>	
+	</div>
+</nz-modal>

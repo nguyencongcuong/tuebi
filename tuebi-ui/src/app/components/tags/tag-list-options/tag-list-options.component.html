@@ -1,0 +1,9 @@
+<app-icon nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" name="more_vert"></app-icon>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+	<ul nz-menu>
+		<li nz-menu-item><app-form-add-tag></app-form-add-tag></li>
+		<li nz-menu-divider></li>
+		<li nz-menu-item><app-modal-manage-tag></app-modal-manage-tag></li>
+	</ul>
+</nz-dropdown-menu>

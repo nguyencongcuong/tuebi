@@ -33,6 +33,11 @@ export class AzBlobStorageClient {
 		return deleteBlobResponse;
 	}
 	
+	async getBlobUrl(blobName: string) {
+		const blobClient = this.containerClient.getBlobClient(blobName);
+		return blobClient.url
+	}
+	
 	// [Node.js only] A helper method used to read a Node.js readable stream into a Buffer
 	private async streamToBuffer(readableStream) {
 		return new Promise((resolve, reject) => {

@@ -1,0 +1,18 @@
+<div
+	*ngIf="user$ | async as user"
+	class="avatar flex justify-center items-center w-12 h-12 rounded-full bg-center bg-cover bg-no-repeat cursor-pointer"
+	[style]="{'background-image': 'url(' + user?.user_avatar_url + ')' }"
+>
+	<nz-upload
+		(nzChange)="handleChange($event)"
+		[nzAccept]="acceptFile"
+		[nzAction]="UPLOAD_API_URL"
+		[nzHeaders]="{ authorization: this.authorization }"
+		[nzMultiple]="false"
+		[nzShowUploadList]="false"
+		[nzSize]="0"
+	>
+		<app-icon class="avatar-upload-icon" name="cloud_upload"></app-icon>
+	</nz-upload>
+</div>
+

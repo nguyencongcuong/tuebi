@@ -1,0 +1,22 @@
+<div class="grid grid-cols-12">
+	<div class="col-span-3 bg-white border-solid border-4 border-neutral-100 rounded-2xl overflow-hidden relative">
+		<app-form-add-bookmark></app-form-add-bookmark>
+		
+		<!-- Categories -->
+		<app-category-list></app-category-list>
+		
+		<!-- Tags -->
+		<app-tag-list></app-tag-list>
+		
+		<!-- Settings -->
+		<app-setting-list class="absolute left-0 right-0 bottom-0"></app-setting-list>
+	</div>
+	<div class="col-span-6 bg-white border-solid border-4 border-neutral-100 rounded-2xl overflow-hidden">
+		<!-- Search Bar -->
+		<app-page-search></app-page-search>
+		<router-outlet></router-outlet>
+	</div>
+	<!-- <div class="col-span-3 bg-white border-solid border-4 border-neutral-100 rounded-2xl overflow-hidden"> -->
+	<!-- 	<div class="">3</div> -->
+	<!-- </div> -->
+</div>

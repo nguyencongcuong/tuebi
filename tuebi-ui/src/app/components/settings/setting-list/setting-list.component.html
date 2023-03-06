@@ -1,0 +1,15 @@
+<div class="flex justify-between items-center gap-2 p-6">
+	<app-avatar></app-avatar>
+	<app-icon name="settings" nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click"></app-icon>
+</div>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+	<ul nz-menu nzSelectable>
+		<li nz-menu-item><app-setting-appearance></app-setting-appearance></li>
+		<li nz-menu-item><app-setting-privacy-security></app-setting-privacy-security></li>
+		<li nz-menu-divider></li>
+		<li nz-menu-item><app-setting-import></app-setting-import></li>
+		<li nz-menu-divider></li>
+		<li nz-menu-item nzDanger>Logout</li>
+	</ul>
+</nz-dropdown-menu>

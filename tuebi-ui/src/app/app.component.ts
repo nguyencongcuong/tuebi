@@ -59,7 +59,7 @@ export class AppComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(() => {
 				this.setLoginDisplay();
-				if(this.isB2CLoggedIn) this.router.navigateByUrl('space/categories');
+				if(this.isB2CLoggedIn) this.router.navigateByUrl('space/categories/all');
 			})
 	}
 	

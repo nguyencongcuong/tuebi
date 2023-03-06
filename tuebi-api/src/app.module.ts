@@ -18,6 +18,7 @@ import { ChangelogModule } from './changelog/changelog.module';
 import { TaskService } from './task/task.service';
 import { UsersService } from './users/users.service';
 import { TagsModule } from './tags/tags.module';
+import { ImagesModule } from './images/images.module';
 
 @Module({
 	controllers: [AppController],
@@ -42,7 +43,8 @@ import { TagsModule } from './tags/tags.module';
 		EmailsModule,
 		ChangelogModule,
 		ScheduleModule.forRoot(),
-		TagsModule
+		TagsModule,
+		ImagesModule
 	]
 })
 export class AppModule {

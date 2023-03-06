@@ -19,5 +19,6 @@ export interface User {
 	user_is_confirmed: boolean,
 	user_confirmation_code: string,
 	user_roles: string[],
+	user_avatar_url: string,
 	user_settings: UserSettings
 }
