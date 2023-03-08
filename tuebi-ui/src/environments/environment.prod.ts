@@ -1,4 +1,4 @@
 export const environment = {
 	production: true,
-	backend_url: 'https://tuebi-api-prod-lx.azurewebsites.net',
+	backend_url: 'https://api.tuebi.io',
 };
