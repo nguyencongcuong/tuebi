@@ -3,9 +3,12 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { sendError, sendSuccess } from '../utilities';
 import { ImagesService } from './images.service';
+import { Logger } from '@nestjs/common';
 
 @Controller('images')
 export class ImagesController {
+  private logger = new Logger(ImagesController.name);
+  
   constructor(
     private readonly imagesService: ImagesService
   ) {}
@@ -26,7 +29,7 @@ export class ImagesController {
       };
       return sendSuccess(data);
     } catch (e) {
-      console.log(e)
+      this.logger.error(e.message, this.uploadAvatar.name);
       return sendError(e);
     }
   }
