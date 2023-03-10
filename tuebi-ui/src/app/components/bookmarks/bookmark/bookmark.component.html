@@ -108,7 +108,7 @@
 		<!-- Compact Bookmark -->
 		<div
 			*ngIf="settings.is_compact_mode_on"
-			class="flex justify-between gap-4 rounded cursor-pointer"
+			class="flex justify-between gap-4 rounded cursor-pointer hover:bg-neutral-100 duration-75 ease-in-out p-1"
 		>
 			<div class="flex justify-start items-center gap-4 w-full" (click)="open()">
 				<img
@@ -163,7 +163,7 @@
 <div *ngIf="isCompactModeForced">
 	<div *ngIf="userSettings$ | async as settings">
 		<!-- Compact Bookmark -->
-		<div class="flex justify-between gap-4 rounded cursor-pointer">
+		<div class="flex justify-between gap-4 rounded cursor-pointer hover:bg-neutral-100 duration-75 ease-in-out p-1">
 			<div class="flex justify-start items-center gap-4 w-full" (click)="open()">
 				<img
 					alt="{{ bookmark.bookmark_name }} favicon"

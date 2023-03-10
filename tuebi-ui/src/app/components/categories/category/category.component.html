@@ -3,10 +3,7 @@
 	class="w-full border-0 rounded hover:bg-neutral-100 duration-150 cursor-pointer opacity-80"
 >
 	<div class="flex justify-between items-center gap-2 w-full">
-		<div 
-			class="flex items-center gap-2 w-full"
-			[routerLink]="categoryRouterLink"
-		>
+		<div class="flex items-center gap-2 w-full" [routerLink]="categoryRouterLink">
 			<app-icon *ngIf="isCategorized" name="folder"></app-icon>
 			<app-icon *ngIf="isAll" name="folder"></app-icon>
 			<app-icon *ngIf="isUncategorized" name="folder"></app-icon>
@@ -14,7 +11,7 @@
 			<div>{{name}}</div>
 		</div>
 		<div class="flex items-center justify-end gap-2">
-			<span *ngIf="settings.is_bookmark_count_shown" class="text-xs text-neutral-500">
+			<span *ngIf="settings.is_bookmark_count_shown" class="text-xs text-right text-neutral-500 w-10">
 				{{count$ | async}}
 			</span>
 			<app-icon
