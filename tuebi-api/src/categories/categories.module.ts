@@ -4,6 +4,7 @@ import { AuthModule } from '../auth/auth.module';
 import { AuthService } from '../auth/auth.service';
 import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { SecurityService } from '../security/security.service';
+import { TagsService } from '../tags/tags.service';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
 import { CategoriesController } from './categories.controller';
@@ -18,7 +19,8 @@ import { CategoriesService } from './categories.service';
 		UsersService,
 		JwtService,
 		SecurityService,
-		BookmarksService
+		BookmarksService,
+		TagsService
 	],
 	imports: [AuthModule, UsersModule, JwtModule],
 })

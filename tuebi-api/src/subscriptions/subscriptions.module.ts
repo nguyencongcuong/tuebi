@@ -5,6 +5,7 @@ import { BookmarksModule } from '../bookmarks/bookmarks.module';
 import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { CategoriesService } from '../categories/categories.service';
 import { SecurityService } from '../security/security.service';
+import { TagsService } from '../tags/tags.service';
 import { UsersService } from '../users/users.service';
 
 import { SubscriptionsController } from './subscriptions.controller';
@@ -19,7 +20,8 @@ import { SubscriptionsService } from './subscriptions.service';
 		UsersService,
 		SecurityService,
 		BookmarksService,
-		CategoriesService
+		CategoriesService,
+		TagsService
 	],
 	imports: [BookmarksModule],
 	exports: [SubscriptionsService],

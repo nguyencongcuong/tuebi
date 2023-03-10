@@ -6,6 +6,7 @@ import { CategoriesService } from '../categories/categories.service';
 import { EmailsModule } from '../emails/emails.module';
 import { SecurityService } from '../security/security.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
+import { TagsService } from '../tags/tags.service';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
@@ -18,6 +19,7 @@ import { UsersService } from './users.service';
 		SubscriptionsService,
 		CategoriesService,
 		BookmarksService,
+		TagsService,
 		SecurityService,
 	],
 	imports: [EmailsModule],

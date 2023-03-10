@@ -13,6 +13,7 @@ import { EmailsModule } from './emails/emails.module';
 import { SecurityModule } from './security/security.module';
 import { SecurityService } from './security/security.service';
 import { SubscriptionsModule } from './subscriptions/subscriptions.module';
+import { TagsService } from './tags/tags.service';
 import { UsersModule } from './users/users.module';
 import { ChangelogModule } from './changelog/changelog.module';
 import { TaskService } from './task/task.service';
@@ -30,7 +31,8 @@ import { ImagesModule } from './images/images.module';
 		BookmarksService,
 		CategoriesService,
 		UsersService,
-		TaskService
+		TaskService,
+		TagsService
 	],
 	imports: [
 		JwtModule,

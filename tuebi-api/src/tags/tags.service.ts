@@ -18,9 +18,9 @@ export class TagsService {
     }
   }
 
-  async readMany(query: SqlQuerySpec) {
+  async readMany<T>(query: SqlQuerySpec) {
     try {
-      return await this.db.readMany<Tag[]>(query);
+      return await this.db.readMany<T>(query);
     } catch (e) {
       this.logger.error(e);
       throw e;

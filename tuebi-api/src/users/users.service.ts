@@ -4,6 +4,8 @@ import { AzDbService, PatchPayload } from '../azure/az-db.service';
 import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { Category } from '../categories/categories.interface';
 import { CategoriesService } from '../categories/categories.service';
+import { Tag } from '../tags/entities/tag.entity';
+import { TagsService } from '../tags/tags.service';
 import { User } from './users.interface';
 
 @Injectable()
@@ -13,7 +15,8 @@ export class UsersService {
 	
 	constructor(
 		private bookmarksService: BookmarksService,
-		private categoriesService: CategoriesService
+		private categoriesService: CategoriesService,
+		private tagsService: TagsService,
 	) {}
 	
 	async createOne(user: User): Promise<User> {
@@ -81,6 +84,14 @@ export class UsersService {
 		if (categories.length) {
 			for (const item of categories) {
 				await this.categoriesService.deleteOne(item.id, item.partition_key);
+			}
+		}
+		
+		// Delete all tags by user
+		const tags = await this.tagsService.readMany<Tag>(querySpec);
+		if(tags.length) {
+			for (const item of tags) {
+				await this.tagsService.deleteOne(item.id, item.partition_key);
 			}
 		}
 		

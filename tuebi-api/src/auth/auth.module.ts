@@ -4,6 +4,8 @@ import { PassportModule } from '@nestjs/passport';
 import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { CategoriesService } from '../categories/categories.service';
 import { SecurityService } from '../security/security.service';
+import { TagsModule } from '../tags/tags.module';
+import { TagsService } from '../tags/tags.service';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
 import { AuthController } from './auth.controller';
@@ -18,6 +20,7 @@ import { RolesGuard } from './guards/role.guard';
 		SecurityService,
 		BookmarksService,
 		CategoriesService,
+		TagsService,
 		{
 			provide: APP_GUARD,
 			useClass: RolesGuard,
@@ -25,7 +28,7 @@ import { RolesGuard } from './guards/role.guard';
 	],
 	imports: [
 		UsersModule,
-		PassportModule
+		PassportModule,
 	],
 	exports: [AuthService],
 })

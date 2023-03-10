@@ -25,6 +25,6 @@ import { TagsController } from './tags.controller';
     AuthModule,
     UsersModule,
     JwtModule
-  ]
+  ],
 })
 export class TagsModule {}
