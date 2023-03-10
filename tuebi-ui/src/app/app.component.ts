@@ -18,6 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
 	public isB2CLoggedIn = false;
 	public isCollapsed = false;
 	public routeList = routeList;
+	public isLoading = true;
 	
 	constructor(
 		@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,

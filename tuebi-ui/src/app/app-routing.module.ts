@@ -18,11 +18,7 @@ const routes: Routes = [
 	{
 		path: ROUTE.ABOUT,
 		component: PageAboutComponent,
-	},
-	// {
-	//   path: "**",
-	//   component: Page404Component,
-	// },
+	}
 ];
 
 @NgModule({
