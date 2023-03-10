@@ -12,7 +12,16 @@
 		[nzShowUploadList]="false"
 		[nzSize]="0"
 	>
-		<app-icon class="avatar-upload-icon" name="cloud_upload"></app-icon>
+		<app-icon 
+			class="avatar-upload-icon" 
+			[ngClass]="isLoading ? 'hidden' : 'block'" 
+			name="cloud_upload">
+		</app-icon>
+		
+		<ng-template #indicatorTemplate><span nz-icon nzType="loading" class="text-white"></span></ng-template>
+		<nz-spin nzSimple [nzSpinning]="isLoading" [nzIndicator]="indicatorTemplate"></nz-spin>
 	</nz-upload>
 </div>
+
+
 

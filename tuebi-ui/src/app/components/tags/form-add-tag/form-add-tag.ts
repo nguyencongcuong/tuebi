@@ -8,6 +8,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
+import { COLOR_MAPPING } from '../../../enums/color-mapping.enum';
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { IconComponent } from '../../icon/icon.component';
 
@@ -32,6 +33,7 @@ import { IconComponent } from '../../icon/icon.component';
 export class FormAddTag implements OnInit {
 	form: FormGroup;
 	isVisible = false;
+	colorMapping = COLOR_MAPPING;
 	
 	constructor(
 		private fb: FormBuilder,

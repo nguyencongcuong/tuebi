@@ -2,7 +2,7 @@ import { sendError, sendSuccess } from './response.util';
 
 describe('ResponsesUtil', () => {
 	describe('send response', () => {
-		it('should return a success response', function () {
+		it('should return a success response', () => {
 			// Arrange
 			const data = {title: 'tuebi.io'};
 			const expected = {
@@ -17,7 +17,7 @@ describe('ResponsesUtil', () => {
 			expect(response).toEqual(expected);
 		});
 		
-		it('should return a failure response when error is an instance of Error', function () {
+		it('should return a failure response when error is an instance of Error', () => {
 			// Arrange
 			const error = new Error('This is an error object');
 			const expected = {
@@ -32,7 +32,7 @@ describe('ResponsesUtil', () => {
 			expect(response).toEqual(expected);
 		});
 		
-		it('should return a failure response when error is a string', function () {
+		it('should return a failure response when error is a string', () => {
 			// Arrange
 			const error = 'This is a string error';
 			const expected = {

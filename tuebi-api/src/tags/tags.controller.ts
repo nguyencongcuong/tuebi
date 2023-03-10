@@ -34,7 +34,7 @@ export class TagsController {
       const payload: Tag = {
         partition_key: user.id,
         tag_name: createTagDto.tag_name,
-        tag_color: createTagDto?.tag_color || '#DCDCDC', 
+        tag_color: createTagDto?.tag_color || '#CFD8DC', 
         tag_created_time: new Date().toISOString(),
         tag_last_modified_time: new Date().toISOString()
       };

@@ -1,6 +1,10 @@
 @tailwind components;
 @tailwind utilities;
 
+div, span, p {
+  word-break: break-all;
+}
+
 html {
   font-size: 14px;
 }

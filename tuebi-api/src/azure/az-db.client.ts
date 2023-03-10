@@ -8,6 +8,4 @@ const options: CosmosClientOptions = {
 
 export const azDbClient = new CosmosClient(options);
 
-export const azDb = azDbClient.databases.client.database(
-	azAppSettings.AZURE_COSMOS_DB_DATABASE_NAME
-);
+export const azDb = azDbClient.databases.client.database(azAppSettings.AZURE_COSMOS_DB_DATABASE_NAME);

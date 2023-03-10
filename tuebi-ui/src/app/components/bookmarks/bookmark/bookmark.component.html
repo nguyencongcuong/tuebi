@@ -8,7 +8,7 @@
 			[ngStyle]="{background: 'white'}"
 		>
 			<!-- Bookmark Information -->
-			<div class="col-span-8">
+			<div class="col-span-11">
 				<div class="flex justify-start items-center gap-4">
 					<img
 						*ngIf="settings.is_favicon_shown"
@@ -38,18 +38,7 @@
 					</div>
 				</div>
 			</div>
-
-			<div class="col-span-3">
-				<div class="flex justify-end items-center" *ngIf="category$ | async as category">
-					<nz-tag [nzColor]="category.category_theme" *ngIf="!isCategorized">
-						{{category.category_name}}
-					</nz-tag>
-					<nz-tag *ngIf="!(category$ | async)">
-						Uncategorized
-					</nz-tag>
-				</div>
-			</div>
-
+			
 			<!-- Bookmark Options -->
 			<div class="col-span-1">
 				<div class="flex justify-end items-center">
@@ -96,14 +85,14 @@
 			<!-- Quick Action Icon -->
 			<div class="col-span-12">
 				<div class="flex justify-between items-center">
-					<div *ngIf="bookmark.bookmark_tags && bookmark.bookmark_tags.length" class="flex items-center gap-2">
-					<span
-						class="text-xs opacity-80 p-1 rounded"
-						[ngStyle]="{ 'background-color': tag.tag_color, 'color':  mapColor(tag.tag_color)}"
-						*ngFor="let tag of getTags() | async"
-					>
-						# {{tag.tag_name}}
-					</span>
+					<div class="flex items-center flex-wrap gap-2">
+						<span
+							class="text-xs opacity-80 p-1 rounded"
+							[ngStyle]="{ 'background-color': tag.tag_color, 'color':  mapColor(tag.tag_color)}"
+							*ngFor="let tag of getTags() | async"
+						>
+							# {{tag.tag_name}}
+						</span>
 					</div>
 					<div class="flex items-center gap-4">
 						<app-icon
