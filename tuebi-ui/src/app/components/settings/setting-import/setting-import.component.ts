@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -21,12 +21,7 @@ import { IconComponent } from '../../icon/icon.component';
 })
 export class SettingImportComponent implements OnInit {
 	isImportingBookmarkLoading: boolean = false;
-	form: FormGroup;
-	BROWSER: 'Chrome' | 'Firefox' = 'Chrome';
-	acceptFile = '.html'; // Chrome Bookmark Exported File
-	
 	authorization = '';
-	
 	UPLOAD_API_URL = environment.backend_url + '/bookmarks/import';
 	
 	public isVisible = false;
@@ -38,9 +33,6 @@ export class SettingImportComponent implements OnInit {
 		private categoryEntityService: CategoryEntityService,
 		private bookmarkEntityService: BookmarkEntityService
 	) {
-		this.form = this.fb.group({
-			browser_name: [this.BROWSER, [Validators.required]]
-		});
 	}
 	
 	ngOnInit(): void {
