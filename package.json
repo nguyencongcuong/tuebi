@@ -4,7 +4,7 @@
 	"description": "A minimal bookmark manager",
 	"main": "index.js",
 	"scripts": {
-		"install:api": "cd tuebi-api && npm install && npm install --arch=arm64 --platform=linux --libc=musl sharp",
+		"install:api": "cd tuebi-api && npm install",
 		"install:ui": "cd tuebi-ui && npm install",
 		"build:api": "cd tuebi-api && npm run build",
 		"build:ui": "cd tuebi-ui && npm run build",

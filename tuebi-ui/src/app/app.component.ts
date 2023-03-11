@@ -18,7 +18,6 @@ export class AppComponent implements OnInit, OnDestroy {
 	public isB2CLoggedIn = false;
 	public isCollapsed = false;
 	public routeList = routeList;
-	public isLoading = true;
 	
 	constructor(
 		@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
@@ -35,8 +34,6 @@ export class AppComponent implements OnInit, OnDestroy {
 	
 	async ngOnInit(): Promise<void> {
 		isDevMode() ? console.log('Development!') : console.log('Production!');
-		
-		// Check whether database has user which is stored in local store, otherwise, log out
 		
 		this.msalBroadcastService.msalSubject$
 			.pipe(
