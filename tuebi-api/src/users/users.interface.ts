@@ -15,9 +15,10 @@ export interface User {
 	_iv: string;
 	user_name: string;
 	user_emails: string[],
-	user_created_time: string;
-	user_last_modified_time: string;
-	user_last_active_time: string;
+	user_created_time: number;
+	user_last_modified_time: number;
+	user_last_active_time: number;
+	user_deleted_at: number;
 	user_subscription_id: string;
 	user_roles: string[];
 	user_avatar_url: string;

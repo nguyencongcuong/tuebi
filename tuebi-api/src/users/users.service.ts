@@ -1,5 +1,6 @@
 import { SqlQuerySpec } from '@azure/cosmos';
 import { Injectable, Logger } from '@nestjs/common';
+import { DateTime } from 'luxon';
 import { AzDbService, PatchPayload } from '../azure/az-db.service';
 import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { Category } from '../categories/categories.interface';
@@ -97,5 +98,11 @@ export class UsersService {
 		
 		// Delete user
 		await this.deleteOne(id, partitionKey);
+	}
+
+	async calculateEpochTimeToDeleteUser(monthToDelete: number) {
+		const now = DateTime.local(); // current date and time
+		const monthsToDeleteUser = now.plus({ months: monthToDelete }); // same day, 2 months later
+		return Math.floor(monthsToDeleteUser.toSeconds());// number of seconds between now and 2 months later
 	}
 }

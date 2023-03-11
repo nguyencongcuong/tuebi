@@ -33,8 +33,10 @@ export class AppComponent implements OnInit, OnDestroy {
 		this.breakpointService.ngOnInit();
 	}
 	
-	ngOnInit(): void {
+	async ngOnInit(): Promise<void> {
 		isDevMode() ? console.log('Development!') : console.log('Production!');
+		
+		// Check whether database has user which is stored in local store, otherwise, log out
 		
 		this.msalBroadcastService.msalSubject$
 			.pipe(
@@ -75,10 +77,6 @@ export class AppComponent implements OnInit, OnDestroy {
 		} else {
 			this.msalService.loginRedirect();
 		}
-	}
-	
-	logout() {
-		this.msalService.logoutRedirect();
 	}
 	
 	setLoginDisplay() {

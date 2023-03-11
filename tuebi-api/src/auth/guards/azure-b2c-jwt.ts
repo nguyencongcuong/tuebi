@@ -24,7 +24,23 @@ export class AzureB2cJwt extends AuthGuard('jwt') {
     this.logger.log('Access Token Verification = ' + isVerified);
     
     if(isVerified) {
-      req.user = await this.userService.readOne(payload.sub, '');
+      const user = await this.userService.readOne(payload.sub, '');
+      if(user) {
+        req.user = user;
+  
+        // Update user last active time
+        await this.userService.updateOne({
+          id: user.id,
+          partition_key: user.partition_key,
+          operations: [
+            {
+              op: 'add',
+              path: '/user_last_active_time',
+              value: Math.floor(Date.now() / 1000)
+            }
+          ]
+        });        
+      }
     }
     
     return isVerified;

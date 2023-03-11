@@ -1,5 +1,5 @@
 import { PatchOperation, SqlQuerySpec } from '@azure/cosmos';
-import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards, } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { isEmpty, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
@@ -11,6 +11,7 @@ import { Category, CreateCategoryQueryI, UpdateCategoryQueryI, } from './categor
 import { CategoriesService } from './categories.service';
 
 @Controller()
+@UseGuards(AzureB2cJwt)
 export class CategoriesController {
 	private ENCRYPTED_FIELDS = ['category_name'];
 	
@@ -21,7 +22,6 @@ export class CategoriesController {
 	) {}
 	
 	// CATEGORY
-	@UseGuards(AzureB2cJwt)
 	@Post('categories')
 	async createOne(@Body() category: CreateCategoryQueryI, @Request() req: any) {
 		const user = req.user;
@@ -60,7 +60,6 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(AzureB2cJwt)
 	@Get('categories/:id')
 	async readOne(@Request() req: any, @Param('id') id: string) {
 		const user = req.user;
@@ -79,7 +78,6 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(AzureB2cJwt)
 	@Get('categories')
 	async readAll(@Request() req: any) {
 		try {
@@ -107,7 +105,6 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(AzureB2cJwt)
 	@Put('categories/:id')
 	async updateOne(
 		@Request() req: any,
@@ -160,7 +157,6 @@ export class CategoriesController {
 		}
 	}
 	
-	@UseGuards(AzureB2cJwt)
 	@Delete('categories/:id')
 	async deleteOne(@Request() req: any, @Param('id') id: string) {
 		const user = req.user;

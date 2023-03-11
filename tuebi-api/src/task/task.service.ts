@@ -28,9 +28,19 @@ export class TaskService {
   async deleteUserAccounts() {
     this.logger.log(`Start Cron Job: ${this.deleteUserAccounts.name}`);
     
-    // Get all users
+    const now = Math.floor(Date.now() / 1000);
+    
+    // Query to get users who will be deleted
     const sqlQuerySpec : SqlQuerySpec = {
-      query: 'SELECT c.id, c.user_email, c.partition_key, c.user_last_active_time, c.user_settings FROM c',
+      query: `
+        SELECT c.id, c.partition_key, c.user_email FROM c
+        WHERE c.user_deleted_at < @now`,
+      parameters: [
+        {
+          name: '@now',
+          value: now
+        }
+      ]
     }
     const users = await this.userDb.readMany<User>(sqlQuerySpec);
     
@@ -39,28 +49,10 @@ export class TaskService {
       return;
     }
     
-    // Get all users whose account can be deleted
-    const usersToDelete = users.filter(user => {
-      const MONTH_TO_DELETE = user.user_settings.user_month_to_delete;
-      
-      const userLastActiveTime = new Date(user.user_last_active_time);
-      const lastActiveMonth = userLastActiveTime.getMonth();
-      const lastActiveDate = userLastActiveTime.getDate();
-      
-      const currentMonth = new Date().getMonth();
-      const currentDate = new Date().getDate();
-      return currentMonth - lastActiveMonth >= MONTH_TO_DELETE && lastActiveDate === currentDate;
-    });
-  
-    if(!usersToDelete.length) {
-      this.logger.log(`Finish Cron Job: ${this.deleteUserAccounts.name}. No user to delete`);
-      return;
-    }
-    
-    for (const user of usersToDelete) {
+    for (const user of users) {
       await this.userService.deleteAllUserData(user.id, user.partition_key);
     }
   
-    this.logger.log(`Finish Cron Job: ${this.deleteUserAccounts.name}. ${usersToDelete.length} deleted`);
+    this.logger.log(`Finish Cron Job: ${this.deleteUserAccounts.name}. ${users.length} deleted`);
   }
 }

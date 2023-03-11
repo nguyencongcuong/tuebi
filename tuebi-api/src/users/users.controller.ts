@@ -31,7 +31,10 @@ export class UsersController {
   async createOne(@Request() req: any, @Body() user: CreateUserRequestBodyI) {
     try {
       if (!req.user) {
-        const date = new Date().toISOString();
+        // Start: Calculate the epoch time (milliseconds) when user will be auto deleted.
+        const DEFAULT_USER_MONTH_TO_DELETE = 3;
+        const epochTimeToDelete = await this.userService.calculateEpochTimeToDeleteUser(DEFAULT_USER_MONTH_TO_DELETE);
+        const now = Math.floor(Date.now() / 1000);
         
         const ivBuffer = randomBytes(16);
         const ivString = ivBuffer.toString('hex');
@@ -40,9 +43,10 @@ export class UsersController {
           id: user.user_object_id,
           user_emails: user.user_emails,
           partition_key: '',
-          user_created_time: date,
-          user_last_modified_time: date,
-          user_last_active_time: date,
+          user_created_time: now,
+          user_last_modified_time: now,
+          user_last_active_time: now,
+          user_deleted_at: epochTimeToDelete,
           user_roles: ['user'],
           user_subscription_id: '',
           user_name: '',
@@ -53,7 +57,7 @@ export class UsersController {
             is_bookmark_url_shorten: false,
             is_bookmark_count_shown: true,
             is_bookmark_url_shown: true,
-            user_month_to_delete: 3,
+            user_month_to_delete: DEFAULT_USER_MONTH_TO_DELETE,
           },
           _iv: ivString,
         };
@@ -102,8 +106,14 @@ export class UsersController {
       // If there's user_updated_password, update user_password
       const updatedUser = {
         ...updateUserBody,
-        user_last_modified_time: new Date().toISOString(),
+        user_last_modified_time: Math.floor(Date.now() / 1000),
       };
+      
+      // Checking if user update their month to delete & recalculate the auto delete epoch time
+      if(updateUserBody.user_settings.user_month_to_delete) {
+        const monthToDelete = updateUserBody.user_settings.user_month_to_delete;
+        updatedUser['user_deleted_at'] = await this.userService.calculateEpochTimeToDeleteUser(monthToDelete);
+      }
       
       // Update user
       const encrypted = await this.securityService.encryptObject(
