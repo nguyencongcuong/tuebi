@@ -1,7 +1,7 @@
 <div
 	*ngIf="user$ | async as user"
 	class="avatar flex justify-center items-center w-12 h-12 rounded-full bg-center bg-cover bg-no-repeat cursor-pointer"
-	[style]="{'background-image': 'url(' + user?.user_avatar_url + ')' }"
+	[style]="{'background-image': 'url(' + user?.user_avatar_url + ')', 'background-color': '#e7e7e7' }"
 >
 	<nz-upload
 		(nzChange)="handleChange($event)"
