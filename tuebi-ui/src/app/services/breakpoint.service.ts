@@ -14,7 +14,6 @@ export class BreakpointService implements OnInit{
     // Match Medium and up
     this.responsive.observe(Breakpoints.HandsetPortrait)
       .subscribe(result => {
-        console.log('match XS', result.matches)
         return result.matches ? this.isXs.next(true) : this.isXs.next(false);
       });
   }

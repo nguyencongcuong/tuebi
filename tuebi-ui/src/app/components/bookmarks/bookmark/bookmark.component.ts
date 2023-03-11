@@ -150,7 +150,15 @@ export class BookmarkComponent implements OnInit {
 		return this.bookmarkService.getFavicon(domain);
 	}
 	
-	handleUrl(url: string, isShorten: boolean) {
+	normalizeBookmarkURL(url: string) {
+		if(!url.includes('http') || !url.includes('https')) {
+			return 'https://' + url;
+		} else {
+			return url;
+		}
+	}
+	
+	shortenBookmarkURL(url: string, isShorten: boolean) {
 		let result = url;
 		
 		const urlShortenRegex = new RegExp(

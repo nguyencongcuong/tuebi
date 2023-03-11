@@ -21,18 +21,16 @@
 					<div class="flex flex-col gap-2">
 						<span class="font-bold">{{ bookmark.bookmark_name }}</span>
 						<a
-							nz-tooltip
-							[nzTooltipTitle]="bookmark.bookmark_url"
 							*ngIf="settings.is_bookmark_url_shown && bookmark.bookmark_url"
 							class="text-gray-400 line-break"
-							href="{{ bookmark.bookmark_url }}"
+							href="{{ normalizeBookmarkURL(bookmark.bookmark_url) }}"
 							rel="noreferrer nofollow"
 							target="_blank"
 						>
 							{{
 							settings.is_bookmark_url_shorten
-								? handleUrl(bookmark.bookmark_url, true)
-								: handleUrl(bookmark.bookmark_url, false)
+								? shortenBookmarkURL(bookmark.bookmark_url, true)
+								: shortenBookmarkURL(bookmark.bookmark_url, false)
 							}}
 						</a>
 					</div>

@@ -11,10 +11,7 @@ export class AuthGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const tokenExpiration = this.authService.getTokenExpiration();
     const currentEpochTime = Math.floor((new Date().getTime()) / 1000); // In Minutes
-    console.log('tokenExpiration', tokenExpiration);
-    console.log('currentEpochTime', currentEpochTime);
     if (tokenExpiration && tokenExpiration < currentEpochTime) {
-
       this.authService.logout();
       return false;
     }
