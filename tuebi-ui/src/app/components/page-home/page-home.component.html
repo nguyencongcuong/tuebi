@@ -76,7 +76,7 @@
 	</div>
 </div>
 
-<div class="flex justify-center items-center w-screen h-screen">
+<div *ngIf="isLoading" class="flex justify-center items-center w-screen h-screen">
 	<ng-template #indicatorTemplate><span nz-icon nzType="loading"></span></ng-template>
-	<nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSpinning]="true" nzSize="large"></nz-spin>
+	<nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSpinning]="isLoading" nzSize="large"></nz-spin>
 </div>

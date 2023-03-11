@@ -47,6 +47,7 @@ export class PageHomeComponent implements OnInit {
     if(this.msalService.instance.getAllAccounts().length <= 0) {
       // User is not logged in
       this.isLoading = false;
+      console.log('User is not logged In')
     }
     
     this.msalBroadcastService.msalSubject$
