@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
-import { EventMessage, EventType } from '@azure/msal-browser';
+import { EventMessage, EventType, RedirectRequest } from '@azure/msal-browser';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -10,7 +10,6 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { filter } from 'rxjs';
 import { featuresAtGlance, featuresEnum } from '../../enums/features.enum';
-import { ROUTE } from '../../enums/routes.enum';
 import { themes } from '../../enums/theme.enum';
 import { IconComponent } from '../icon/icon.component';
 import { LogoComponent } from '../logo/logo.component';
@@ -23,14 +22,10 @@ import { LogoComponent } from '../logo/logo.component';
   styleUrls: ['./page-home.component.scss']
 })
 export class PageHomeComponent implements OnInit {
-  title = 'tuebi.io';
-  desc_1 = 'Your daily bookmark manager';
-  desc_2 = 'Private. Minimal. Efficient';
-  year = new Date().getFullYear();
+  
   theme = themes[0];
   currentUrl = '/';
   
-  ROUTE = ROUTE;
   features = featuresEnum;
   featuresAtGlance = featuresAtGlance;
   
@@ -64,5 +59,13 @@ export class PageHomeComponent implements OnInit {
           this.isLoading = false;
         }
       });
+  }
+  
+  public login() {
+    if (this.msalGuardConfig.authRequest){
+      this.msalService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
+    } else {
+      this.msalService.loginRedirect();
+    }
   }
 }
