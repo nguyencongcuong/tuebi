@@ -8,8 +8,8 @@ export interface Bookmark {
 	bookmark_description: string;
 	bookmark_favicon: string;
 	bookmark_deleted: boolean;
-	bookmark_created_time: string;
-	bookmark_last_modified_time: string;
+	bookmark_created_time: number;
+	bookmark_last_modified_time: number;
 	bookmark_order: number;
 }
 

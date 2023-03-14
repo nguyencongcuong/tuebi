@@ -98,11 +98,13 @@ export class BookmarksController {
 				return sendError('Your input is invalid');
 			}
 			
+			const now = Math.floor(Date.now() / 1000);
+			
 			const payload: Bookmark = {
 				user_id: user.id,
 				partition_key: user.id,
-				bookmark_created_time: new Date().toISOString(),
-				bookmark_last_modified_time: new Date().toISOString(),
+				bookmark_created_time: now,
+				bookmark_last_modified_time: now,
 				bookmark_deleted: false,
 				bookmark_order: 0,
 				...bookmark,
@@ -184,10 +186,11 @@ export class BookmarksController {
 		
 		try {
 			const updatedFields = req.body;
+			const now = Math.floor(Date.now() / 1000);
 			
 			const doc: UpdateBookmarkQueryI = {
 				...updatedFields,
-				bookmark_last_modified_time: new Date().toISOString(),
+				bookmark_last_modified_time: now,
 			};
 			
 			const encryptedData = await this.securityService.encryptObject(
