@@ -30,13 +30,27 @@ export class CategoriesController {
 			if (isEmpty(category)) {
 				return sendError('No category item provided');
 			}
+			
+			const total = await this.categoriesService.readMany<number>({
+				query: `
+					SELECT VALUE COUNT(1) FROM c
+					WHERE c.partition_key = @userId
+				`,
+				parameters: [
+					{
+						name: '@userId',
+						value: user.id
+					}
+				]
+			})
+			
 			const payload: Category = {
 				partition_key: user.id,
 				user_id: user.id,
 				category_name: category.category_name,
 				category_created_time: new Date().toISOString(),
 				category_last_modified_time: new Date().toISOString(),
-				category_order: 0,
+				category_order: total[0] + 1,
 				category_theme: category.category_theme || '',
 			};
 			
