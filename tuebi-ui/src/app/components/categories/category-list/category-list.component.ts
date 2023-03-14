@@ -1,6 +1,7 @@
 import { CdkDragDrop, DragDropModule, moveItemInArray } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { themes } from '../../../enums/theme.enum';
@@ -15,13 +16,14 @@ import { FormAddCategory } from '../form-add-category/form-add-category';
 
 @Component({
 	standalone: true,
-  imports: [
-		CommonModule, 
-		RouterModule, 
-		DragDropModule, 
-		CategoryComponent, 
-		FormAddCategory, 
-		NzZorroModule, 
+	imports: [
+		CommonModule,
+		RouterModule,
+		DragDropModule,
+		CategoryComponent,
+		FormAddCategory,
+		NzZorroModule,
+		MatDividerModule,
 	],
 	selector: 'app-category-list',
 	templateUrl: './category-list.component.html',

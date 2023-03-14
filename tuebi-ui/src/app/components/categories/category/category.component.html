@@ -15,21 +15,12 @@
 				{{count$ | async}}
 			</span>
 			<app-icon
-				*ngIf="FIXED_CATEGORIES.ids.includes(name)"
-				nz-dropdown
-				nzTrigger="click"
-				nz-icon
-				name="more_vert"
-				class="invisible"
-			>
-			</app-icon>
-			<app-icon
-				*ngIf="!FIXED_CATEGORIES.ids.includes(name)"
 				nz-dropdown
 				nzTrigger="click"
 				nz-icon
 				name="more_vert"
 				[nzDropdownMenu]="menu"
+				[ngClass]="(!isAll && !isUncategorized && !isTrash) ? 'visibile' : 'invisible'"
 			>
 			</app-icon>
 		</div>
