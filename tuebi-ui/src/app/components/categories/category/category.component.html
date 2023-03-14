@@ -29,23 +29,21 @@
 	<!-- Dropdown Menu -->
 	<nz-dropdown-menu #menu="nzDropdownMenu">
 		<ul nz-menu>
-			<li nz-menu-item>
-				<div (click)="openAllInNewTab()" class="flex items-center gap-2">
+			<li nz-menu-item (click)="openAllInNewTab()">
+				<div class="flex items-center gap-2">
 					<app-icon name="link"></app-icon>
 					<span>Open all in new tab</span>
 				</div>
 			</li>
 			
-			<li nz-menu-item>
-				<div (click)="deleteOneCategory(category.id)" class="flex items-center gap-2">
+			<li nz-menu-item (click)="deleteOneCategory(category.id)">
+				<div class="flex items-center gap-2">
 					<app-icon name="delete"></app-icon>
 					<span>Delete</span>
 				</div>
 			</li>
 
-			<li nz-menu-item>
-				<app-form-edit-category [category]="category"></app-form-edit-category>
-			</li>
+			<app-form-edit-category [category]="category"></app-form-edit-category>
 		</ul>
 	</nz-dropdown-menu>
 </div>

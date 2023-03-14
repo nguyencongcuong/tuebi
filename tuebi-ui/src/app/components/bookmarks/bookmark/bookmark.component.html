@@ -36,36 +36,34 @@
 					</div>
 				</div>
 			</div>
-			
+
 			<!-- Bookmark Options -->
 			<div class="col-span-1">
 				<div class="flex justify-end items-center">
-					<app-icon name="more" nz-dropdown [nzDropdownMenu]="menu"></app-icon>
+					<app-icon name="more_vert" nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click"></app-icon>
 					<nz-dropdown-menu #menu="nzDropdownMenu">
 						<ul nz-menu>
-							<li class="flex gap-2" nz-menu-item>
-					<span (click)="open()" class="flex items-center gap-2">
-						<app-icon name="link"></app-icon>
-						<span>Open in new tab</span>
-					</span>
+							<li class="flex gap-2" nz-menu-item (click)="open()">
+								<span class="flex items-center gap-2">
+									<app-icon name="link"></app-icon>
+									<span>Open in new tab</span>
+								</span>
 							</li>
-							<li class="flex gap-2" nz-menu-item>
-								<div (click)="copy()" class="flex items-center gap-2 w-full">
+							<li class="flex gap-2" nz-menu-item (click)="copy()">
+								<div class="flex items-center gap-2 w-full">
 									<app-icon name="content_copy"></app-icon>
 									<span>Copy URL</span>
 								</div>
 							</li>
-							<li class="flex gap-2" nz-menu-item>
-								<app-form-edit-bookmark [bookmark]="bookmark" class="w-full"></app-form-edit-bookmark>
-							</li>
-							<li class="flex gap-2" nz-menu-item>
-								<div (click)="bookmark.bookmark_deleted ? delete() : remove()" class="flex items-center gap-2 w-full">
+							<app-form-edit-bookmark [bookmark]="bookmark"></app-form-edit-bookmark>
+							<li class="flex gap-2" nz-menu-item (click)="bookmark.bookmark_deleted ? delete() : remove()">
+								<div class="flex items-center gap-2 w-full">
 									<app-icon name="delete"></app-icon>
 									<span>{{bookmark.bookmark_deleted ? 'Delete' : 'Move to Trash'}}</span>
 								</div>
 							</li>
-							<li *ngIf="bookmark.bookmark_deleted" class="flex gap-2" nz-menu-item>
-								<div (click)="restore()" class="flex items-center gap-2 w-full">
+							<li *ngIf="bookmark.bookmark_deleted" class="flex gap-2" nz-menu-item (click)="restore()">
+								<div class="flex items-center gap-2 w-full">
 									<app-icon name="history"></app-icon>
 									<span>Restore</span>
 								</div>

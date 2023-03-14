@@ -1,4 +1,4 @@
-<div class="flex gap-2 justify-center items-center" (click)="openModal()">
+<div class="flex gap-2 justify-center items-center" (click)="openModal()" *ngIf="(tags$ | async)?.length">
 	<app-icon name="edit"></app-icon>
 	<span>Edit Tags</span>
 </div>

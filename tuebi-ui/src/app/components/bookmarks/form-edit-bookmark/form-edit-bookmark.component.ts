@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { Observable } from 'rxjs';
@@ -18,7 +19,7 @@ import { IconComponent } from '../../icon/icon.component';
 @Component({
 	standalone: true,
 	selector: 'app-form-edit-bookmark',
-	imports: [CommonModule, ReactiveFormsModule, FormsModule, NzFormModule, NzModalModule, NzInputModule, NzSelectModule, NzIconModule, IconComponent],
+	imports: [CommonModule, ReactiveFormsModule, FormsModule, NzFormModule, NzModalModule, NzInputModule, NzSelectModule, NzIconModule, IconComponent, NzMenuModule],
 	templateUrl: './form-edit-bookmark.component.html',
 	styleUrls: ['./form-edit-bookmark.component.scss']
 })
