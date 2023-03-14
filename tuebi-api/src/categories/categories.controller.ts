@@ -44,12 +44,14 @@ export class CategoriesController {
 				]
 			})
 			
+			const now = Math.floor(Date.now() / 1000);
+			
 			const payload: Category = {
 				partition_key: user.id,
 				user_id: user.id,
 				category_name: category.category_name,
-				category_created_time: new Date().toISOString(),
-				category_last_modified_time: new Date().toISOString(),
+				category_created_time: now,
+				category_last_modified_time: now,
 				category_order: total[0] + 1,
 				category_theme: category.category_theme || '',
 			};
@@ -128,9 +130,11 @@ export class CategoriesController {
 		const user = req.user;
 		
 		try {
+			const now = Math.floor(Date.now() / 1000)
+			
 			const updatedCategory = {
 				...category,
-				category_last_modified_time: new Date().toISOString(),
+				category_last_modified_time: now,
 			};
 			
 			const encrypted = await this.securityService.encryptObject(
