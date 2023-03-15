@@ -4,9 +4,15 @@ import { isEmpty, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
+import { DeleteBookmarksRequestBodyI } from '../bookmarks/bookmarks.interface';
 import { SecurityService } from '../security/security.service';
-import { sendError, sendSuccess } from '../utilities';
-import { Category, CreateCategoryQueryI, UpdateCategoryQueryI, } from './categories.interface';
+import { runBatchAsync, sendError, sendSuccess } from '../utilities';
+import {
+	Category,
+	CreateCategoryQueryI,
+	DeleteCategoriesRequestBodyI,
+	UpdateCategoryQueryI,
+} from './categories.interface';
 
 import { CategoriesService } from './categories.service';
 
@@ -175,12 +181,72 @@ export class CategoriesController {
 		}
 	}
 	
+	@Put('categories')
+	async updateMany(@Request() req: any, @Body() categories: Category[]) {
+		const user = req.user;
+		
+		try {
+			const now = Math.floor(Date.now() / 1000)
+			
+			const promises = async (category: Category) => {
+				const updatedCategory = {
+					category_name: category.category_name,
+					category_last_modified_time: now,
+				};
+				
+				const encrypted = await this.securityService.encryptObject(
+					updatedCategory,
+					Buffer.from(user._iv, 'hex'),
+					this.ENCRYPTED_FIELDS
+				);
+				
+				const operations: PatchOperation[] = transform(
+					encrypted,
+					(result, value, key) => {
+						result.push({
+							op: 'add',
+							path: `/${key}`,
+							value: value,
+						});
+					},
+					[]
+				);
+				
+				const patchPayload: PatchPayload = {
+					id: category.id,
+					partition_key: user.id,
+					operations: operations,
+				};
+				
+				return this.categoriesService.updateOne(patchPayload);	
+			}
+			
+			await runBatchAsync(categories, promises);
+			return sendSuccess();
+		} catch (e) {
+			return sendError(e);
+		}
+	}
+	
 	@Delete('categories/:id')
 	async deleteOne(@Request() req: any, @Param('id') id: string) {
 		const user = req.user;
 		
 		try {
 			await this.categoriesService.deleteOne(id, user.id);
+			return sendSuccess();
+		} catch (e) {
+			return sendError(e);
+		}
+	}
+	
+	@UseGuards(AzureB2cJwt)
+	@Delete('categories')
+	async deleteMany(@Request() req: any, @Body() body: DeleteCategoriesRequestBodyI) {
+		const user = req.user;
+		try {
+			const callback = (id: string) => this.categoriesService.deleteOne(id, user.id);
+			await runBatchAsync(body.categories, callback);
 			return sendSuccess();
 		} catch (e) {
 			return sendError(e);

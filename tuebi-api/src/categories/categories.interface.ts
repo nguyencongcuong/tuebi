@@ -33,3 +33,7 @@ export interface UpdateCategoryQueryI extends UpdateCategoryRequestBodyI {
 	category_created_time: string;
 	category_last_modified_time: string;
 }
+
+export interface DeleteCategoriesRequestBodyI {
+	categories: string[]
+}
