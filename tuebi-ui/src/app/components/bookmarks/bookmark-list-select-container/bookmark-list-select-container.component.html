@@ -1,0 +1,74 @@
+<section>
+	<div class="flex items-center mb-4 bg-white p-2">
+		<mat-checkbox
+			[checked]="isAllBookmarksSelected"
+			[indeterminate]="selectSomeBookmarks()"
+			(change)="setAllBookmarkSelection($event.checked)"
+		>
+		</mat-checkbox>
+		<div *ngIf="isSomeBookmarksSelected || isAllBookmarksSelected" class="flex items-center gap-2">
+			<app-icon name="open_in_new" title="Open" [options]="{ transition: true }" (click)="openSelectedBookmarks()"></app-icon>
+			<app-icon name="content_copy" title="Copy" [options]="{ transition: true }" (click)="copySelectedBookmarkUrls()"></app-icon>
+			<app-icon *ngIf="options.route_params_id !== 'trash'" name="delete" title="Move to Trash" [options]="{ transition: true }" (click)="removeSelectedBookmarks()"></app-icon>
+			<app-icon *ngIf="options.route_params_id === 'trash'" name="delete_forever" title="Delete permanently" [options]="{ transition: true }" (click)="deleteSelectedBookmarks()"></app-icon>
+			<app-icon *ngIf="options.route_params_id === 'trash'" name="restore_from_trash" title="Restore" [options]="{ transition: true }" (click)="restoreSelectedBookmarks()"></app-icon>
+			<app-icon *ngIf="options.route_params_id !== 'trash'" name="drive_file_move" title="Move to category" [options]="{ transition: true }" [matMenuTriggerFor]="menu1"></app-icon>
+			<app-icon *ngIf="options.route_params_id !== 'trash'" name="label" title="Set tags" [options]="{ transition: true }" [matMenuTriggerFor]="menu2" #menuTrigger="matMenuTrigger"></app-icon>
+		</div>
+	</div>
+
+	<div
+		(cdkDropListDropped)="dropBookmark($event)"
+		cdkDropList
+		class="p-2"
+	>
+		<div
+			*ngFor="let item of bookmarks" class="flex items-center"
+			cdkDrag [cdkDragStartDelay]="500"
+		>
+			<mat-checkbox
+				[(ngModel)]="item.is_selected"
+				(ngModelChange)="isAllBookmarkSelected()"
+			>
+			</mat-checkbox>
+			<app-bookmark [bookmark]="item" class="w-full"></app-bookmark>
+		</div>
+	</div>
+</section>
+
+<mat-menu #menu1="matMenu">
+	<button mat-menu-item *ngFor="let category of categories$ | async" (click)="setSelectedBookmarkCategory(category.id)">
+		<span>{{category.category_name}}</span>
+	</button>
+</mat-menu>
+
+<mat-menu #menu2="matMenu">
+	<section class="px-6">
+		<div class="p-2">Move to:</div>
+		<mat-checkbox
+			[checked]="allTagsSelected"
+			[indeterminate]="selectSomeTags()"
+			(change)="setAllTagSelection($event.checked)"
+			(click)="onMenuItemClick($event)"
+		>
+			All
+		</mat-checkbox>
+		<div>
+			<div>
+				<div *ngFor="let tag of tags">
+					<mat-checkbox
+						[(ngModel)]="tag.is_selected"
+						(ngModelChange)="isAllTagSelected()"
+						(click)="onMenuItemClick($event)"
+					>
+						{{tag.tag_name}}
+					</mat-checkbox>
+				</div>
+				<mat-divider></mat-divider>
+				<button mat-flat-button class="w-full" (click)="setSelectedBookmarkTag()">
+					Apply
+				</button>
+			</div>
+		</div>
+	</section>
+</mat-menu>

@@ -1,3 +1,15 @@
 .line-break {
   line-break: anywhere;
 }
+
+.compact-bookmark {
+  &:hover {
+    .compact-bookmark__menu {
+      visibility: visible;
+    }
+  }
+  
+  &__menu {
+    visibility: hidden;
+  }
+}

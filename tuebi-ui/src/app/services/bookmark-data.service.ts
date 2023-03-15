@@ -1,7 +1,9 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Update } from '@ngrx/entity';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { map, Observable } from 'rxjs';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { ENTITY } from 'src/app/modules/categories/categories.module';
@@ -13,10 +15,12 @@ export class BookmarkDataService extends DefaultDataService<Bookmark> {
 	
 	constructor(
 		http: HttpClient,
-		httpUrlGenerator: HttpUrlGenerator
+		httpUrlGenerator: HttpUrlGenerator,
+		private clipboard: Clipboard,
+		private notificationService: NzNotificationService
 	) {
 		super(ENTITY.BOOKMARKS, http, httpUrlGenerator);
-		this.bookmarksHttpService = new BookmarkService(http);
+		this.bookmarksHttpService = new BookmarkService(http, clipboard, notificationService);
 	}
 	
 	override getAll(): Observable<Bookmark[]> {
@@ -34,5 +38,4 @@ export class BookmarkDataService extends DefaultDataService<Bookmark> {
 	override delete(key: string): Observable<string> {
 		return this.bookmarksHttpService.deleteOne(key);
 	}
-	
 }

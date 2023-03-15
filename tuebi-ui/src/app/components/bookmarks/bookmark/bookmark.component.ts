@@ -7,7 +7,6 @@ import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTagModule } from 'ng-zorro-antd/tag';
-import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { map, Observable, of } from 'rxjs';
 import { COLOR_MAPPING } from '../../../enums/color-mapping.enum';
 import { themes } from '../../../enums/theme.enum';
@@ -20,8 +19,9 @@ import { BookmarkService } from '../../../services/bookmark.service';
 import { CategoryEntityService } from '../../../services/category-entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
-import { FormEditBookmarkComponent } from '../form-edit-bookmark/form-edit-bookmark.component';
 import { IconComponent } from '../../icon/icon.component';
+import { FormEditBookmarkComponent } from '../form-edit-bookmark/form-edit-bookmark.component';
+
 @Component({
 	standalone: true,
 	selector: 'app-bookmark',
@@ -29,12 +29,11 @@ import { IconComponent } from '../../icon/icon.component';
 		CommonModule,
 		FormEditBookmarkComponent,
 		ClipboardModule,
-		NzToolTipModule,
 		NzTagModule,
-		NzDropDownModule,
 		NzDividerModule,
 		MatIconModule,
-		IconComponent
+		IconComponent,
+		NzDropDownModule
 	],
 	templateUrl: './bookmark.component.html',
 	styleUrls: ['./bookmark.component.scss'],
@@ -52,7 +51,8 @@ export class BookmarkComponent implements OnInit {
 		bookmark_created_time: '',
 		bookmark_last_modified_time: '',
 		user_id: '',
-		category_id: ''
+		category_id: '',
+		is_selected: false
 	};
 	@Input() isCategorized: boolean = true;
 	@Input() isCompactModeForced: boolean = false;
@@ -65,6 +65,20 @@ export class BookmarkComponent implements OnInit {
 	categoryName$ = new Observable<string>();
 	category$ = new Observable<Category | undefined>();
 	tags$ = new Observable<Tag[]>();
+	quickActionItems = [
+		{
+			icon: 'content_copy',
+			handleClick: () => {
+				this.copy()
+			}
+		},
+		{
+			icon: 'link',
+			handleClick: () => {
+				this.open()
+			}
+		}
+	]
 	
 	constructor(
 		private userEntityService: UserEntityService,
@@ -81,21 +95,6 @@ export class BookmarkComponent implements OnInit {
 			map((users) => users[0].user_settings)
 		);
 	}
-	
-	quickActionItems = [
-		{
-			icon: 'content_copy',
-			handleClick: () => {
-				this.copy()
-			}
-		},
-		{
-			icon: 'link',
-			handleClick: () => {
-				this.open()
-			}
-		}
-	]
 	
 	async ngOnInit() {
 		this.categoryName$ = this.categories$.pipe(

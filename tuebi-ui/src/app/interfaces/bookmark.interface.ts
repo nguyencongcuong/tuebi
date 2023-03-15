@@ -11,4 +11,5 @@ export interface Bookmark {
 	bookmark_created_time: string;
 	bookmark_last_modified_time: string;
 	bookmark_order: number;
+	is_selected?: boolean
 }

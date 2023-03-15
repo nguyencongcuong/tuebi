@@ -1,11 +1,4 @@
-<li
-	nz-menu-item
-	(click)="openModal()"
-	class="flex items-center gap-2"
->
-	<app-icon name="edit"></app-icon>
-	<span>Edit</span>
-</li>
+<app-icon name="edit" [options]="{ transition: true }" (click)="openModal()"></app-icon>
 
 <nz-modal
 	(nzOnCancel)="closeModal()"

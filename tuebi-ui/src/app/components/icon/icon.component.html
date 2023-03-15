@@ -1,7 +1,9 @@
-<mat-icon
-	class="icon material-icons-outlined" 
-	aria-hidden="false" 
-	aria-label="Example home icon" 
-	[fontIcon]="name"
->
-</mat-icon>
+<div [ngClass]="options.transition ? 'hover:bg-neutral-200 hover:rounded-full ease-linear duration-150 cursor-pointer p-2' : ''">
+	<mat-icon
+		class="icon material-icons-outlined"
+		aria-hidden="false"
+		aria-label="icon"
+		[fontIcon]="name"
+	>
+	</mat-icon>
+</div>

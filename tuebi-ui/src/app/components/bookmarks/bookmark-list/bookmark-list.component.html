@@ -1,9 +1,13 @@
-<div class="bookmark-container flex flex-col gap-4 lg:h-screen lg:p-6 p-4" [ngStyle]="{ background: theme.color.primary.light }">
-	<div *ngIf="!(isEmpty$ | async)" (cdkDropListDropped)="dropBookmark($event)" cdkDropList class="flex flex-col gap-2">
-		<div *ngFor="let bookmark of filteredBookmarks$ | async" cdkDrag [cdkDragStartDelay]="500">
-			<app-bookmark [bookmark]="bookmark"></app-bookmark>
-		</div>
-	</div>
+<div class="bookmark-container flex flex-col gap-4 lg:h-screen" [ngStyle]="{ background: theme.color.primary.light }">
+	<app-multiple-select
+		*ngIf="!(isEmpty$ | async)"
+		[bookmarks]="filteredBookmarks$ | async"
+		[tags]="tags$ | async"
+		[options]="{
+		route_params_id: (currentRoute$ | async) || ''
+	}"
+	>
+	</app-multiple-select>
 
 	<div *ngIf="isEmpty$ | async" class="flex flex-col justify-center items-center w-full h-3/4">
 		<div class="font-bold text-2xl opacity-50">
@@ -11,4 +15,3 @@
 		</div>
 	</div>
 </div>
-

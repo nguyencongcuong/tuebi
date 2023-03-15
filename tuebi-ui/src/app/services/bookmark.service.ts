@@ -1,5 +1,7 @@
+import { Clipboard } from '@angular/cdk/clipboard';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { Observable } from 'rxjs';
 import { Bookmark } from 'src/app/interfaces/bookmark.interface';
 import { environment } from 'src/environments/environment';
@@ -10,7 +12,11 @@ import { environment } from 'src/environments/environment';
 export class BookmarkService {
 	API_URL = environment.backend_url;
 	
-	constructor(private http: HttpClient) {}
+	constructor(
+		private http: HttpClient,
+		private clipboard: Clipboard,
+		private notificationService: NzNotificationService,
+	) {}
 	
 	genOptions() {
 		const b2cPayload = JSON.parse(localStorage.getItem('b2c_payload') as string)
@@ -40,6 +46,12 @@ export class BookmarkService {
 		return this.http.put(url, body, options);
 	}
 	
+	updateMany(entity: Partial<Bookmark[]>): Observable<any> {
+		const options = this.genOptions();
+		const url = this.API_URL + `/bookmarks`;
+		return this.http.put(url, entity, options);
+	}
+	
 	deleteOne(id: string): Observable<any> {
 		const options = this.genOptions();
 		const url = this.API_URL + `/bookmarks/${id}`;
@@ -52,5 +64,22 @@ export class BookmarkService {
 		} catch (e) {
 			return undefined;
 		}
+	}
+	
+	open(bookmarkUrl: string) {
+		const url = bookmarkUrl.includes('https://')
+			? bookmarkUrl
+			: `https://${bookmarkUrl}`
+		window.open(url);
+	}
+	
+	copy(bookmarkUrls: string[]) {
+		const content = bookmarkUrls.join('\n')
+		this.clipboard.copy(content);
+		this.notificationService.success(
+			'Copied',
+			'',
+			{nzPlacement: 'bottomRight'}
+		);
 	}
 }
