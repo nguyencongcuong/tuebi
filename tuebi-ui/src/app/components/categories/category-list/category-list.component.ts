@@ -14,8 +14,8 @@ import { CategoryEntityService } from '../../../services/category-entity.service
 import {
 	TypographySectionHeaderComponent
 } from '../../commons/typography-section-header/typography-section-header.component';
+import { AddCategory } from '../add-category/add-category';
 import { CategoryComponent } from '../category/category.component';
-import { FormAddCategory } from '../form-add-category/form-add-category';
 
 @Component({
 	standalone: true,
@@ -24,10 +24,10 @@ import { FormAddCategory } from '../form-add-category/form-add-category';
 		RouterModule,
 		DragDropModule,
 		CategoryComponent,
-		FormAddCategory,
 		NzZorroModule,
 		MatDividerModule,
 		TypographySectionHeaderComponent,
+		AddCategory,
 	],
 	selector: 'app-category-list',
 	templateUrl: './category-list.component.html',

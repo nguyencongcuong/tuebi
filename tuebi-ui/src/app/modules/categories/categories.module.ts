@@ -5,7 +5,6 @@ import { EntityDataService, EntityDefinitionService, EntityMetadataMap, } from '
 import { AddBookmark } from '../../components/bookmarks/add-bookmark/add-bookmark';
 import { BookmarkComponent } from '../../components/bookmarks/bookmark/bookmark.component';
 import { CategoryComponent } from '../../components/categories/category/category.component';
-import { FormAddCategory } from '../../components/categories/form-add-category/form-add-category';
 import { AuthGuard } from '../../guards/auth.guard';
 import { NzZorroModule } from '../../nz-zorro.module';
 import { BookmarkDataService } from '../../services/bookmark-data.service';
@@ -101,7 +100,6 @@ export const entityMetadata: EntityMetadataMap = {
 		NzZorroModule,
 		CategoryComponent,
 		BookmarkComponent,
-		FormAddCategory,
 		AddBookmark
 	],
 	providers: [
