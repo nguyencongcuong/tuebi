@@ -2,7 +2,7 @@
 
 	<div class="flex justify-between items-center">
 		<app-typography-section-header>Tags</app-typography-section-header>
-		<app-form-add-tag></app-form-add-tag>
+		<app-add-tag></app-add-tag>
 	</div>
 		
 	<div>
@@ -12,13 +12,5 @@
 			[tag]="tag"
 			class="flex items-center gap-2 cursor-pointer duration-150 hover:bg-purple-100 rounded-2xl"
 		></app-tag>
-
-		<!-- <app-tag -->
-		<!-- 	*ngFor="let tag of tags$ | async" -->
-		<!-- 	[routerLink]="['/space/tags', tag.id]" -->
-		<!-- [ngStyle]="{ color: colorMapping[tag.tag_color].tc }" -->
-		<!-- [tag]="tag" -->
-		<!-- class="flex items-center gap-2 cursor-pointer duration-150 hover:bg-purple-100 rounded-2xl" -->
-		<!-- ></app-tag> -->
 	</div>
 </div>
