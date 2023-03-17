@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 export class IconComponent implements OnInit {
   @Input() name = '';
   @Input() options = {
-    transition: false
+    transition: true
   }
   
   public ngOnInit() {

@@ -1,0 +1,21 @@
+.container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+  background-color: #fafafa;
+}
+
+.container::-webkit-scrollbar {
+  width: 2px;
+  background-color: #F5F5F5;
+  border: none;
+  display: none;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background-color: #363636;
+  border: 1px solid #605e5e;
+}
+
+.container {
+  max-height: 80vh;
+  overflow-y: auto;
+}

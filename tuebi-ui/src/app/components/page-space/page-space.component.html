@@ -1,16 +1,14 @@
 <div class="grid grid-cols-12">
-	<div class="col-span-3 bg-white border-solid border-4 border-neutral-100 rounded-2xl overflow-hidden relative h-screen">
-		<app-form-add-bookmark></app-form-add-bookmark>
-		
-		<!-- Categories -->
-		<app-category-list></app-category-list>
-		
-		<!-- Tags -->
-		<app-tag-list></app-tag-list>
-		
-		<!-- Settings -->
-		<app-setting-list class="absolute left-0 right-0 bottom-0"></app-setting-list>
-	</div>
+	<app-container class="col-span-3 rounded-2xl relative">
+		<div class="flex flex-col gap-4">
+			<app-form-add-bookmark></app-form-add-bookmark>
+			<app-category-list></app-category-list>
+			<mat-divider></mat-divider>
+			<app-tag-list></app-tag-list>
+			<app-setting-list class="absolute left-0 right-0 bottom-0"></app-setting-list>
+		</div>
+	</app-container>
+	
 	<div class="col-span-9 bg-white border-solid border-4 border-neutral-100 rounded-2xl overflow-hidden h-screen">
 		<!-- Search Bar -->
 		<app-page-search></app-page-search>

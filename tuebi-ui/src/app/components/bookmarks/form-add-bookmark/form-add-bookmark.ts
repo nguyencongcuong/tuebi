@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -10,6 +11,7 @@ import { firstValueFrom, map, Observable } from 'rxjs';
 import { Category } from '../../../interfaces/category.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { CategoryEntityService } from '../../../services/category-entity.service';
+import { ButtonComponent } from '../../commons/button/button.component';
 import { IconComponent } from '../../icon/icon.component';
 
 @Component({
@@ -24,6 +26,8 @@ import { IconComponent } from '../../icon/icon.component';
 		NzInputModule,
 		NzSelectModule,
 		IconComponent,
+		MatButtonModule,
+		ButtonComponent,
 	],
 	templateUrl: './form-add-bookmark.html',
 	styleUrls: ['./form-add-bookmark.scss']
@@ -53,6 +57,14 @@ export class FormAddBookmark implements OnInit {
 		});
 	}
 	
+	get name() {
+		return this.form.controls['bookmark_name'];
+	}
+	
+	get url() {
+		return this.form.controls['bookmark_url'];
+	}
+	
 	public async ngOnInit() {
 		const categories = await firstValueFrom(this.categories$);
 		
@@ -66,14 +78,6 @@ export class FormAddBookmark implements OnInit {
 				}
 			})
 		).subscribe();
-	}
-	
-	get name() {
-		return this.form.controls['bookmark_name'];
-	}
-	
-	get url() {
-		return this.form.controls['bookmark_url'];
 	}
 	
 	submit() {

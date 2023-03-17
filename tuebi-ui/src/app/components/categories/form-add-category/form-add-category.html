@@ -1,14 +1,4 @@
-<app-icon nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu" name="more_vert"></app-icon>
-
-<nz-dropdown-menu #menu="nzDropdownMenu">
-	<ul nz-menu>
-		<li nz-menu-item (click)="openModal()">
-			<app-icon name="add"></app-icon>
-			<span>New Category</span>
-		</li>
-	</ul>
-</nz-dropdown-menu>
-
+<app-icon name="add" (click)="openModal()"></app-icon>
 <nz-modal
 	(nzOnCancel)="closeModal()"
 	(nzOnOk)="submit()"

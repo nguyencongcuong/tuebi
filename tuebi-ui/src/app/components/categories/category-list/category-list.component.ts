@@ -11,6 +11,9 @@ import { NzZorroModule } from '../../../nz-zorro.module';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { CategoryEntityService } from '../../../services/category-entity.service';
+import {
+	TypographySectionHeaderComponent
+} from '../../commons/typography-section-header/typography-section-header.component';
 import { CategoryComponent } from '../category/category.component';
 import { FormAddCategory } from '../form-add-category/form-add-category';
 
@@ -24,6 +27,7 @@ import { FormAddCategory } from '../form-add-category/form-add-category';
 		FormAddCategory,
 		NzZorroModule,
 		MatDividerModule,
+		TypographySectionHeaderComponent,
 	],
 	selector: 'app-category-list',
 	templateUrl: './category-list.component.html',

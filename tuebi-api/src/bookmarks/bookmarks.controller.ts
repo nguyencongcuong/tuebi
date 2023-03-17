@@ -34,7 +34,6 @@ import { BookmarksService } from './bookmarks.service';
 @Controller()
 export class BookmarksController {
   private ENCRYPTED_FIELDS = [
-    'bookmark_tags',
     'bookmark_name',
     'bookmark_url',
     'bookmark_description',
@@ -113,6 +112,7 @@ export class BookmarksController {
         bookmark_last_modified_time: now,
         bookmark_deleted: false,
         bookmark_order: 0,
+        bookmark_tags: [],
         ...bookmark,
       };
       

@@ -1,38 +1,40 @@
-<div class="flex flex-col gap-4 p-6">
+<div class="flex flex-col gap-4">
 
-	<div class="flex justify-between">
-		<div><strong>Categories</strong></div>
+	<div class="flex justify-between items-center">
+		<app-typography-section-header>Categories</app-typography-section-header>
 		<app-form-add-category></app-form-add-category>
 	</div>
 
 	<!-- All -->
-	<div class="category-container">
-		<app-category
-			[isAll]="true"
-			[bookmarks$]="bookmarks$"
-		>
-		</app-category>
+	<div>
+		<div class="flex flex-col">
+			<app-category
+				[isAll]="true"
+				[bookmarks$]="bookmarks$"
+			>
+			</app-category>
 
-		<!-- Uncategorized -->
-		<app-category
-			[isUncategorized]="true"
-			[bookmarks$]="bookmarks$"
-		>
-		</app-category>
+			<!-- Uncategorized -->
+			<app-category
+				[isUncategorized]="true"
+				[bookmarks$]="bookmarks$"
+			>
+			</app-category>
 
-		<!-- Trash -->
-		<app-category
-			[isTrash]="true"
-			[bookmarks$]="bookmarks$"
-		>
-		</app-category>
+			<!-- Trash -->
+			<app-category
+				[isTrash]="true"
+				[bookmarks$]="bookmarks$"
+			>
+			</app-category>
+		</div>
 		
 		<!-- Categories -->
 		<div
 			(cdkDropListDropped)="dropCategory($event)"
 			cdkDropList
 			cdkDropListOrientation="vertical"
-			class="flex flex-col gap-1 mt-4"
+			class="flex flex-col"
 		>
 			<app-category
 				*ngFor="let category of categories$ | async"

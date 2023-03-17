@@ -1,0 +1,40 @@
+<div 
+	*ngIf="userSettings$ | async as settings"
+	class="w-full border-0 rounded-3xl hover:bg-purple-100 duration-150 cursor-pointer"
+>
+	<div class="flex justify-between items-center gap-2 w-full">
+		<div class="flex items-center gap-2 w-full" [routerLink]="tagRouterLink">
+			<app-icon name="tag"></app-icon>
+			<div>{{name}}</div>
+		</div>
+		<div class="flex items-center justify-end gap-2">
+			<span *ngIf="settings.is_bookmark_count_shown" class="text-xs text-right text-neutral-500 w-10">
+				{{count$ | async}}
+			</span>
+			<app-icon
+				nz-dropdown
+				nzTrigger="click"
+				nz-icon
+				name="more_vert"
+				[nzDropdownMenu]="menu"
+			>
+			</app-icon>
+		</div>
+	</div>
+
+	<!-- Dropdown Menu -->
+	<nz-dropdown-menu #menu="nzDropdownMenu">
+		<ul nz-menu>
+			
+			<li nz-menu-item (click)="openAllInNewTab()">
+				<div class="flex items-center gap-2">
+					<app-icon name="open_in_new"></app-icon>
+					<span>Open all in new tab</span>
+				</div>
+			</li>
+
+			<app-form-edit-tag nz-menu-item [tag]="tag"></app-form-edit-tag>
+		</ul>
+	</nz-dropdown-menu>
+</div>
+

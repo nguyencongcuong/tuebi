@@ -11,6 +11,7 @@ export interface Bookmark {
   bookmark_created_time: number;
   bookmark_last_modified_time: number;
   bookmark_order: number;
+  bookmark_tags: string[]
 }
 
 export interface CreateBookmarkRequestBodyI {

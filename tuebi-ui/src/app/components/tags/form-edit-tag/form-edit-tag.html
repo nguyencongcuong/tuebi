@@ -1,29 +1,43 @@
-<form (ngSubmit)="submit()" [formGroup]="form" nz-form>
-	<div class="flex gap-2 mb-2">
-		<input
-			formControlName="tag_name"
-			placeholder="Tag name"
-			nz-input
-			type="text"
-			class="w-2/3"
-		/>
-
-		<nz-select formControlName="tag_color" class="w-1/3">
-			<nz-option 
-				*ngFor="let color of colors" 
-				[nzValue]="color" 
-				[nzLabel]="colorMapping[color].label"
-				nzCustomContent
-			>
-				<div 
-					class="p-2"
-					[ngStyle]="{ background: color, color: colorMapping[color].tc }"
-				>
-					{{colorMapping[color].label}}
-				</div>
-			</nz-option>
-		</nz-select>
-		
-		<app-icon name="delete" (click)="delete()"></app-icon>
+<div (click)="openModal()" class="w-full">
+	<div class="flex items-center gap-2">
+		<app-icon name="edit"></app-icon>
+		<span>Edit</span>
 	</div>
-</form>
+</div>
+
+<nz-modal 
+	[nzVisible]="visible" 
+	nzTitle="Edit Tag"
+	(nzOnCancel)="closeModal()"
+	(nzOnOk)="submit()"
+>
+	<form *nzModalContent (ngSubmit)="submit()" [formGroup]="form" nz-form>
+		<div class="flex gap-2 mb-2">
+			<input
+				formControlName="tag_name"
+				placeholder="Tag name"
+				nz-input
+				type="text"
+				class="w-2/3"
+			/>
+
+			<nz-select formControlName="tag_color" class="w-1/3">
+				<nz-option
+					*ngFor="let color of colors"
+					[nzValue]="color"
+					[nzLabel]="colorMapping[color].label"
+					nzCustomContent
+				>
+					<div
+						class="p-2"
+						[ngStyle]="{ background: color, color: colorMapping[color].tc }"
+					>
+						{{colorMapping[color].label}}
+					</div>
+				</nz-option>
+			</nz-select>
+
+		</div>
+	</form>
+</nz-modal>
+
