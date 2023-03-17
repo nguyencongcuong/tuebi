@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Post, Put, Request, UseGuards, } from '@nestjs/common';
 import { randomBytes } from 'crypto';
-import { transform } from 'lodash';
+import { isObject, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
@@ -52,11 +52,8 @@ export class UsersController {
           user_name: '',
           user_avatar_url: '',
           user_settings: {
-            is_compact_mode_on: false,
             is_favicon_shown: true,
-            is_bookmark_url_shorten: false,
             is_bookmark_count_shown: true,
-            is_bookmark_url_shown: true,
             user_month_to_delete: DEFAULT_USER_MONTH_TO_DELETE,
           },
           _iv: ivString,
@@ -128,7 +125,22 @@ export class UsersController {
         operations: transform(
           encrypted,
           (result, value, key) => {
-            result.push({op: 'add', path: '/' + String(key), value: value});
+            if(isObject(value)) {
+              // Use case for updating user setting partially
+              transform(value, (result2, value2, key2) => {
+                result.push({
+                  op: 'add',
+                  path: `/${key}/${key2}`,
+                  value: value2
+                })
+              }, [])
+            } else {
+              result.push({
+                op: 'add', 
+                path: '/' + String(key), 
+                value: value
+              });
+            }
           },
           []
         ),

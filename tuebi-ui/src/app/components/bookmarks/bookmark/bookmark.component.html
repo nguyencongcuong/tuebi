@@ -1,109 +1,8 @@
 <!-- Used For Regular Display -->
-<div *ngIf="!isCompactModeForced">
+<div>
 	<div *ngIf="userSettings$ | async as settings">
-		<!-- Normal Bookmark -->
-		<div
-			class="grid grid-cols-12 gap-4 rounded p-4"
-			*ngIf="!settings.is_compact_mode_on"
-			[ngStyle]="{ background: 'white' }"
-		>
-			<!-- Bookmark Information -->
-			<div class="col-span-11">
-				<div class="flex justify-start items-center gap-4">
-					<img
-						*ngIf="settings.is_favicon_shown"
-						alt="{{ bookmark.bookmark_name }} favicon"
-						height="12"
-						src="{{ getFavicon(bookmark.bookmark_url) }}"
-						width="12"
-						class="favicon"
-					/>
-					<div class="flex flex-col gap-2">
-						<span class="font-bold">{{ bookmark.bookmark_name }}</span>
-						<a
-							*ngIf="settings.is_bookmark_url_shown && bookmark.bookmark_url"
-							class="text-gray-400 line-break"
-							href="{{ normalizeBookmarkURL(bookmark.bookmark_url) }}"
-							rel="noreferrer nofollow"
-							target="_blank"
-						>
-							{{
-							settings.is_bookmark_url_shorten
-								? shortenBookmarkURL(bookmark.bookmark_url, true)
-								: shortenBookmarkURL(bookmark.bookmark_url, false)
-							}}
-						</a>
-					</div>
-				</div>
-			</div>
-
-			<!-- Bookmark Options -->
-			<div class="col-span-1">
-				<div class="flex justify-end items-center">
-					<app-icon name="more_vert" nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click"></app-icon>
-					<nz-dropdown-menu #menu="nzDropdownMenu">
-						<ul nz-menu>
-							<li class="flex gap-2" nz-menu-item (click)="open()">
-								<span class="flex items-center gap-2">
-									<app-icon name="link"></app-icon>
-									<span>Open in new tab</span>
-								</span>
-							</li>
-							<li class="flex gap-2" nz-menu-item (click)="copy()">
-								<div class="flex items-center gap-2 w-full">
-									<app-icon name="content_copy"></app-icon>
-									<span>Copy URL</span>
-								</div>
-							</li>
-							<app-edit-bookmark [bookmark]="bookmark"></app-edit-bookmark>
-							<li class="flex gap-2" nz-menu-item (click)="bookmark.bookmark_deleted ? delete() : remove()">
-								<div class="flex items-center gap-2 w-full">
-									<app-icon name="delete"></app-icon>
-									<span>{{bookmark.bookmark_deleted ? 'Delete' : 'Move to Trash'}}</span>
-								</div>
-							</li>
-							<li *ngIf="bookmark.bookmark_deleted" class="flex gap-2" nz-menu-item (click)="restore()">
-								<div class="flex items-center gap-2 w-full">
-									<app-icon name="history"></app-icon>
-									<span>Restore</span>
-								</div>
-							</li>
-						</ul>
-					</nz-dropdown-menu>
-				</div>
-			</div>
-
-			<!-- Divider -->
-			<div class="col-span-12">
-				<nz-divider class="my-2"></nz-divider>
-			</div>
-
-			<!-- Quick Action Icon -->
-			<div class="col-span-12">
-				<div class="flex justify-between items-center">
-					<div class="flex items-center flex-wrap gap-2">
-						<span
-							class="text-xs opacity-80 p-1 rounded"
-							[ngStyle]="{ 'background-color': tag.tag_color, 'color':  mapColor(tag.tag_color)}"
-							*ngFor="let tag of getTags() | async"
-						>
-							# {{tag.tag_name}}
-						</span>
-					</div>
-					<div class="flex items-center gap-4">
-						<app-icon
-							*ngFor="let item of quickActionItems"
-							[name]="item.icon"
-							(click)="item.handleClick()">
-						</app-icon>
-					</div>
-				</div>
-			</div>
-		</div>
-
 		<!-- Compact Bookmark -->
 		<div
-			*ngIf="settings.is_compact_mode_on"
 			class="compact-bookmark flex justify-between gap-4 rounded cursor-pointer hover:bg-neutral-100 duration-75 ease-in-out p-1"
 		>
 			<div class="flex justify-start items-center gap-4 w-full" (click)="open()">
@@ -119,36 +18,11 @@
 			</div>
 			<div class="compact-bookmark__menu flex justify-end items-center">
 				<div class="flex gap-4 items-center">
-					<app-icon name="open_in_new" [options]="{ transition: true }" (click)="open()"></app-icon>
-					<app-icon name="content_copy" [options]="{ transition: true }" (click)="copy()"></app-icon>
-					<app-edit-bookmark *ngIf="!bookmark.bookmark_deleted" [bookmark]="bookmark" class="w-full"></app-edit-bookmark>
-					<app-icon name="delete" [options]="{ transition: true }" (click)="bookmark.bookmark_deleted ? delete() : remove()"></app-icon>
-					<app-icon name="restore_from_trash" [options]="{ transition: true }" *ngIf="bookmark.bookmark_deleted" (click)="restore()"></app-icon>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- Used For Search Result Display -->
-<div *ngIf="isCompactModeForced">
-	<div *ngIf="userSettings$ | async as settings">
-		<!-- Compact Bookmark -->
-		<div class="flex justify-between gap-4 rounded cursor-pointer hover:bg-neutral-200 duration-75 ease-in-out p-1">
-			<div class="flex justify-start items-center gap-4 w-full" (click)="open()">
-				<img
-					alt="{{ bookmark.bookmark_name }} favicon"
-					height="12"
-					src="{{ getFavicon(bookmark.bookmark_url) }}"
-					width="12"
-					class="favicon"
-				/>
-				<div>{{ bookmark.bookmark_name }}</div>
-			</div>
-			<div class="flex justify-end items-center">
-				<div class="flex gap-4 items-center">
 					<app-icon name="open_in_new" (click)="open()"></app-icon>
 					<app-icon name="content_copy" (click)="copy()"></app-icon>
+					<app-edit-bookmark *ngIf="!bookmark.bookmark_deleted" [bookmark]="bookmark" class="w-full"></app-edit-bookmark>
+					<app-icon name="delete" (click)="bookmark.bookmark_deleted ? delete() : remove()" *ngIf="!isSearching"></app-icon>
+					<app-icon name="restore_from_trash" *ngIf="bookmark.bookmark_deleted && !isSearching" (click)="restore()"></app-icon>
 				</div>
 			</div>
 		</div>

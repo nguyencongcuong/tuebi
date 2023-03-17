@@ -4,13 +4,13 @@
 >
 	<div class="flex justify-between items-center gap-2 w-full">
 		<div class="flex items-center gap-2 w-full" [routerLink]="tagRouterLink">
-			<app-icon name="tag"></app-icon>
-			<div>{{name}}</div>
+			<app-icon name="tag" [ngStyle]="{ color: colorMapping[tag.tag_color].tc }"></app-icon>
+			<div [ngStyle]="{ color: colorMapping[tag.tag_color].tc }">{{name}}</div>
 		</div>
 		<div class="flex items-center justify-end gap-2">
-			<span *ngIf="settings.is_bookmark_count_shown" class="text-xs text-right text-neutral-500 w-10">
-				{{count$ | async}}
-			</span>
+			<!-- <span *ngIf="settings.is_bookmark_count_shown" class="text-xs text-right text-neutral-500 w-10"> -->
+			<!-- 	{{count$ | async}} -->
+			<!-- </span> -->
 			<app-icon
 				name="more_vert"
 				[matMenuTriggerFor]="menu"

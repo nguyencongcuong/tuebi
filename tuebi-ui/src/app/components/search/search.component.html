@@ -1,5 +1,8 @@
-<div class="relative">
-	<div class="flex items-center gap-4 bg-neutral-50 p-2 rounded-full border-8 border-solid border-white">
+<div class="relative rounded-2xl" [ngClass]="isSearching ? 'shadow-lg' : ''">
+	<div 
+		class="flex items-center gap-4 bg-neutral-100 hover:bg-neutral-200 duration-300 p-2 rounded-2xl border-solid border-white"
+		[ngClass]="isSearching ? 'rounded-b-none' : 'rounded-b-2xl'"
+	>
 		<!-- Search Input Box-->
 		<div class="flex gap-2 items-center w-full">
 			<button mat-icon-button>
@@ -23,7 +26,10 @@
 		</button>
 	</div>
 
-	<div *ngIf="isSearching" class="search-result-container bg-neutral-50 rounded-3xl w-full absolute z-10 border-8 border-solid border-white">
+	<div 
+		*ngIf="isSearching" class="search-result-container bg-neutral-50 rounded-2xl w-full absolute z-10"
+		[ngClass]="isSearching ? 'rounded-t-none shadow-md' : 'rounded-t-2xl'"
+	>
 		<!-- Searched Text -->
 		<div *ngIf="isSearching" class="p-4">Here are your bookmark search results: {{ searchedBookmarks.length }}</div>
 
@@ -32,7 +38,7 @@
 			<app-bookmark
 				*ngFor="let item of searchedBookmarks"
 				[bookmark]="item"
-				[isCompactModeForced]="true"
+				[isSearching]="true"
 			>
 			</app-bookmark>
 		</div>

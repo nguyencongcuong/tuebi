@@ -54,7 +54,7 @@ export class SearchComponent implements OnInit {
   
   public async ngOnInit() {
     this.bookmarks = await firstValueFrom(this.bookmarks$);
-    this.form.valueChanges.pipe(debounceTime(500)).subscribe(form => {
+    this.form.valueChanges.pipe(debounceTime(300)).subscribe(form => {
       if (form.keywords) {
         this.isSearching = true;
         const fuse = new Fuse(this.bookmarks, {

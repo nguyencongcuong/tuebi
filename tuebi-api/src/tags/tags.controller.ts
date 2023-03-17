@@ -1,5 +1,5 @@
 import { SqlQuerySpec } from '@azure/cosmos';
-import { Body, Controller, Delete, Get, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Logger, Param, Post, Put, Request, UseGuards } from '@nestjs/common';
 import { indexOf, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
@@ -14,6 +14,8 @@ import { TagsService } from './tags.service';
 
 @Controller('tags')
 export class TagsController {
+  private logger = new Logger(TagsController.name);
+  
   private ENCRYPTED_FIELDS = [
     'tag_name',
   ];
@@ -115,13 +117,15 @@ export class TagsController {
   @Put(':id')
   async updateOne(@Request() req: any, @Param('id') id: string, @Body() updateTagDto: UpdateTagDto) {
     const user = req.user;
+    this.logger.log(updateTagDto);
     
     try {
       const updatedFields = req.body;
+      const now = Math.floor(Date.now() / 1000);
       
       const doc: UpdateTagDto = {
         ...updatedFields,
-        tag_last_modified_time: new Date().toISOString(),
+        tag_last_modified_time: now,
       };
       
       const encryptedData = await this.securityService.encryptObject(

@@ -1,4 +1,4 @@
-import { Component, Inject, isDevMode, OnDestroy, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, isDevMode, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType, InteractionStatus, RedirectRequest } from '@azure/msal-browser';
@@ -14,11 +14,11 @@ import { UserService } from './services/user.service';
 	templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-	private _destroying$ = new Subject<void>();
 	public isB2CLoggedIn = false;
 	public isCollapsed = false;
 	public routeList = routeList;
-	
+	private _destroying$ = new Subject<void>();
+
 	constructor(
 		@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
 		private router: Router,
@@ -30,6 +30,14 @@ export class AppComponent implements OnInit, OnDestroy {
 		private userService: UserService,
 	) {
 		this.breakpointService.ngOnInit();
+	}
+	
+	@HostListener('window:resize')
+	onWindowResize() {
+		console.log('reszing')
+		if (window.innerWidth < 1000) {
+			window.resizeTo(1000, window.innerHeight);
+		}
 	}
 	
 	async ngOnInit(): Promise<void> {

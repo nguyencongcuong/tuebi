@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
 import { map, Observable, of, take } from 'rxjs';
+import { COLOR_MAPPING } from '../../../enums/color-mapping.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Tag } from '../../../interfaces/tag.interface';
 import { UserSettings } from '../../../interfaces/user.interface';
@@ -43,9 +44,10 @@ export class TagComponent implements OnInit {
 	});
 	
 	bookmarks$: Observable<Bookmark[]> = of([])
-	count$: Observable<number> = of(0);
 	name: string = '';
 	tagRouterLink: any = [];
+	colorMapping = COLOR_MAPPING;
+	colors = Object.keys(this.colorMapping);
 	
 	constructor(
 		private tagEntityService: TagEntityService,
@@ -67,10 +69,6 @@ export class TagComponent implements OnInit {
 	ngOnInit(): void {
 		this.name = this.tag.tag_name || '';
 		this.tagRouterLink = [`/space/tags/${this.tag.id}`];
-		this.count$ = this.bookmarks$.pipe(
-			map((bookmarks) => bookmarks.filter(bookmark => bookmark.bookmark_tags.includes(this.tag.id || '') && !bookmark.bookmark_deleted)),
-			map((bookmarks) => bookmarks.length)
-		);
 	}
 	
 	open(bookmarkURL: string) {
@@ -83,7 +81,7 @@ export class TagComponent implements OnInit {
 	openAllInNewTab() {
 		this.bookmarks$.pipe(
 			take(1),
-			map((bookmarks) => bookmarks.filter(bookmark => bookmark.bookmark_tags.includes(this.tag.id || '') && !bookmark.bookmark_deleted)),
+			map((bookmarks) => bookmarks.filter(bookmark => bookmark?.bookmark_tags.includes(this.tag.id || '') && !bookmark.bookmark_deleted)),
 			map((bookmarks) => bookmarks.forEach(bookmark => this.open(bookmark.bookmark_url)))
 		).subscribe();
 	}

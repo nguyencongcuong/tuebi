@@ -55,7 +55,7 @@ export class BookmarkComponent implements OnInit {
 		is_selected: false
 	};
 	@Input() isCategorized: boolean = true;
-	@Input() isCompactModeForced: boolean = false;
+	@Input() isSearching: boolean = false;
 	
 	theme = themes[0];
 	colorMapping = COLOR_MAPPING;

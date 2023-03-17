@@ -8,7 +8,6 @@
 	<div>
 		<app-tag 
 			*ngFor="let tag of tags$ | async" 
-			[routerLink]="['/space/tags', tag.id]"
 			[tag]="tag"
 			class="flex items-center gap-2 cursor-pointer"
 		></app-tag>

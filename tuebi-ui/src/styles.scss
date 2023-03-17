@@ -12,6 +12,8 @@ html {
 body {
   font-family: 'Roboto', sans-serif;
   background-color: white;
+  min-width: 1000px;
+  padding: 0.5rem;
 }
 
 app-icon {
@@ -28,4 +30,17 @@ a {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.5);
+  pointer-events: auto;
 }

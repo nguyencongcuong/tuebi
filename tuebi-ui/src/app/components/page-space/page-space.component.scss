@@ -1,0 +1,12 @@
+.container::-webkit-scrollbar {
+  width: 0;
+  border: none;
+  display: none;
+}
+
+.container {
+  overflow: hidden;
+  .section-2 {
+    height: 98vh;
+  }
+}

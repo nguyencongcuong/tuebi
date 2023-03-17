@@ -1,5 +1,5 @@
 <section>
-	<div class="flex items-center mb-4 bg-white p-2">
+	<div class="flex items-center bg-white mb-4 p-2">
 		<mat-checkbox
 			[checked]="isAllBookmarksSelected"
 			[indeterminate]="selectSomeBookmarks()"
@@ -20,11 +20,11 @@
 	<div
 		(cdkDropListDropped)="dropBookmark($event)"
 		cdkDropList
-		class="p-2"
+		class="bookmark-container p-2"
 	>
 		<div
 			*ngFor="let item of bookmarks" class="flex items-center"
-			cdkDrag [cdkDragStartDelay]="500"
+			cdkDrag [cdkDragStartDelay]="300"
 		>
 			<mat-checkbox
 				[(ngModel)]="item.is_selected"
