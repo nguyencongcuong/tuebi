@@ -9,6 +9,7 @@
 					placeholder="Live Search"
 					nzSize="large"
 					formControlName="keywords"
+					(keydown.escape)="cancelSearch()"
 				/>
 			</nz-input-group>
 			<ng-template #suffixIconSearch>

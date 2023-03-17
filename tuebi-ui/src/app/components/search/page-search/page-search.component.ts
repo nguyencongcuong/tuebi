@@ -64,4 +64,9 @@ export class PageSearchComponent implements OnInit {
       }
     })
   }
+  
+  public async cancelSearch() {
+    this.isSearching = false;
+    this.form.reset()
+  }
 }
