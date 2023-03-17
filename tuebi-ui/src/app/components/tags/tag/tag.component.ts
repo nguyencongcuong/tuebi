@@ -12,7 +12,6 @@ import { UserSettings } from '../../../interfaces/user.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
-import { FormEditCategoryComponent } from '../../categories/form-edit-category/form-edit-category.component';
 import { IconComponent } from '../../icon/icon.component';
 import { FormEditTag } from '../form-edit-tag/form-edit-tag';
 
@@ -24,7 +23,6 @@ import { FormEditTag } from '../form-edit-tag/form-edit-tag';
 		RouterModule,
 		FormsModule,
 		ReactiveFormsModule,
-		FormEditCategoryComponent,
 		DragDropModule,
 		NzDropDownModule,
 		NzIconModule,

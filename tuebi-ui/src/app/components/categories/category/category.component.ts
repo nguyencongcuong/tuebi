@@ -8,13 +8,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { firstValueFrom, map, Observable, of, take } from 'rxjs';
 import { FIXED_CATEGORIES } from '../../../enums/categories.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
-import { UserSettings } from '../../../interfaces/user.interface';
 import { Category } from '../../../interfaces/category.interface';
+import { UserSettings } from '../../../interfaces/user.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { CategoryEntityService } from '../../../services/category-entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
-import { FormEditCategoryComponent } from '../form-edit-category/form-edit-category.component';
 import { IconComponent } from '../../icon/icon.component';
+import { EditCategoryComponent } from '../edit-category/edit-category.component';
 
 @Component({
 	selector: 'app-category',
@@ -24,11 +24,11 @@ import { IconComponent } from '../../icon/icon.component';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    FormEditCategoryComponent,
     DragDropModule,
     NzDropDownModule,
     NzIconModule,
-    IconComponent
+    IconComponent,
+    EditCategoryComponent
   ],
 	templateUrl: './category.component.html',
 	styleUrls: ['./category.component.scss']
@@ -48,8 +48,6 @@ export class CategoryComponent implements OnInit {
 	@Input() isUncategorized = false;
 	@Input() isTrash = false;
 	@Input() isCategorized = false;
-	
-	FIXED_CATEGORIES = FIXED_CATEGORIES;
 	
 	userSettings$: Observable<UserSettings | undefined> = of({
 		is_compact_mode_on: false,
