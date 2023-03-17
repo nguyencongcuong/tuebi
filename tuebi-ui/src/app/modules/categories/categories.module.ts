@@ -2,9 +2,9 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EntityDataService, EntityDefinitionService, EntityMetadataMap, } from '@ngrx/data';
+import { AddBookmark } from '../../components/bookmarks/add-bookmark/add-bookmark';
 import { BookmarkComponent } from '../../components/bookmarks/bookmark/bookmark.component';
 import { CategoryComponent } from '../../components/categories/category/category.component';
-import { FormAddBookmark } from '../../components/bookmarks/form-add-bookmark/form-add-bookmark';
 import { FormAddCategory } from '../../components/categories/form-add-category/form-add-category';
 import { AuthGuard } from '../../guards/auth.guard';
 import { NzZorroModule } from '../../nz-zorro.module';
@@ -102,7 +102,7 @@ export const entityMetadata: EntityMetadataMap = {
 		CategoryComponent,
 		BookmarkComponent,
 		FormAddCategory,
-		FormAddBookmark
+		AddBookmark
 	],
 	providers: [
 		CategoryResolver,

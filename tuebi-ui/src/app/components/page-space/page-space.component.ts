@@ -12,7 +12,8 @@ import { SpaceItem } from '../../interfaces/space.interface';
 import { BookmarkEntityService } from '../../services/bookmark-entity.service';
 import { BreakpointService } from '../../services/breakpoint.service';
 import { CategoryEntityService } from '../../services/category-entity.service';
-import { FormAddBookmark } from '../bookmarks/form-add-bookmark/form-add-bookmark';
+import { AddBookmark } from '../bookmarks/add-bookmark/add-bookmark';
+import { DialogAddBookmarkComponent } from '../bookmarks/dialog-add-bookmark/dialog-add-bookmark.component';
 import { CategoryListComponent } from '../categories/category-list/category-list.component';
 import { ContainerComponent } from '../commons/container/container.component';
 import { IconComponent } from '../icon/icon.component';
@@ -22,7 +23,7 @@ import { TagListComponent } from '../tags/tag-list/tag-list.component';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, MatIconModule, IconComponent, NzDividerModule, CategoryListComponent, TagListComponent, SettingListComponent, PageSearchComponent, FormAddBookmark, ContainerComponent, MatListModule],
+  imports: [CommonModule, RouterModule, MatIconModule, IconComponent, NzDividerModule, CategoryListComponent, TagListComponent, SettingListComponent, PageSearchComponent, AddBookmark, ContainerComponent, MatListModule, DialogAddBookmarkComponent],
   selector: 'app-space',
   templateUrl: './page-space.component.html',
   styleUrls: ['./page-space.component.scss']

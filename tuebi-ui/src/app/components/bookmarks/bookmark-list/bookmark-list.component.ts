@@ -11,15 +11,15 @@ import { Tag } from '../../../interfaces/tag.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { CategoryEntityService } from '../../../services/category-entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
+import { AddBookmark } from '../add-bookmark/add-bookmark';
 import {
   BookmarkListSelectContainerComponent
 } from '../bookmark-list-select-container/bookmark-list-select-container.component';
 import { BookmarkComponent } from '../bookmark/bookmark.component';
-import { FormAddBookmark } from '../form-add-bookmark/form-add-bookmark';
 
 @Component({
   standalone: true,
-  imports: [CommonModule, BookmarkComponent, FormAddBookmark, DragDropModule, MatCheckboxModule, FormsModule, BookmarkListSelectContainerComponent],
+  imports: [CommonModule, BookmarkComponent, AddBookmark, DragDropModule, MatCheckboxModule, FormsModule, BookmarkListSelectContainerComponent],
   selector: 'app-category-detail',
   templateUrl: './bookmark-list.component.html',
   styleUrls: ['./bookmark-list.component.scss']

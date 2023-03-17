@@ -1,19 +1,19 @@
 import { CdkDrag, CdkDropList } from '@angular/cdk/drag-drop';
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, map, Observable, of } from 'rxjs';
 import { themes } from '../../../enums/theme.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
+import { AddBookmark } from '../../bookmarks/add-bookmark/add-bookmark';
 import { BookmarkComponent } from '../../bookmarks/bookmark/bookmark.component';
-import { FormAddBookmark } from '../../bookmarks/form-add-bookmark/form-add-bookmark';
 
 @Component({
   selector: 'app-tag-details',
   standalone: true,
-  imports: [CommonModule, FormAddBookmark, BookmarkComponent, CdkDrag, CdkDropList],
+  imports: [CommonModule, AddBookmark, BookmarkComponent, CdkDrag, CdkDropList],
   templateUrl: './tag-details.component.html',
   styleUrls: ['./tag-details.component.scss']
 })
