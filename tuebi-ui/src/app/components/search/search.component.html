@@ -1,0 +1,41 @@
+<div class="relative">
+	<div class="flex items-center gap-4 bg-neutral-50 p-2 rounded-full border-8 border-solid border-white">
+		<!-- Search Input Box-->
+		<div class="flex gap-2 items-center w-full">
+			<button mat-icon-button>
+				<mat-icon fontIcon="bookmark"></mat-icon>
+			</button>
+
+			<form [formGroup]="form" class="w-full">
+				<input
+					type="text"
+					placeholder="Quickly find your saved pages..."
+					formControlName="keywords"
+					class="bg-transparent w-full border-none focus:outline-none p-2 w-full"
+					(keydown.escape)="cancelSearch()"
+				/>
+			</form>
+		</div>
+
+		<button mat-icon-button (click)="isSearching && cancelSearch()">
+			<mat-icon *ngIf="!isSearching" fontIcon="search"></mat-icon>
+			<mat-icon *ngIf="isSearching" fontIcon="close" ></mat-icon>
+		</button>
+	</div>
+
+	<div *ngIf="isSearching" class="search-result-container bg-neutral-50 rounded-3xl w-full absolute z-10 border-8 border-solid border-white">
+		<!-- Searched Text -->
+		<div *ngIf="isSearching" class="p-4">Here are your bookmark search results: {{ searchedBookmarks.length }}</div>
+
+		<!-- Searched Bookmarks -->
+		<div *ngIf="searchedBookmarks.length" class="p-4">
+			<app-bookmark
+				*ngFor="let item of searchedBookmarks"
+				[bookmark]="item"
+				[isCompactModeForced]="true"
+			>
+			</app-bookmark>
+		</div>
+	</div>
+</div>
+

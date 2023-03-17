@@ -1,31 +1,37 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
 import Fuse from 'fuse.js';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { debounceTime, firstValueFrom, Observable, of } from 'rxjs';
-import { Bookmark } from '../../../interfaces/bookmark.interface';
-import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
-import { BookmarkComponent } from '../../bookmarks/bookmark/bookmark.component';
-import { IconComponent } from '../../icon/icon.component';
+import { Bookmark } from '../../interfaces/bookmark.interface';
+import { BookmarkEntityService } from '../../services/bookmark-entity.service';
+import { BookmarkComponent } from '../bookmarks/bookmark/bookmark.component';
+import { IconComponent } from '../icon/icon.component';
 
 @Component({
-  selector: 'app-page-search',
+  selector: 'app-search',
   standalone: true,
   imports: [
-    CommonModule, 
-    NzInputModule, 
-    FormsModule, 
-    BookmarkComponent, 
-    ReactiveFormsModule, 
-    NzIconModule, 
-    IconComponent
+    CommonModule,
+    NzInputModule,
+    FormsModule,
+    BookmarkComponent,
+    ReactiveFormsModule,
+    NzIconModule,
+    IconComponent,
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule
   ],
-  templateUrl: './page-search.component.html',
-  styleUrls: ['./page-search.component.scss']
+  templateUrl: './search.component.html',
+  styleUrls: ['./search.component.scss']
 })
-export class PageSearchComponent implements OnInit {
+export class SearchComponent implements OnInit {
   public bookmarks$: Observable<Bookmark[]> = of([]);
   public bookmarks: Bookmark[] = [];
   public searchedBookmarks: Bookmark[] = [];
@@ -66,7 +72,6 @@ export class PageSearchComponent implements OnInit {
   }
   
   public async cancelSearch() {
-    this.isSearching = false;
     this.form.reset()
   }
 }

@@ -1,4 +1,4 @@
-<div class="flex flex-col gap-4 lg:h-screen lg:p-6 p-4" [ngStyle]="{ background: theme.color.primary.light }">
+<div class="tag-container flex flex-col gap-4">
 	<div *ngIf="!(isEmpty$ | async)" class="flex flex-col gap-2">
 		<div *ngFor="let bookmark of filteredBookmarks$ | async">
 			<app-bookmark [bookmark]="bookmark"></app-bookmark>

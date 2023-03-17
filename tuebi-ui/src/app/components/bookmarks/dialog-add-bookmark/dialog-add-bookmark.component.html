@@ -13,7 +13,7 @@
 				<input matInput required placeholder="Ex. google.com" formControlName="bookmark_url">
 			</mat-form-field>
 
-			<mat-form-field appearance="outline">
+			<mat-form-field appearance="outline" *ngIf="(categories$ | async)?.length">
 				<mat-label>Bookmark Category</mat-label>
 				<mat-select formControlName="category_id">
 					<mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.category_name}}</mat-option>

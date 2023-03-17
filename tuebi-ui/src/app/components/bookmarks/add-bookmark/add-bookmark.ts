@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ButtonComponent } from '../../commons/button/button.component';
+import { MatIconModule } from '@angular/material/icon';
 import { IconComponent } from '../../icon/icon.component';
 import { DialogAddBookmarkComponent } from '../dialog-add-bookmark/dialog-add-bookmark.component';
 
@@ -16,8 +16,8 @@ import { DialogAddBookmarkComponent } from '../dialog-add-bookmark/dialog-add-bo
 		ReactiveFormsModule,
 		IconComponent,
 		MatButtonModule,
-		ButtonComponent,
-		MatDialogModule
+		MatDialogModule,
+		MatIconModule
 	],
 	templateUrl: './add-bookmark.html',
 	styleUrls: ['./add-bookmark.scss']

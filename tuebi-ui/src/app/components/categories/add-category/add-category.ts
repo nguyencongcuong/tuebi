@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ButtonComponent } from '../../commons/button/button.component';
 import { IconComponent } from '../../icon/icon.component';
 import { DialogAddCategoryComponent } from '../dialog-add-category/dialog-add-category.component';
 
@@ -16,7 +15,6 @@ import { DialogAddCategoryComponent } from '../dialog-add-category/dialog-add-ca
 		ReactiveFormsModule,
 		IconComponent,
 		MatButtonModule,
-		ButtonComponent,
 		MatDialogModule
 	],
 	templateUrl: './add-category.html',

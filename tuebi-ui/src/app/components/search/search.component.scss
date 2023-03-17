@@ -1,0 +1,20 @@
+.search-result-container::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0.3);
+  background-color: #fafafa;
+}
+
+.search-result-container::-webkit-scrollbar {
+  width: 2px;
+  background-color: #F5F5F5;
+  border: none;
+}
+
+.search-result-container::-webkit-scrollbar-thumb {
+  background-color: #363636;
+  border: 1px solid #605e5e;
+}
+
+.search-result-container {
+  max-height: 50vh;
+  overflow: auto;
+}

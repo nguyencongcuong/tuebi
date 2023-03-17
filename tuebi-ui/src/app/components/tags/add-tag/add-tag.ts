@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { ButtonComponent } from '../../commons/button/button.component';
 import { IconComponent } from '../../icon/icon.component';
 import { DialogAddTagComponent } from '../dialog-add-tag/dialog-add-tag.component';
 
@@ -16,7 +15,6 @@ import { DialogAddTagComponent } from '../dialog-add-tag/dialog-add-tag.componen
 		ReactiveFormsModule,
 		IconComponent,
 		MatButtonModule,
-		ButtonComponent,
 		MatDialogModule
 	],
 	templateUrl: './add-tag.html',

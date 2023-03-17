@@ -1,4 +1,4 @@
-<div class="bookmark-container flex flex-col gap-4 lg:h-screen" [ngStyle]="{ background: theme.color.primary.light }">
+<div class="bookmark-container flex flex-col gap-4">
 	<app-multiple-select
 		*ngIf="!(isEmpty$ | async)"
 		[bookmarks]="filteredBookmarks$ | async"
@@ -9,7 +9,7 @@
 	>
 	</app-multiple-select>
 
-	<div *ngIf="isEmpty$ | async" class="flex flex-col justify-center items-center w-full h-3/4">
+	<div *ngIf="isEmpty$ | async" class="flex flex-col justify-center items-center w-full h-3/4 bg-white">
 		<div class="font-bold text-2xl opacity-50">
 			There's currently no bookmark here.
 		</div>

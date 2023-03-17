@@ -10,7 +10,7 @@
 			*ngFor="let tag of tags$ | async" 
 			[routerLink]="['/space/tags', tag.id]"
 			[tag]="tag"
-			class="flex items-center gap-2 cursor-pointer duration-150 hover:bg-purple-100 rounded-2xl"
+			class="flex items-center gap-2 cursor-pointer"
 		></app-tag>
 	</div>
 </div>

@@ -134,7 +134,7 @@
 <div *ngIf="isCompactModeForced">
 	<div *ngIf="userSettings$ | async as settings">
 		<!-- Compact Bookmark -->
-		<div class="flex justify-between gap-4 rounded cursor-pointer hover:bg-neutral-100 duration-75 ease-in-out p-1">
+		<div class="flex justify-between gap-4 rounded cursor-pointer hover:bg-neutral-200 duration-75 ease-in-out p-1">
 			<div class="flex justify-start items-center gap-4 w-full" (click)="open()">
 				<img
 					alt="{{ bookmark.bookmark_name }} favicon"
@@ -147,11 +147,8 @@
 			</div>
 			<div class="flex justify-end items-center">
 				<div class="flex gap-4 items-center">
-					<app-icon name="open_in_new" [options]="{ transition: true }" (click)="open()"></app-icon>
-					<app-icon name="content_copy" [options]="{ transition: true }" (click)="copy()"></app-icon>
-					<app-edit-bookmark *ngIf="!bookmark.bookmark_deleted" [bookmark]="bookmark" class="w-full"></app-edit-bookmark>
-					<app-icon name="delete" [options]="{ transition: true }" (click)="bookmark.bookmark_deleted ? delete() : remove()"></app-icon>
-					<app-icon name="restore_from_trash" [options]="{ transition: true }" *ngIf="bookmark.bookmark_deleted" (click)="restore()"></app-icon>
+					<app-icon name="open_in_new" (click)="open()"></app-icon>
+					<app-icon name="content_copy" (click)="copy()"></app-icon>
 				</div>
 			</div>
 		</div>

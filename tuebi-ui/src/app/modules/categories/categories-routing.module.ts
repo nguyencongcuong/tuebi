@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MsalGuard } from '@azure/msal-angular';
+import { BookmarkListComponent } from '../../components/bookmarks/bookmark-list/bookmark-list.component';
+import { CategoryListComponent } from '../../components/categories/category-list/category-list.component';
+import { PageSpaceComponent } from '../../components/page-space/page-space.component';
 import { TagDetailsComponent } from '../../components/tags/tag-details/tag-details.component';
 import { ROUTE } from '../../enums/routes.enum';
 import { AuthGuard } from '../../guards/auth.guard';
-import { BookmarkListComponent } from '../../components/bookmarks/bookmark-list/bookmark-list.component';
-import { CategoryListComponent } from '../../components/categories/category-list/category-list.component';
-import { PageSearchComponent } from '../../components/search/page-search/page-search.component';
-import { PageSpaceComponent } from '../../components/page-space/page-space.component';
 import { CategoryResolver } from '../../services/category.resolver';
 
 const routes: Routes = [
@@ -32,10 +31,6 @@ const routes: Routes = [
 				path: `${ROUTE.TAGS}/:id`,
 				component: TagDetailsComponent,
 			},
-			{
-				path: ROUTE.SEARCH,
-				component: PageSearchComponent
-			}
 		]
 	},
 ];
