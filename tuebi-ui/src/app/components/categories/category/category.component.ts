@@ -2,9 +2,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { firstValueFrom, map, Observable, of, take } from 'rxjs';
 import { FIXED_CATEGORIES } from '../../../enums/categories.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
@@ -25,10 +24,9 @@ import { EditCategoryComponent } from '../edit-category/edit-category.component'
     FormsModule,
     ReactiveFormsModule,
     DragDropModule,
-    NzDropDownModule,
-    NzIconModule,
     IconComponent,
-    EditCategoryComponent
+    EditCategoryComponent,
+    MatMenuModule
   ],
 	templateUrl: './category.component.html',
 	styleUrls: ['./category.component.scss']

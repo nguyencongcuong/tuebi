@@ -7,7 +7,6 @@ import { firstValueFrom, map, Observable, of } from 'rxjs';
 import { themes } from '../../../enums/theme.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Category } from '../../../interfaces/category.interface';
-import { NzZorroModule } from '../../../nz-zorro.module';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { CategoryEntityService } from '../../../services/category-entity.service';
@@ -24,7 +23,6 @@ import { CategoryComponent } from '../category/category.component';
 		RouterModule,
 		DragDropModule,
 		CategoryComponent,
-		NzZorroModule,
 		MatDividerModule,
 		TypographySectionHeaderComponent,
 		AddCategory,

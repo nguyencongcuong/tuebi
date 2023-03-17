@@ -1,4 +1,4 @@
-<div 
+<div
 	*ngIf="userSettings$ | async as settings"
 	class="w-full border-0 rounded-3xl hover:bg-purple-100 duration-150 cursor-pointer opacity-80 hover:opacity-100"
 >
@@ -15,36 +15,22 @@
 				{{count$ | async}}
 			</span>
 			<app-icon
-				nz-dropdown
-				nzTrigger="click"
-				nz-icon
 				name="more_vert"
-				[nzDropdownMenu]="menu"
 				[ngClass]="(!isAll && !isUncategorized && !isTrash) ? 'visibile' : 'invisible'"
+				[matMenuTriggerFor]="menu"
 			>
 			</app-icon>
 		</div>
 	</div>
 
-	<!-- Dropdown Menu -->
-	<nz-dropdown-menu #menu="nzDropdownMenu">
-		<ul nz-menu>
-			<li nz-menu-item (click)="openAllInNewTab()">
-				<div class="flex items-center gap-2">
-					<app-icon name="link"></app-icon>
-					<span>Open all in new tab</span>
-				</div>
-			</li>
-			
-			<li nz-menu-item (click)="deleteOneCategory(category.id)">
-				<div class="flex items-center gap-2">
-					<app-icon name="delete"></app-icon>
-					<span>Delete</span>
-				</div>
-			</li>
-
-			<app-edit-category [category]="category"></app-edit-category>
-		</ul>
-	</nz-dropdown-menu>
+	<mat-menu #menu="matMenu">
+		<button mat-menu-item (click)="openAllInNewTab()">
+			Open all in new tab
+		</button>
+		<button mat-menu-item (click)="deleteOneCategory(category.id)">
+			Delete
+		</button>
+		<app-edit-category [category]="category"></app-edit-category>
+	</mat-menu>
 </div>
 

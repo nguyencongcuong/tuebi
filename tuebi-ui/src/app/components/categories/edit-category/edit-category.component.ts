@@ -2,12 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { NzFormModule } from 'ng-zorro-antd/form';
-import { NzIconModule } from 'ng-zorro-antd/icon';
-import { NzInputModule } from 'ng-zorro-antd/input';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
-import { NzModalModule } from 'ng-zorro-antd/modal';
-import { NzSelectModule } from 'ng-zorro-antd/select';
+import { MatMenuModule } from '@angular/material/menu';
 import { Category } from '../../../interfaces/category.interface';
 import { IconComponent } from '../../icon/icon.component';
 import { DialogEditCategoryComponent } from '../dialog-edit-category/dialog-edit-category.component';
@@ -15,7 +10,7 @@ import { DialogEditCategoryComponent } from '../dialog-edit-category/dialog-edit
 @Component({
 	standalone: true,
 	selector: 'app-edit-category',
-	imports: [CommonModule, ReactiveFormsModule, FormsModule, NzFormModule, NzModalModule, NzInputModule, NzSelectModule, NzIconModule, IconComponent, NzMenuModule],
+	imports: [CommonModule, ReactiveFormsModule, FormsModule, IconComponent, MatMenuModule],
 	templateUrl: './edit-category.component.html',
 	styleUrls: ['./edit-category.component.scss']
 })

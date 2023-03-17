@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { MatMenuModule } from '@angular/material/menu';
 import { Tag } from '../../../interfaces/tag.interface';
 import { IconComponent } from '../../icon/icon.component';
 import { DialogEditTagComponent } from '../dialog-edit-tag/dialog-edit-tag.component';
@@ -10,7 +10,7 @@ import { DialogEditTagComponent } from '../dialog-edit-tag/dialog-edit-tag.compo
 @Component({
 	standalone: true,
 	selector: 'app-edit-tag',
-	imports: [CommonModule, ReactiveFormsModule, FormsModule, IconComponent, NzMenuModule],
+	imports: [CommonModule, ReactiveFormsModule, FormsModule, IconComponent, MatMenuModule],
 	templateUrl: './edit-tag.component.html',
 	styleUrls: ['./edit-tag.component.scss']
 })

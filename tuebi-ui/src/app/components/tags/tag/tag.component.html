@@ -12,36 +12,17 @@
 				{{count$ | async}}
 			</span>
 			<app-icon
-				nz-dropdown
-				nzTrigger="click"
-				nz-icon
 				name="more_vert"
-				[nzDropdownMenu]="menu"
+				[matMenuTriggerFor]="menu"
 			>
 			</app-icon>
 		</div>
 	</div>
-
 	<!-- Dropdown Menu -->
-	<nz-dropdown-menu #menu="nzDropdownMenu">
-		<ul nz-menu>
-			
-			<li nz-menu-item (click)="openAllInNewTab()">
-				<div class="flex items-center gap-2">
-					<app-icon name="open_in_new"></app-icon>
-					<span>Open all in new tab</span>
-				</div>
-			</li>
-
-			<li nz-menu-item (click)="deleteTag()">
-				<div class="flex items-center gap-2">
-					<app-icon name="delete"></app-icon>
-					<span>Delete</span>
-				</div>
-			</li>
-
-			<app-edit-tag [tag]="tag"></app-edit-tag>
-		</ul>
-	</nz-dropdown-menu>
+	<mat-menu #menu="matMenu">
+		<button mat-menu-item (click)="openAllInNewTab()">Open all in new tab</button>
+		<button mat-menu-item (click)="deleteTag()">Delete</button>
+		<app-edit-tag [tag]="tag"></app-edit-tag>
+	</mat-menu>
 </div>
 

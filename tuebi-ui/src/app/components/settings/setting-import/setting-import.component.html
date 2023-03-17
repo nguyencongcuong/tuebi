@@ -1,7 +1,7 @@
-<div class="flex items-center gap-2 p-2 cursor-pointer w-full hover:bg-neutral-200 hover:text-white duration-300 ease-in-out" (click)="openModal()">
-	<app-icon name="arrow_upward"></app-icon>
+<button mat-menu-item (click)="openModal()">
+	<mat-icon fontIcon="arrow_upward"></mat-icon>
 	<span>Import</span>
-</div>
+</button>
 
 <nz-modal
 	nzTitle="Import"

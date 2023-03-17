@@ -1,6 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalModule } from 'ng-zorro-antd/modal';
@@ -14,7 +16,7 @@ import { IconComponent } from '../../icon/icon.component';
 
 @Component({
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzUploadModule, NzSpinModule, NzButtonModule, IconComponent, NzModalModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzUploadModule, NzSpinModule, NzButtonModule, IconComponent, NzModalModule, MatMenuModule, MatIconModule],
 	selector: 'app-setting-import',
 	templateUrl: './setting-import.component.html',
 	styleUrls: ['./setting-import.component.scss']

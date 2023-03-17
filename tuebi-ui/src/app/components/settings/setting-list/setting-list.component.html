@@ -1,18 +1,23 @@
 <div class="flex justify-between items-center gap-2 p-6">
 	<app-avatar></app-avatar>
-	<app-icon name="settings" nz-dropdown [nzDropdownMenu]="menu" nzTrigger="click"></app-icon>
+	<button mat-icon-button [mat-menu-trigger-for]="menu">
+		<mat-icon fontIcon="settings"></mat-icon>
+	</button>
 </div>
 
-<nz-dropdown-menu #menu="nzDropdownMenu">
-	<div nz-menu nzSelectable>
-		<app-setting-appearance></app-setting-appearance>
-		<app-setting-privacy-security></app-setting-privacy-security>
-		<div nz-menu-divider></div>
-		<app-setting-import></app-setting-import>
-		<div nz-menu-divider></div>
-		<div (click)="logout()" class="flex items-center gap-2 p-2 cursor-pointer w-full hover:bg-red-300 hover:text-white duration-300 ease-in-out">
-			<app-icon name="logout"></app-icon>
-			<span>Logout</span>
-		</div>
-	</div>
-</nz-dropdown-menu>
+<mat-menu #menu="matMenu">
+	<app-setting-appearance></app-setting-appearance>
+	<app-setting-privacy-security></app-setting-privacy-security>
+	<mat-divider></mat-divider>
+	<app-setting-import></app-setting-import>
+	<mat-divider></mat-divider>
+	<button mat-menu-item (click)="logout()">
+		<mat-icon
+			class="icon material-icons-outlined"
+			aria-hidden="false"
+			aria-label="icon"
+			fontIcon="logout">
+		</mat-icon>
+		<span>Logout</span>
+	</button>
+</mat-menu>

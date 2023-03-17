@@ -2,9 +2,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatMenuModule } from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
-import { NzIconModule } from 'ng-zorro-antd/icon';
 import { map, Observable, of, take } from 'rxjs';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Tag } from '../../../interfaces/tag.interface';
@@ -24,10 +23,9 @@ import { EditTagComponent } from '../edit-tag/edit-tag.component';
 		FormsModule,
 		ReactiveFormsModule,
 		DragDropModule,
-		NzDropDownModule,
-		NzIconModule,
 		IconComponent,
-		EditTagComponent
+		EditTagComponent,
+		MatMenuModule
 	],
 	templateUrl: './tag.component.html',
 	styleUrls: ['./tag.component.scss']

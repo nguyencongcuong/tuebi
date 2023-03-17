@@ -1,19 +1,21 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { MsalService } from '@azure/msal-angular';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { firstValueFrom, map, Observable, tap } from 'rxjs';
-import { IconComponent } from '../../icon/icon.component';
 import { User } from '../../../interfaces/user.interface';
 import { UserEntityService } from '../../../services/user-entity.service';
 import { UserService } from '../../../services/user.service';
+import { IconComponent } from '../../icon/icon.component';
 
 @Component({
   selector: 'app-setting-privacy-security',
   standalone: true,
-  imports: [CommonModule, NzModalModule, IconComponent, NzSelectModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, NzModalModule, IconComponent, NzSelectModule, FormsModule, ReactiveFormsModule, MatIconModule, MatMenuModule],
   templateUrl: './setting-privacy-security.component.html',
   styleUrls: ['./setting-privacy-security.component.scss']
 })

@@ -1,22 +1,24 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { firstValueFrom, map, Observable } from 'rxjs';
-import { IconComponent } from '../../icon/icon.component';
 import { User } from '../../../interfaces/user.interface';
 import { BreakpointService } from '../../../services/breakpoint.service';
 import { UserEntityService } from '../../../services/user-entity.service';
 import { UserService } from '../../../services/user.service';
+import { IconComponent } from '../../icon/icon.component';
 
 @Component({
 	selector: 'app-setting-appearance',
 	standalone: true,
-	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzInputModule, NzSwitchModule, NzDividerModule, NzIconModule, IconComponent, NzModalModule],
+	imports: [CommonModule, FormsModule, ReactiveFormsModule, NzInputModule, NzSwitchModule, NzDividerModule, NzIconModule, IconComponent, NzModalModule, MatIconModule, MatMenuModule],
 	templateUrl: './setting-appearance.component.html',
 	styleUrls: ['./setting-appearance.component.scss']
 })

@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NzAvatarModule } from 'ng-zorro-antd/avatar';
-import { NzButtonModule } from 'ng-zorro-antd/button';
-import { NzDividerModule } from 'ng-zorro-antd/divider';
-import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { Component } from '@angular/core';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { AuthService } from '../../../services/auth.service';
 import { AvatarComponent } from '../../avatar/avatar.component';
-import { IconComponent } from '../../icon/icon.component';
 import { SettingAppearanceComponent } from '../setting-appearance/setting-appearance.component';
 import { SettingImportComponent } from '../setting-import/setting-import.component';
 import { SettingPrivacySecurityComponent } from '../setting-privacy-security/setting-privacy-security.component';
@@ -14,7 +13,17 @@ import { SettingPrivacySecurityComponent } from '../setting-privacy-security/set
 @Component({
   selector: 'app-setting-list',
   standalone: true,
-  imports: [CommonModule, NzAvatarModule, IconComponent, NzDropDownModule, NzDividerModule, SettingAppearanceComponent, SettingPrivacySecurityComponent, SettingImportComponent, AvatarComponent, NzButtonModule],
+  imports: [
+    CommonModule, 
+    SettingAppearanceComponent, 
+    SettingPrivacySecurityComponent, 
+    SettingImportComponent, 
+    AvatarComponent, 
+    MatMenuModule, 
+    MatDividerModule, 
+    MatButtonModule,
+    MatIconModule
+  ],
   templateUrl: './setting-list.component.html',
   styleUrls: ['./setting-list.component.scss']
 })
