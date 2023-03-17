@@ -1,19 +1,21 @@
 <div>
 	<!-- Search Input Box-->
-	<form [formGroup]="form">
-		<nz-input-group [nzSuffix]="suffixIconSearch" class="border-none p-4">
-			<input 
-				type="text" 
-				nz-input 
-				placeholder="Live Search" 
-				nzSize="large" 
-				formControlName="keywords" 
-			/>
-		</nz-input-group>
-		<ng-template #suffixIconSearch>
-			<app-icon name="search"></app-icon>
-		</ng-template>
-	</form>
+	<div class="rounded-2xl mb-4 bg-red-300">
+		<form [formGroup]="form">
+			<nz-input-group [nzSuffix]="suffixIconSearch" class="border-none p-4">
+				<input
+					type="text"
+					nz-input
+					placeholder="Live Search"
+					nzSize="large"
+					formControlName="keywords"
+				/>
+			</nz-input-group>
+			<ng-template #suffixIconSearch>
+				<app-icon name="search"></app-icon>
+			</ng-template>
+		</form>
+	</div>
 
 	<!-- Searched Text -->
 	<div *ngIf="isSearching" class="p-4">Found {{searchedBookmarks.length}} bookmarks.</div>

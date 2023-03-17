@@ -33,6 +33,13 @@
 				</div>
 			</li>
 
+			<li nz-menu-item (click)="deleteTag()">
+				<div class="flex items-center gap-2">
+					<app-icon name="delete"></app-icon>
+					<span>Delete</span>
+				</div>
+			</li>
+
 			<app-form-edit-tag nz-menu-item [tag]="tag"></app-form-edit-tag>
 		</ul>
 	</nz-dropdown-menu>
