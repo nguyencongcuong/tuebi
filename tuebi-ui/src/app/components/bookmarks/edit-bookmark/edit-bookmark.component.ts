@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -15,29 +16,29 @@ import { BookmarkEntityService } from '../../../services/bookmark-entity.service
 import { CategoryEntityService } from '../../../services/category-entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { IconComponent } from '../../icon/icon.component';
+import { DialogEditBookmarkComponent } from '../dialog-edit-bookmark/dialog-edit-bookmark.component';
 
 @Component({
 	standalone: true,
-	selector: 'app-form-edit-bookmark',
+	selector: 'app-edit-bookmark',
 	imports: [CommonModule, ReactiveFormsModule, FormsModule, NzFormModule, NzModalModule, NzInputModule, NzSelectModule, NzIconModule, IconComponent, NzMenuModule],
-	templateUrl: './form-edit-bookmark.component.html',
-	styleUrls: ['./form-edit-bookmark.component.scss']
+	templateUrl: './edit-bookmark.component.html',
+	styleUrls: ['./edit-bookmark.component.scss']
 })
-export class FormEditBookmarkComponent implements OnChanges {
+export class EditBookmarkComponent implements OnChanges {
 	@Input() bookmark = {} as Bookmark;
 	
 	categories$ = new Observable<Category[]>();
 	tags$ = new Observable<Tag[]>();
 	
 	form: FormGroup;
-	isVisible = false;
-	themes: any;
 	
 	constructor(
 		private fb: FormBuilder,
 		private bookmarkEntityService: BookmarkEntityService,
 		private categoryEntityService: CategoryEntityService,
 		private tagEntityService: TagEntityService,
+		public dialog: MatDialog,
 	) {
 		this.categories$ = this.categoryEntityService.entities$;
 		this.tags$ = this.tagEntityService.entities$;
@@ -49,10 +50,6 @@ export class FormEditBookmarkComponent implements OnChanges {
 			category_id: [this.bookmark.category_id, [Validators.required]],
 			bookmark_tags: [this.bookmark.bookmark_tags, ]
 		});
-	}
-	
-	get name() {
-		return this.form.controls['bookmark_name'].value;
 	}
 	
 	ngOnChanges(changes: SimpleChanges) {
@@ -68,17 +65,9 @@ export class FormEditBookmarkComponent implements OnChanges {
 		}
 	}
 	
-	submit() {
-		this.bookmarkEntityService.update(this.form.value);
-		this.closeModal();
-	}
-	
-	closeModal() {
-		this.isVisible = false;
-	}
-	
-	openModal() {
-		this.isVisible = true;
+	openDialog(): void {
+		const dialogRef = this.dialog.open(DialogEditBookmarkComponent, { data: this.bookmark });
+		dialogRef.afterClosed().subscribe()
 	}
 	
 }

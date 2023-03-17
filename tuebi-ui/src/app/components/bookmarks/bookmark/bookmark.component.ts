@@ -20,14 +20,14 @@ import { CategoryEntityService } from '../../../services/category-entity.service
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
 import { IconComponent } from '../../icon/icon.component';
-import { FormEditBookmarkComponent } from '../form-edit-bookmark/form-edit-bookmark.component';
+import { EditBookmarkComponent } from '../edit-bookmark/edit-bookmark.component';
 
 @Component({
 	standalone: true,
 	selector: 'app-bookmark',
 	imports: [
 		CommonModule,
-		FormEditBookmarkComponent,
+		EditBookmarkComponent,
 		ClipboardModule,
 		NzTagModule,
 		NzDividerModule,

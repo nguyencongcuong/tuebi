@@ -1,0 +1,30 @@
+<div class="bg-purple-50 overflow-hidden">
+	<h1 mat-dialog-title class="p-6 rounded-3xl">Edit Bookmark</h1>
+
+	<div mat-dialog-content class="w-96">
+		<form class="flex flex-col gap-2 py-6" [formGroup]="form" (ngSubmit)="submit()">
+			<mat-form-field appearance="outline">
+				<mat-label>Bookmark Name</mat-label>
+				<input matInput required placeholder="Ex. Google" formControlName="bookmark_name">
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Bookmark URL</mat-label>
+				<input matInput required placeholder="Ex. google.com" formControlName="bookmark_url">
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Bookmark Category</mat-label>
+				<mat-select formControlName="category_id">
+					<mat-option *ngFor="let category of categories$ | async" [value]="category.id">{{category.category_name}}</mat-option>
+				</mat-select>
+			</mat-form-field>
+		</form>
+	</div>
+
+	<div class="flex justify-end p-6">
+		<button mat-button (click)="cancel()">Cancel</button>
+		<button mat-button type="submit"  cdkFocusInitial (click)="submit()">Ok</button>
+	</div>
+
+</div>

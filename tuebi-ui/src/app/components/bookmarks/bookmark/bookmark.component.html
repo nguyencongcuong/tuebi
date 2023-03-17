@@ -55,7 +55,7 @@
 									<span>Copy URL</span>
 								</div>
 							</li>
-							<app-form-edit-bookmark [bookmark]="bookmark"></app-form-edit-bookmark>
+							<app-edit-bookmark [bookmark]="bookmark"></app-edit-bookmark>
 							<li class="flex gap-2" nz-menu-item (click)="bookmark.bookmark_deleted ? delete() : remove()">
 								<div class="flex items-center gap-2 w-full">
 									<app-icon name="delete"></app-icon>
@@ -121,7 +121,7 @@
 				<div class="flex gap-4 items-center">
 					<app-icon name="open_in_new" [options]="{ transition: true }" (click)="open()"></app-icon>
 					<app-icon name="content_copy" [options]="{ transition: true }" (click)="copy()"></app-icon>
-					<app-form-edit-bookmark *ngIf="!bookmark.bookmark_deleted" [bookmark]="bookmark" class="w-full"></app-form-edit-bookmark>
+					<app-edit-bookmark *ngIf="!bookmark.bookmark_deleted" [bookmark]="bookmark" class="w-full"></app-edit-bookmark>
 					<app-icon name="delete" [options]="{ transition: true }" (click)="bookmark.bookmark_deleted ? delete() : remove()"></app-icon>
 					<app-icon name="restore_from_trash" [options]="{ transition: true }" *ngIf="bookmark.bookmark_deleted" (click)="restore()"></app-icon>
 				</div>
@@ -149,7 +149,7 @@
 				<div class="flex gap-4 items-center">
 					<app-icon name="open_in_new" [options]="{ transition: true }" (click)="open()"></app-icon>
 					<app-icon name="content_copy" [options]="{ transition: true }" (click)="copy()"></app-icon>
-					<app-form-edit-bookmark *ngIf="!bookmark.bookmark_deleted" [bookmark]="bookmark" class="w-full"></app-form-edit-bookmark>
+					<app-edit-bookmark *ngIf="!bookmark.bookmark_deleted" [bookmark]="bookmark" class="w-full"></app-edit-bookmark>
 					<app-icon name="delete" [options]="{ transition: true }" (click)="bookmark.bookmark_deleted ? delete() : remove()"></app-icon>
 					<app-icon name="restore_from_trash" [options]="{ transition: true }" *ngIf="bookmark.bookmark_deleted" (click)="restore()"></app-icon>
 				</div>
