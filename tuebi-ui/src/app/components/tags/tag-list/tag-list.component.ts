@@ -9,13 +9,12 @@ import {
 } from '../../commons/typography-section-header/typography-section-header.component';
 import { IconComponent } from '../../icon/icon.component';
 import { AddTag } from '../add-tag/add-tag';
-import { TagListOptionsComponent } from '../tag-list-options/tag-list-options.component';
 import { TagComponent } from '../tag/tag.component';
 
 @Component({
   selector: 'app-tag-list',
   standalone: true,
-  imports: [CommonModule, RouterLink, TagListOptionsComponent, TypographySectionHeaderComponent, IconComponent, TagComponent, AddTag],
+  imports: [CommonModule, RouterLink, TypographySectionHeaderComponent, IconComponent, TagComponent, AddTag],
   templateUrl: './tag-list.component.html',
   styleUrls: ['./tag-list.component.scss']
 })

@@ -13,7 +13,7 @@ import { BookmarkEntityService } from '../../../services/bookmark-entity.service
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
 import { IconComponent } from '../../icon/icon.component';
-import { FormEditTag } from '../form-edit-tag/form-edit-tag';
+import { EditTagComponent } from '../edit-tag/edit-tag.component';
 
 @Component({
 	selector: 'app-tag',
@@ -27,15 +27,13 @@ import { FormEditTag } from '../form-edit-tag/form-edit-tag';
 		NzDropDownModule,
 		NzIconModule,
 		IconComponent,
-		FormEditTag
+		EditTagComponent
 	],
 	templateUrl: './tag.component.html',
 	styleUrls: ['./tag.component.scss']
 })
 export class TagComponent implements OnInit {
-	@Input() tag: Partial<Tag> = {
-		id: '',
-	};
+	@Input() tag: Tag = {} as Tag;
 	
 	userSettings$: Observable<UserSettings | undefined> = of({
 		is_compact_mode_on: false,
