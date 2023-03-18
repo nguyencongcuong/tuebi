@@ -165,7 +165,7 @@ export class UsersController {
     const user = req.user;
     
     try {
-      await this.userService.deleteAllUserData(user.id, '');
+      await this.userService.deleteAllUserData(user);
       return sendSuccess();
     } catch (e) {
       return sendError(e);

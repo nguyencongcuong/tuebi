@@ -4,7 +4,6 @@ import { isEmpty, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
-import { DeleteBookmarksRequestBodyI } from '../bookmarks/bookmarks.interface';
 import { SecurityService } from '../security/security.service';
 import { runBatchAsync, sendError, sendSuccess } from '../utilities';
 import {

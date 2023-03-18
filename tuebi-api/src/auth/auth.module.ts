@@ -3,8 +3,8 @@ import { APP_GUARD } from '@nestjs/core';
 import { PassportModule } from '@nestjs/passport';
 import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { CategoriesService } from '../categories/categories.service';
+import { ImagesService } from '../images/images.service';
 import { SecurityService } from '../security/security.service';
-import { TagsModule } from '../tags/tags.module';
 import { TagsService } from '../tags/tags.service';
 import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
@@ -21,6 +21,7 @@ import { RolesGuard } from './guards/role.guard';
 		BookmarksService,
 		CategoriesService,
 		TagsService,
+		ImagesService,
 		{
 			provide: APP_GUARD,
 			useClass: RolesGuard,

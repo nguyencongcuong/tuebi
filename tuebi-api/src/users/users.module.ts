@@ -4,6 +4,7 @@ import { AuthService } from '../auth/auth.service';
 import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { CategoriesService } from '../categories/categories.service';
 import { EmailsModule } from '../emails/emails.module';
+import { ImagesService } from '../images/images.service';
 import { SecurityService } from '../security/security.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { TagsService } from '../tags/tags.service';
@@ -21,6 +22,7 @@ import { UsersService } from './users.service';
 		BookmarksService,
 		TagsService,
 		SecurityService,
+		ImagesService
 	],
 	imports: [EmailsModule],
 	exports: [UsersService],

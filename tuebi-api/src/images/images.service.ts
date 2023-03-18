@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { AzBlobStorageClient } from '../azure/az-storage.client';
+
 const sharp = require('sharp');
 
 @Injectable()
@@ -29,5 +30,9 @@ export class ImagesService {
     await this.azureBlobStorageClient.uploadBlob(blobName, blobContent);
     
     return await this.azureBlobStorageClient.getBlobUrl(blobName);
+  }
+  
+  async delete(blobName: string): Promise<void> {
+    await this.azureBlobStorageClient.deleteBlob(blobName)
   }
 }

@@ -50,7 +50,7 @@ export class TaskService {
     }
     
     for (const user of users) {
-      await this.userService.deleteAllUserData(user.id, user.partition_key);
+      await this.userService.deleteAllUserData(user);
     }
   
     this.logger.log(`Finish Cron Job: ${this.deleteUserAccounts.name}. ${users.length} deleted`);
