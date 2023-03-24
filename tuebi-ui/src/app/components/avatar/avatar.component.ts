@@ -15,7 +15,14 @@ import { IconComponent } from '../icon/icon.component';
 @Component({
   selector: 'app-avatar',
   standalone: true,
-  imports: [CommonModule, NzAvatarModule, IconComponent, NzUploadModule, NzSpinModule, NzIconModule],
+  imports: [
+    CommonModule, 
+    NzAvatarModule, 
+    IconComponent, 
+    NzUploadModule, 
+    NzSpinModule, 
+    NzIconModule
+  ],
   templateUrl: './avatar.component.html',
   styleUrls: ['./avatar.component.scss']
 })
