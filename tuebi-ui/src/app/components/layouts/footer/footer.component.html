@@ -1,0 +1,9 @@
+<div class="flex justify-between items-center gap-4 bg-neutral-100 px-8 py-4">
+	<app-logo></app-logo>
+	<div class="flex items-center gap-4">
+		<a *ngIf="!(authService.isB2CLoggedIn$ | async)" (click)="authService.login()">Login</a>
+		<a *ngIf="!(authService.isB2CLoggedIn$ | async)" (click)="authService.login()">Signup</a>
+		<a [routerLink]="['/tos']">Terms</a>
+		<a [routerLink]="['/privacy-policy']">Privacy</a>
+	</div>
+</div>

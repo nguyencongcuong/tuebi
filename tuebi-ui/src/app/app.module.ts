@@ -31,6 +31,7 @@ import { AppComponent } from './app.component';
 
 // Import the Azure AD B2C configuration 
 import { msalConfig, protectedResources } from './auth-config';
+import { HeaderComponent } from './components/layouts/header/header.component';
 import { IconComponent } from './components/icon/icon.component';
 import { LogoComponent } from './components/logo/logo.component';
 import { CategoriesModule } from './modules/categories/categories.module';
@@ -120,6 +121,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
           [protectedResources.categoriesAPI.endpoint, protectedResources.categoriesAPI.scopes]
         ])
       }),
+    HeaderComponent,
     PageSpaceComponent,
     PageHomeComponent
   ],

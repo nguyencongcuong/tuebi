@@ -5,7 +5,7 @@
  * in app.module.ts file.
  */
 
-import { LogLevel, Configuration, BrowserCacheLocation } from '@azure/msal-browser';
+import { BrowserCacheLocation, Configuration, LogLevel } from '@azure/msal-browser';
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
@@ -16,19 +16,19 @@ const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigato
  */
 export const b2cPolicies = {
   names: {
-    signUpSignIn: "B2C_1_signup-signin-flow",
+    signUpSignIn: "B2C_1_signup-signin",
   },
   authorities: {
     signUpSignIn: {
-      authority: "https://tuebib2c.b2clogin.com/tuebib2c.onmicrosoft.com/B2C_1_signup-signin-flow",
+      authority: "https://tuebiio.b2clogin.com/tuebiio.onmicrosoft.com/B2C_1_signup-signin",
     }
   },
-  authorityDomain: "tuebib2c.b2clogin.com"
+  authorityDomain: "tuebiio.b2clogin.com"
 };
 
 export const msalConfig: Configuration = {
   auth: {
-    clientId: '72b3477f-1316-4a1b-b0b7-7b2154d97ba5', // This is the ONLY mandatory field that you need to supply.
+    clientId: '4fa212b3-eadb-4c66-bddc-d18eb2bf90a9', // This is the ONLY mandatory field that you need to supply.
     authority: b2cPolicies.authorities.signUpSignIn.authority, // Defaults to "https://login.microsoftonline.com/common"
     redirectUri: '/', // Points to window.location.origin. You must register this URI on Azure portal/App Registration.
     postLogoutRedirectUri: '/', // Indicates the page to navigate after logout.
@@ -53,7 +53,7 @@ export const msalConfig: Configuration = {
 export const protectedResources = {
   categoriesAPI: {
     endpoint: "http://localhost:3000/api/categories",
-    scopes: ["https://tuebib2c.onmicrosoft.com/tuebi/api/categories.read"],
+    scopes: ["https://tuebiio.onmicrosoft.com/tuebi/categories.read"],
   },
 }
 

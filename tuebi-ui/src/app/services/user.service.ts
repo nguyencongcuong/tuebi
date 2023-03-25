@@ -24,6 +24,10 @@ export class UserService {
 	}
 	
 	createOne(payload: any): Observable<any> {
+		if(!payload.accessToken) {
+			console.log('[Azure B2C Authentication] No access token generated. Check Azure AD B2C App Registration', payload);
+		}
+		
 		const url = this.API_URL + `/users`;
 		const body = {
 			user_object_id: payload.account.idTokenClaims.oid,

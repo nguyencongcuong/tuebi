@@ -14,6 +14,7 @@ import { UserService } from './services/user.service';
 	templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
+	public isLoading = true;
 	private _destroying$ = new Subject<void>();
 
 	constructor(
@@ -50,6 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
 				this.userService.createOne(payload).subscribe((res) => {
 					if(res.success) {
 						// Do something here
+
 					}
 				});
 			});
@@ -62,6 +64,7 @@ export class AppComponent implements OnInit, OnDestroy {
 			.subscribe(() => {
 				this.setLoginDisplay();
 			})
+		
 	}
 	
 	ngOnDestroy(): void {

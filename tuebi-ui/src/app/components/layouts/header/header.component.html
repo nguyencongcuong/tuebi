@@ -1,0 +1,7 @@
+<div class="flex justify-between items-center gap-4 bg-neutral-100 px-8 py-4 mb-4">
+	<app-logo></app-logo>
+	<div *ngIf="authService.isB2CLoggedIn$ | async" class="flex items-center gap-4">
+		<a [routerLink]="['/space/categories/all']">My Bookmarks</a>
+		<a (click)="authService.logout()">Log out</a>
+	</div>
+</div>

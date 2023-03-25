@@ -24,6 +24,9 @@ class AzureApplicationSettings {
 	ENCRYPTION_ALGORITHM;
 	ENCRYPTION_SECRET_KEY;
 	
+	AZURE_B2C_TENANT_NAME;
+	AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN;
+	
 	constructor(env: string) {
 		this.ENV = env;
 		if (this.ENV === 'prod') {
@@ -57,6 +60,9 @@ class AzureApplicationSettings {
 		
 		this.ENCRYPTION_ALGORITHM = process.env.ENCRYPTION_ALGORITHM;
 		this.ENCRYPTION_SECRET_KEY = process.env.ENCRYPTION_SECRET_KEY;
+		
+		this.AZURE_B2C_TENANT_NAME = process.env.AZURE_B2C_TENANT_NAME;
+		this.AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN = process.env.AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN;
 	}
 	
 	initDev() {
@@ -83,6 +89,9 @@ class AzureApplicationSettings {
 		
 		this.ENCRYPTION_ALGORITHM = 'aes-256-ctr';
 		this.ENCRYPTION_SECRET_KEY = 'vOVH6sdmpNWjRRIqCc7rdxs01lwHzfr3';
+		
+		this.AZURE_B2C_TENANT_NAME = 'tuebiio';
+		this.AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN = 'b2c_1_signup-signin';
 	}
 	
 }

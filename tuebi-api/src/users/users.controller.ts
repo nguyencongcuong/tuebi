@@ -83,8 +83,6 @@ export class UsersController {
       );
       
       if (decryptedUser) {
-        delete decryptedUser['user_password'];
-        delete decryptedUser['user_confirmation_code'];
         return sendSuccess(decryptedUser);
       } else {
         return sendError('User not found!');

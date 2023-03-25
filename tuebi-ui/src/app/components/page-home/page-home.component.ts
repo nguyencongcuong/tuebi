@@ -12,13 +12,15 @@ import { filter } from 'rxjs';
 import { featuresAtGlance, featuresEnum } from '../../enums/features.enum';
 import { themes } from '../../enums/theme.enum';
 import { AuthService } from '../../services/auth.service';
+import { FooterComponent } from '../layouts/footer/footer.component';
+import { HeaderComponent } from '../layouts/header/header.component';
 import { IconComponent } from '../icon/icon.component';
 import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   selector: 'app-page-home',
   standalone: true,
-  imports: [CommonModule, LogoComponent, RouterLinkActive, RouterLink, IconComponent, NzButtonModule, NzIconModule, NzMenuModule, NzToolTipModule, NzSpinModule],
+  imports: [CommonModule, LogoComponent, RouterLinkActive, RouterLink, IconComponent, NzButtonModule, NzIconModule, NzMenuModule, NzToolTipModule, NzSpinModule, HeaderComponent, FooterComponent],
   templateUrl: './page-home.component.html',
   styleUrls: ['./page-home.component.scss']
 })
