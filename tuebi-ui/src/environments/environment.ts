@@ -4,7 +4,9 @@
 
 export const environment = {
 	production: false,
-	backend_url: 'http://localhost:3333'
+	backend_url: 'http://localhost:3333',
+	azure_b2c_tenant_name: 'tuebiio',
+	azure_b2c_user_flow_signup_signin: 'b2c_1_signup-signin',
 };
 
 /*

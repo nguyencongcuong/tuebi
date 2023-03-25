@@ -6,6 +6,7 @@
  */
 
 import { BrowserCacheLocation, Configuration, LogLevel } from '@azure/msal-browser';
+import { environment } from '../environments/environment';
 
 const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigator.userAgent.indexOf("Trident/") > -1;
 
@@ -16,14 +17,14 @@ const isIE = window.navigator.userAgent.indexOf("MSIE ") > -1 || window.navigato
  */
 export const b2cPolicies = {
   names: {
-    signUpSignIn: "B2C_1_signup-signin",
+    signUpSignIn: environment.azure_b2c_user_flow_signup_signin,
   },
   authorities: {
     signUpSignIn: {
-      authority: "https://tuebiio.b2clogin.com/tuebiio.onmicrosoft.com/B2C_1_signup-signin",
+      authority: `https://${environment.azure_b2c_tenant_name}.b2clogin.com/${environment.azure_b2c_tenant_name}.onmicrosoft.com/${environment.azure_b2c_user_flow_signup_signin}`,
     }
   },
-  authorityDomain: "tuebiio.b2clogin.com"
+  authorityDomain: `${environment.azure_b2c_tenant_name}.b2clogin.com`
 };
 
 export const msalConfig: Configuration = {
@@ -53,10 +54,6 @@ export const msalConfig: Configuration = {
 export const protectedResources = {
   categoriesAPI: {
     endpoint: "http://localhost:3000/api/categories",
-    scopes: ["https://tuebiio.onmicrosoft.com/tuebi/categories.read"],
+    scopes: [`https://${environment.azure_b2c_tenant_name}.onmicrosoft.com/tuebi/categories.read`],
   },
 }
-
-export const loginRequest = {
-  scopes: []
-};

@@ -9,7 +9,7 @@ import { Observable, of } from 'rxjs';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Category } from '../../../interfaces/category.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { AddBookmark } from '../add-bookmark/add-bookmark';
 
 @Component({
@@ -28,7 +28,7 @@ export class DialogEditBookmarkComponent {
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddBookmark>,
     private bookmarkEntityService: BookmarkEntityService,
-    private categoryEntityService: CategoryEntityService,
+    private categoryEntityService: CategoriesEntityService,
   ) {
     this.form = this.initForm();
     this.categories$ = this.categoryEntityService.entities$;

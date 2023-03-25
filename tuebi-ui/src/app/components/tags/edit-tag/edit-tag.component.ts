@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuModule } from '@angular/material/menu';
 import { Tag } from '../../../interfaces/tag.interface';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { DialogEditTagComponent } from '../dialog-edit-tag/dialog-edit-tag.component';
 
 @Component({

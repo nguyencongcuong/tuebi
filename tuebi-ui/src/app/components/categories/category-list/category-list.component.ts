@@ -4,12 +4,11 @@ import { Component } from '@angular/core';
 import { MatDividerModule } from '@angular/material/divider';
 import { RouterModule } from '@angular/router';
 import { firstValueFrom, map, Observable, of } from 'rxjs';
-import { themes } from '../../../enums/theme.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Category } from '../../../interfaces/category.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { BreakpointService } from '../../../services/breakpoint.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import {
 	TypographySectionHeaderComponent
 } from '../../commons/typography-section-header/typography-section-header.component';
@@ -32,14 +31,12 @@ import { CategoryComponent } from '../category/category.component';
 	styleUrls: ['./category-list.component.scss']
 })
 export class CategoryListComponent {
-	categories$: Observable<Category[]> = of([]);
-	bookmarks$: Observable<Bookmark[]> = of([]);
-	theme = themes[0];
-	
-	isXs$;
+	public categories$: Observable<Category[]> = of([]);
+	public bookmarks$: Observable<Bookmark[]> = of([]);
+	public isXs$;
 	
 	constructor(
-		private categoryEntityService: CategoryEntityService,
+		private categoryEntityService: CategoriesEntityService,
 		private bookmarkEntityService: BookmarkEntityService,
 		private breakpointService: BreakpointService
 	) {

@@ -12,8 +12,8 @@ import { Category } from '../../../interfaces/category.interface';
 import { Tag } from '../../../interfaces/tag.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { BookmarkService } from '../../../services/bookmark.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
-import { IconComponent } from '../../icon/icon.component';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { BookmarkComponent } from '../bookmark/bookmark.component';
 
 @Component({
@@ -57,7 +57,7 @@ export class BookmarkListSelectContainerComponent implements OnInit {
   constructor(
     private bookmarkEntityService: BookmarkEntityService,
     private bookmarkService: BookmarkService,
-    private categoryEntityService: CategoryEntityService,
+    private categoryEntityService: CategoriesEntityService,
   ) {
     this.categories$ = this.categoryEntityService.entities$;
   }

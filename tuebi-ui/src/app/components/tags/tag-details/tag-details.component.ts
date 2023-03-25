@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, map, Observable, of } from 'rxjs';
-import { themes } from '../../../enums/theme.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
@@ -23,8 +22,6 @@ export class TagDetailsComponent {
   currentRoute$: Observable<string> = of('');
   filteredBookmarks$: Observable<Bookmark[]> = of([]);
   isEmpty$: Observable<boolean> = of(false);
-  
-  theme = themes[0];
   
   constructor(
     private route: ActivatedRoute,

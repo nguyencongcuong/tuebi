@@ -9,14 +9,14 @@ import { AuthGuard } from '../../guards/auth.guard';
 import { NzZorroModule } from '../../nz-zorro.module';
 import { BookmarkDataService } from '../../services/bookmark-data.service';
 import { BookmarkEntityService } from '../../services/bookmark-entity.service';
-import { CategoryDataService } from '../../services/category-data.service';
-import { CategoryEntityService } from '../../services/category-entity.service';
-import { CategoryResolver } from '../../services/category.resolver';
+import { CategoriesDataService } from './categories.data.service';
+import { CategoriesEntityService } from './categories.entity.service';
+import { CategoriesResolver } from './categories.resolver';
 import { TagDataService } from '../../services/tag-data.service';
 import { TagEntityService } from '../../services/tag-entity.service';
 import { UserDataService } from '../../services/user-data.service';
 import { UserEntityService } from '../../services/user-entity.service';
-import { CategoriesRoutingModule } from './categories-routing.module';
+import { CategoriesRoutingModule } from './categories.routing.module';
 
 export const ENTITY = {
 	CATEGORIES: 'Categories',
@@ -103,11 +103,11 @@ export const entityMetadata: EntityMetadataMap = {
 		AddBookmark
 	],
 	providers: [
-		CategoryResolver,
+		CategoriesResolver,
 		UserEntityService,
 		UserDataService,
-		CategoryEntityService,
-		CategoryDataService,
+		CategoriesEntityService,
+		CategoriesDataService,
 		BookmarkEntityService,
 		BookmarkDataService,
 		TagEntityService,
@@ -120,7 +120,7 @@ export class CategoriesModule {
 		private eds: EntityDefinitionService,
 		private entityDataService: EntityDataService,
 		private userDataService: UserDataService,
-		private categoriesDataService: CategoryDataService,
+		private categoriesDataService: CategoriesDataService,
 		private bookmarksDataService: BookmarkDataService,
 		private tagDataService: TagDataService,
 	) {

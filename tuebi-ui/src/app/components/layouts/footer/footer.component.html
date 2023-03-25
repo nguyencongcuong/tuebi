@@ -3,7 +3,7 @@
 	<div class="flex items-center gap-4">
 		<a *ngIf="!(authService.isB2CLoggedIn$ | async)" (click)="authService.login()">Login</a>
 		<a *ngIf="!(authService.isB2CLoggedIn$ | async)" (click)="authService.login()">Signup</a>
-		<a [routerLink]="['/tos']">Terms</a>
-		<a [routerLink]="['/privacy-policy']">Privacy</a>
+		<a [routerLink]="[route.tos.link]">Terms</a>
+		<a [routerLink]="[route.privacy_policy.link]">Privacy</a>
 	</div>
 </div>

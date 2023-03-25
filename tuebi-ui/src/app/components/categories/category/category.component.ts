@@ -10,9 +10,9 @@ import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Category } from '../../../interfaces/category.interface';
 import { UserSettings } from '../../../interfaces/user.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { EditCategoryComponent } from '../edit-category/edit-category.component';
 
 @Component({
@@ -61,7 +61,7 @@ export class CategoryComponent implements OnInit {
 	categoryRouterLink: any = [];
 	
 	constructor(
-		private categoryEntityService: CategoryEntityService,
+		private categoryEntityService: CategoriesEntityService,
 		private bookmarkEntityService: BookmarkEntityService,
 		private userEntityService: UserEntityService
 	) {

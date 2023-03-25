@@ -7,7 +7,7 @@ import { TagEntityService } from '../../../services/tag-entity.service';
 import {
   TypographySectionHeaderComponent
 } from '../../commons/typography-section-header/typography-section-header.component';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { AddTag } from '../add-tag/add-tag';
 import { TagComponent } from '../tag/tag.component';
 

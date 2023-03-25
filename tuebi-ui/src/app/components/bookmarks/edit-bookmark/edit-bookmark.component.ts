@@ -13,9 +13,9 @@ import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Category } from '../../../interfaces/category.interface';
 import { Tag } from '../../../interfaces/tag.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { DialogEditBookmarkComponent } from '../dialog-edit-bookmark/dialog-edit-bookmark.component';
 
 @Component({
@@ -36,7 +36,7 @@ export class EditBookmarkComponent implements OnChanges {
 	constructor(
 		private fb: FormBuilder,
 		private bookmarkEntityService: BookmarkEntityService,
-		private categoryEntityService: CategoryEntityService,
+		private categoryEntityService: CategoriesEntityService,
 		private tagEntityService: TagEntityService,
 		public dialog: MatDialog,
 	) {

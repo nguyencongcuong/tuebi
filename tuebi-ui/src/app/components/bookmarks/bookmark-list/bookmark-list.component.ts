@@ -5,11 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, map, Observable, of } from 'rxjs';
-import { themes } from '../../../enums/theme.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Tag } from '../../../interfaces/tag.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { AddBookmark } from '../add-bookmark/add-bookmark';
 import {
@@ -25,19 +24,17 @@ import { BookmarkComponent } from '../bookmark/bookmark.component';
   styleUrls: ['./bookmark-list.component.scss']
 })
 export class BookmarkListComponent implements OnInit {
-  id: string = '';
-  bookmarks$: Observable<Bookmark[]> = of([]);
-  tags$: Observable<Tag[]> = of([]);
-  currentRoute$: Observable<string> = of('');
-  filteredBookmarks$: Observable<Bookmark[]> = of([]);
-  isEmpty$: Observable<boolean> = of(false);
-  
-  theme = themes[0];
+  public id: string = '';
+  public bookmarks$: Observable<Bookmark[]> = of([]);
+  public tags$: Observable<Tag[]> = of([]);
+  public currentRoute$: Observable<string> = of('');
+  public filteredBookmarks$: Observable<Bookmark[]> = of([]);
+  public isEmpty$: Observable<boolean> = of(false);
   
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private categoryEntityService: CategoryEntityService,
+    private categoryEntityService: CategoriesEntityService,
     private bookmarkEntityService: BookmarkEntityService,
     private tagEntityService: TagEntityService
   ) {

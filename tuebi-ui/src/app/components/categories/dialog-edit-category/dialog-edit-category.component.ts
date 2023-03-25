@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Category } from '../../../interfaces/category.interface';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { EditCategoryComponent } from '../edit-category/edit-category.component';
 
 @Component({
@@ -23,7 +23,7 @@ export class DialogEditCategoryComponent {
     @Inject(MAT_DIALOG_DATA) public data: Category,
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<EditCategoryComponent>,
-    private categoryEntityService: CategoryEntityService,
+    private categoryEntityService: CategoriesEntityService,
   ) {
     this.form = this.initForm();
   }

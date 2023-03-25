@@ -11,7 +11,7 @@ import { firstValueFrom, map, Observable } from 'rxjs';
 import { User } from '../../../interfaces/user.interface';
 import { UserEntityService } from '../../../services/user-entity.service';
 import { UserService } from '../../../services/user.service';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { SettingAppearanceComponent } from '../setting-appearance/setting-appearance.component';
 
 @Component({

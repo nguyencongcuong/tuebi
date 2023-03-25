@@ -1,28 +1,18 @@
-export enum ROUTE {
-	ROOT = '',
-	SIGNUP = 'signup',
-	ABOUT = 'about',
-	CONTACT = 'contact',
-	SPACE = 'space',
-	CATEGORIES = 'categories',
-	TAGS = 'tags',
-	SEARCH = 'search',
-	
-	SETTINGS = 'settings',
-	SETTINGS_GENERAL = 'general',
-	SETTINGS_APPEARANCE = 'appearance',
-	SETTINGS_ABOUT = 'about',
-	SETTINGS_IMPORT_EXPORT = 'import-export',
-	SETTINGS_PRIVACY_SECURITY = 'privacy-security'
-}
-
-export const routeList = [
-	{
-		name: 'About',
-		routerLink: ROUTE.ABOUT,
+export const route = {
+	home: {
+		name: 'Home',
+		link: ''
 	},
-	{
-		name: 'Contact',
-		routerLink: ROUTE.CONTACT,
+	space: {
+		name: 'Space',
+		link: '/space/categories/all'
+	},
+	tos: {
+		name: 'Terms',
+		link: '/tos'
+	},
+	privacy_policy: {
+		name: 'Privacy',
+		link: '/privacy-policy'
 	}
-];
+}

@@ -8,7 +8,7 @@ import { map, Observable } from 'rxjs';
 import { User } from '../../../interfaces/user.interface';
 import { AuthService } from '../../../services/auth.service';
 import { UserEntityService } from '../../../services/user-entity.service';
-import { AvatarComponent } from '../../avatar/avatar.component';
+import { AvatarComponent } from '../../commons/avatar/avatar.component';
 import { SettingAppearanceDialogComponent } from '../setting-appearance-dialog/setting-appearance-dialog.component';
 import { SettingAppearanceComponent } from '../setting-appearance/setting-appearance.component';
 import { SettingImportComponent } from '../setting-import/setting-import.component';

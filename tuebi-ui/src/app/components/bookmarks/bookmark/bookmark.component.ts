@@ -9,17 +9,16 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { NzTagModule } from 'ng-zorro-antd/tag';
 import { map, Observable, of } from 'rxjs';
 import { COLOR_MAPPING } from '../../../enums/color-mapping.enum';
-import { themes } from '../../../enums/theme.enum';
 import { Bookmark } from '../../../interfaces/bookmark.interface';
 import { Category } from '../../../interfaces/category.interface';
 import { Tag } from '../../../interfaces/tag.interface';
 import { UserSettings } from '../../../interfaces/user.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { BookmarkService } from '../../../services/bookmark.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { EditBookmarkComponent } from '../edit-bookmark/edit-bookmark.component';
 
 @Component({
@@ -57,7 +56,6 @@ export class BookmarkComponent implements OnInit {
 	@Input() isCategorized: boolean = true;
 	@Input() isSearching: boolean = false;
 	
-	theme = themes[0];
 	colorMapping = COLOR_MAPPING;
 	
 	userSettings$ = new Observable<UserSettings>();
@@ -65,26 +63,12 @@ export class BookmarkComponent implements OnInit {
 	categoryName$ = new Observable<string>();
 	category$ = new Observable<Category | undefined>();
 	tags$ = new Observable<Tag[]>();
-	quickActionItems = [
-		{
-			icon: 'content_copy',
-			handleClick: () => {
-				this.copy()
-			}
-		},
-		{
-			icon: 'link',
-			handleClick: () => {
-				this.open()
-			}
-		}
-	]
 	
 	constructor(
 		private userEntityService: UserEntityService,
 		private bookmarkService: BookmarkService,
 		private bookmarkEntityService: BookmarkEntityService,
-		private categoryEntityService: CategoryEntityService,
+		private categoryEntityService: CategoriesEntityService,
 		private tagEntityService: TagEntityService,
 		private clipboard: Clipboard,
 		private notificationService: NzNotificationService,

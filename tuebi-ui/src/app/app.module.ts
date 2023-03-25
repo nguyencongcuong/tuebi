@@ -32,12 +32,12 @@ import { AppComponent } from './app.component';
 // Import the Azure AD B2C configuration 
 import { msalConfig, protectedResources } from './auth-config';
 import { HeaderComponent } from './components/layouts/header/header.component';
-import { IconComponent } from './components/icon/icon.component';
-import { LogoComponent } from './components/logo/logo.component';
+import { IconComponent } from './components/commons/icon/icon.component';
+import { LogoComponent } from './components/commons/logo/logo.component';
 import { CategoriesModule } from './modules/categories/categories.module';
 import { NzZorroModule } from './nz-zorro.module';
-import { PageHomeComponent } from './components/page-home/page-home.component';
-import { PageSpaceComponent } from './components/page-space/page-space.component';
+import { PageHomeComponent } from './components/pages/page-home/page-home.component';
+import { PageSpaceComponent } from './components/pages/page-space/page-space.component';
 import { metaReducers, reducers } from './reducers';
 
 registerLocaleData(en);

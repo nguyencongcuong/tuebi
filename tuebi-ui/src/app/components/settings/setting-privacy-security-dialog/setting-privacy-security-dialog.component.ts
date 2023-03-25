@@ -16,7 +16,7 @@ import { delay, firstValueFrom, map, Observable, tap } from 'rxjs';
 import { User } from '../../../interfaces/user.interface';
 import { UserEntityService } from '../../../services/user-entity.service';
 import { UserService } from '../../../services/user.service';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { SettingPrivacySecurityComponent } from '../setting-privacy-security/setting-privacy-security.component';
 
 @Component({

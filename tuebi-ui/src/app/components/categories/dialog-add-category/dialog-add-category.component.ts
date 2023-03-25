@@ -6,7 +6,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { Category } from '../../../interfaces/category.interface';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { AddBookmark } from '../../bookmarks/add-bookmark/add-bookmark';
 
 @Component({
@@ -22,7 +22,7 @@ export class DialogAddCategoryComponent {
   constructor(
     private fb: FormBuilder,
     public dialogRef: MatDialogRef<AddBookmark>,
-    private categoryEntityService: CategoryEntityService,
+    private categoryEntityService: CategoriesEntityService,
   ) {
     this.form = this.initForm();
   }

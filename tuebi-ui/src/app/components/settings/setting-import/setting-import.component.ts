@@ -8,9 +8,9 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { NzUploadChangeParam, NzUploadModule } from 'ng-zorro-antd/upload';
 import { environment } from '../../../../environments/environment';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
-import { CategoryEntityService } from '../../../services/category-entity.service';
+import { CategoriesEntityService } from '../../../modules/categories/categories.entity.service';
 import { UserService } from '../../../services/user.service';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 
 @Component({
   standalone: true,
@@ -36,7 +36,7 @@ export class SettingImportComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private userService: UserService,
-    private categoryEntityService: CategoryEntityService,
+    private categoryEntityService: CategoriesEntityService,
     private bookmarkEntityService: BookmarkEntityService,
     private snackBar: MatSnackBar
   ) {

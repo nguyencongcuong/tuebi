@@ -12,7 +12,7 @@ import { UserSettings } from '../../../interfaces/user.interface';
 import { BookmarkEntityService } from '../../../services/bookmark-entity.service';
 import { TagEntityService } from '../../../services/tag-entity.service';
 import { UserEntityService } from '../../../services/user-entity.service';
-import { IconComponent } from '../../icon/icon.component';
+import { IconComponent } from '../../commons/icon/icon.component';
 import { EditTagComponent } from '../edit-tag/edit-tag.component';
 
 @Component({

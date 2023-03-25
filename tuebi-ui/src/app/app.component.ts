@@ -2,10 +2,8 @@ import { Component, Inject, isDevMode, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
 import { EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
-import { Store } from '@ngrx/store';
 import { filter, Subject, takeUntil } from 'rxjs';
 import { BreakpointService } from 'src/app/services/breakpoint.service';
-import { AppState } from './reducers';
 import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 
@@ -14,14 +12,10 @@ import { UserService } from './services/user.service';
 	templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-	public isLoading = true;
 	private _destroying$ = new Subject<void>();
 
 	constructor(
 		@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
-		private router: Router,
-		private route: ActivatedRoute,
-		private store: Store<AppState>,
 		private breakpointService: BreakpointService,
 		private msalService: MsalService,
 		private msalBroadcastService: MsalBroadcastService,
