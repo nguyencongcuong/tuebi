@@ -1,12 +1,16 @@
-import { Injectable } from '@angular/core';
-import { MsalService } from '@azure/msal-angular';
+import { Inject, Injectable } from '@angular/core';
+import { MSAL_GUARD_CONFIG, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
+import { RedirectRequest } from '@azure/msal-browser';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+  public isB2CLoggedIn$ = new BehaviorSubject(false);
 
   constructor(
+    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private msalService: MsalService
   ) { }
   
@@ -20,6 +24,13 @@ export class AuthService {
     }
   }
   
+  login(): void {
+    if (this.msalGuardConfig.authRequest){
+      this.msalService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
+    } else {
+      this.msalService.loginRedirect();
+    }
+  }
   logout(): void {
     this.msalService.logoutRedirect();
   }

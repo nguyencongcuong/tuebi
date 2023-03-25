@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, Inject, OnInit } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
-import { EventMessage, EventType, RedirectRequest } from '@azure/msal-browser';
+import { EventMessage, EventType } from '@azure/msal-browser';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -11,6 +11,7 @@ import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 import { filter } from 'rxjs';
 import { featuresAtGlance, featuresEnum } from '../../enums/features.enum';
 import { themes } from '../../enums/theme.enum';
+import { AuthService } from '../../services/auth.service';
 import { IconComponent } from '../icon/icon.component';
 import { LogoComponent } from '../logo/logo.component';
 
@@ -22,7 +23,6 @@ import { LogoComponent } from '../logo/logo.component';
   styleUrls: ['./page-home.component.scss']
 })
 export class PageHomeComponent implements OnInit {
-  
   theme = themes[0];
   currentUrl = '/';
   
@@ -30,12 +30,12 @@ export class PageHomeComponent implements OnInit {
   featuresAtGlance = featuresAtGlance;
   
   public isLoading = true;
-  public isLoggedIn = false;
   
   constructor(
     @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,
     private msalService: MsalService,
     private msalBroadcastService: MsalBroadcastService,
+    public authService: AuthService
   ) {}
   
   public ngOnInit() {
@@ -54,18 +54,10 @@ export class PageHomeComponent implements OnInit {
       .subscribe((msg: EventMessage) => {
         if(msg.eventType === EventType.LOGIN_SUCCESS) {
           this.isLoading = false;
-          this.isLoggedIn = true;
+          this.authService.isB2CLoggedIn$.next(true)
         } else {
           this.isLoading = false;
         }
       });
-  }
-  
-  public login() {
-    if (this.msalGuardConfig.authRequest){
-      this.msalService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
-    } else {
-      this.msalService.loginRedirect();
-    }
   }
 }

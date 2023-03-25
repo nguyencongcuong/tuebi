@@ -1,5 +1,4 @@
 <div 
-	*ngIf="!isLoading && !isLoggedIn" 
 	class="grid grid-cols-12 p-8"
 >
 	<section class="col-span-6 flex flex-col justify-center gap-6">
@@ -25,15 +24,15 @@
 		</div>
 		
 		<!-- Buttons -->
-		<div class="">
-			<button nz-button nzType="primary" (click)="login()">
-				Login / Sign up
+		<div *ngIf="!(authService.isB2CLoggedIn$ | async)">
+			<button nz-button nzType="primary" (click)="authService.login()" class="uppercase">
+				Get started
 			</button>
 		</div>
 	</section>
 </div>
 
-<div *ngIf="isLoading" class="flex justify-center items-center w-screen h-screen">
-	<ng-template #indicatorTemplate><span nz-icon nzType="loading"></span></ng-template>
-	<nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSpinning]="isLoading" nzSize="large"></nz-spin>
-</div>
+<!-- <div *ngIf="isLoading" class="flex justify-center items-center w-screen h-screen"> -->
+<!-- 	<ng-template #indicatorTemplate><span nz-icon nzType="loading"></span></ng-template> -->
+<!-- 	<nz-spin nzSimple [nzIndicator]="indicatorTemplate" [nzSpinning]="isLoading" nzSize="large"></nz-spin> -->
+<!-- </div> -->

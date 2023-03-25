@@ -1,7 +1,23 @@
-<div *ngIf="!isB2CLoggedIn" class="px-8 py-4">
-	<div class="flex gap-4 items-center">
+<div class="p-2">
+	<div class="flex justify-between items-center gap-4 bg-neutral-100 px-8 py-4 rounded-xl mb-4">
 		<app-logo></app-logo>
+		<div *ngIf="authService.isB2CLoggedIn$ | async" class="flex items-center gap-4">
+			<a [routerLink]="['space/categories/all']">My Bookmarks</a>
+			<a (click)="authService.logout()">Log out</a>
+		</div>
+	</div>
+
+	<router-outlet></router-outlet>
+
+	<div class="flex justify-between items-center gap-4 bg-neutral-100 px-8 py-4 rounded-xl">
+		<app-logo></app-logo>
+		<div class="flex items-center gap-4">
+			<a *ngIf="!(authService.isB2CLoggedIn$ | async)" (click)="authService.login()">Login</a>
+			<a *ngIf="!(authService.isB2CLoggedIn$ | async)" (click)="authService.login()">Signup</a>
+			<a [routerLink]="['tos']">Terms</a>
+			<a [routerLink]="['privacy-policy']">Privacy</a>
+		</div>
 	</div>
 </div>
 
-<router-outlet></router-outlet>
+

@@ -1,12 +1,12 @@
-import { Component, HostListener, Inject, isDevMode, OnDestroy, OnInit } from '@angular/core';
+import { Component, Inject, isDevMode, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MSAL_GUARD_CONFIG, MsalBroadcastService, MsalGuardConfiguration, MsalService } from '@azure/msal-angular';
-import { EventMessage, EventType, InteractionStatus, RedirectRequest } from '@azure/msal-browser';
+import { EventMessage, EventType, InteractionStatus } from '@azure/msal-browser';
 import { Store } from '@ngrx/store';
 import { filter, Subject, takeUntil } from 'rxjs';
 import { BreakpointService } from 'src/app/services/breakpoint.service';
-import { routeList } from './enums/routes.enum';
 import { AppState } from './reducers';
+import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 
 @Component({
@@ -14,9 +14,6 @@ import { UserService } from './services/user.service';
 	templateUrl: './app.component.html',
 })
 export class AppComponent implements OnInit, OnDestroy {
-	public isB2CLoggedIn = false;
-	public isCollapsed = false;
-	public routeList = routeList;
 	private _destroying$ = new Subject<void>();
 
 	constructor(
@@ -28,16 +25,9 @@ export class AppComponent implements OnInit, OnDestroy {
 		private msalService: MsalService,
 		private msalBroadcastService: MsalBroadcastService,
 		private userService: UserService,
+		public authService: AuthService
 	) {
 		this.breakpointService.ngOnInit();
-	}
-	
-	@HostListener('window:resize')
-	onWindowResize() {
-		console.log('reszing')
-		if (window.innerWidth < 1000) {
-			window.resizeTo(1000, window.innerHeight);
-		}
 	}
 	
 	async ngOnInit(): Promise<void> {
@@ -71,7 +61,6 @@ export class AppComponent implements OnInit, OnDestroy {
 			)
 			.subscribe(() => {
 				this.setLoginDisplay();
-				if(this.isB2CLoggedIn) this.router.navigateByUrl('space/categories/all');
 			})
 	}
 	
@@ -80,15 +69,7 @@ export class AppComponent implements OnInit, OnDestroy {
 		this._destroying$.complete();
 	}
 	
-	login() {
-		if (this.msalGuardConfig.authRequest){
-			this.msalService.loginRedirect({...this.msalGuardConfig.authRequest} as RedirectRequest);
-		} else {
-			this.msalService.loginRedirect();
-		}
-	}
-	
 	setLoginDisplay() {
-		this.isB2CLoggedIn = this.msalService.instance.getAllAccounts().length > 0;
+		this.authService.isB2CLoggedIn$.next(this.msalService.instance.getAllAccounts().length > 0) 
 	}
 }

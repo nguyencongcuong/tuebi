@@ -24,7 +24,7 @@ export class TaskService {
   }
   
   // Timezone: GMT
-  @Cron(CronExpression.EVERY_DAY_AT_1AM, { timeZone: 'Antarctica/Troll', name: 'CronJob Example' })
+  @Cron(CronExpression.EVERY_DAY_AT_1AM)
   async deleteUserAccounts() {
     this.logger.log(`Start Cron Job: ${this.deleteUserAccounts.name}`);
     
