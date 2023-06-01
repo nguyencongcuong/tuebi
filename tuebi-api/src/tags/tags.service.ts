@@ -3,11 +3,16 @@ import { Injectable, Logger } from '@nestjs/common';
 import { AzDbService } from '../azure/az-db.service';
 import { CreateTagDto } from './dto/create-tag.dto';
 import { Tag } from './entities/tag.entity';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Injectable()
 export class TagsService {
   private logger = new Logger(TagsService.name);
-  private db = new AzDbService('tags');
+  private db: AzDbService;
+  
+  constructor(azDbClient: AzDbClient) {
+    this.db = new AzDbService(azDbClient, 'tags');
+  }
   
   async createOne(createTagDto: CreateTagDto) {
     try {

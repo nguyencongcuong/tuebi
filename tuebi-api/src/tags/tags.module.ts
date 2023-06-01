@@ -10,10 +10,12 @@ import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
 import { TagsController } from './tags.controller';
 import { TagsService } from './tags.service';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Module({
   controllers: [TagsController],
   providers: [
+    AzDbClient,
     CategoriesService,
     BookmarksService,
     TagsService,

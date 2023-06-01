@@ -6,9 +6,10 @@ import { TagsService } from '../tags/tags.service';
 import { UsersService } from '../users/users.service';
 import { ImagesService } from './images.service';
 import { ImagesController } from './images.controller';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Module({
   controllers: [ImagesController],
-  providers: [ImagesService, UsersService, BookmarksService, CategoriesService, AuthService, TagsService]
+  providers: [AzDbClient, ImagesService, UsersService, BookmarksService, CategoriesService, AuthService, TagsService]
 })
 export class ImagesModule {}

@@ -2,11 +2,16 @@ import { SqlQuerySpec } from '@azure/cosmos';
 import { Injectable, Logger } from '@nestjs/common';
 import { AzDbService, PatchPayload } from '../azure/az-db.service';
 import { Bookmark } from './bookmarks.interface';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Injectable()
 export class BookmarksService {
 	private logger = new Logger(BookmarksService.name);
-	private db = new AzDbService('bookmarks');
+	private db: AzDbService;
+  
+  constructor(azDbClient: AzDbClient) {
+    this.db = new AzDbService(azDbClient, 'bookmarks');
+  }
 	
 	async createOne(bookmark: Bookmark): Promise<Bookmark> {
 		try {

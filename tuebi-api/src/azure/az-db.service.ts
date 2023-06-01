@@ -1,6 +1,6 @@
 import { Container, PatchOperation, SqlQuerySpec } from '@azure/cosmos';
 import { Injectable } from '@nestjs/common';
-import { azDb } from './az-db.client';
+import { AzDbClient } from './az-db.client';
 
 export type ContainerName =
 	| 'users'
@@ -19,8 +19,8 @@ export interface PatchPayload {
 export class AzDbService {
 	private container: Container;
 	
-	constructor(containerName: ContainerName) {
-		this.container = azDb.container(containerName);
+	constructor(azDbClient: AzDbClient, containerName: ContainerName) {
+		this.container = azDbClient.azDb.container(containerName);
 	}
 	
 	async createOne<T>(item: T): Promise<T> {

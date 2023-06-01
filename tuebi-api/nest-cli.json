@@ -4,6 +4,8 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "webpack": true,
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "watchAssets": true,
+    "assets": ["**/*.html", "**/*.json"]
   }
 }

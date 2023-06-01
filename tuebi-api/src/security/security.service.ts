@@ -1,18 +1,24 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { createCipheriv, createDecipheriv, pbkdf2Sync } from 'crypto';
 import { isArray, isBoolean, isNumber, isObject, isString } from 'lodash';
-import { azAppSettings } from '../azure/azure-application-settings';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class SecurityService {
-	private SALT = azAppSettings.SALT;
-	private ENCRYPTION_ALGORITHM = azAppSettings.ENCRYPTION_ALGORITHM;
-	private ENCRYPTION_SECRET_KEY = azAppSettings.ENCRYPTION_SECRET_KEY;
+	private SALT;
+	private ENCRYPTION_ALGORITHM;
+	private ENCRYPTION_SECRET_KEY;
 	private BOOLEAN_IDENTIFIER = 'BOOLEAN_IDENTIFIER';
 	private STRING_IDENTIFIER = 'STRING_IDENTIFIER';
 	private NUMBER_IDENTIFIER = 'NUMBER_IDENTIFIER';
 	
 	private logger = new Logger(SecurityService.name);
+  
+  constructor(private configService: ConfigService) {
+    this.SALT = this.configService.get('SALT');
+    this.ENCRYPTION_ALGORITHM = this.configService.get('ENCRYPTION_ALGORITHM');
+    this.ENCRYPTION_SECRET_KEY = this.configService.get('ENCRYPTION_SECRET_KEY')
+  }
 	
 	// COMMON ENCRYPTION & DECRYPTION
 	async encrypt(text: string, ivBuffer: Buffer) {

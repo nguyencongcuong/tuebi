@@ -9,18 +9,23 @@ import { ImagesService } from '../images/images.service';
 import { Tag } from '../tags/entities/tag.entity';
 import { TagsService } from '../tags/tags.service';
 import { User } from './users.interface';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Injectable()
 export class UsersService {
   private logger = new Logger(UsersService.name);
-  private db = new AzDbService('users');
-  
+  private db: AzDbService;
+
   constructor(
     private bookmarksService: BookmarksService,
     private categoriesService: CategoriesService,
     private tagsService: TagsService,
-    private imagesService: ImagesService
-  ) {}
+    private imagesService: ImagesService,
+    private azDbClient: AzDbClient,
+  ) {
+    this.db = new AzDbService(azDbClient, 'users');
+    
+  }
   
   async createOne(user: User): Promise<User> {
     try {

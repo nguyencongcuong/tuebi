@@ -11,10 +11,12 @@ import { UsersService } from '../users/users.service';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { RolesGuard } from './guards/role.guard';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Module({
 	controllers: [AuthController],
 	providers: [
+    AzDbClient,
 		AuthService,
 		UsersService,
 		SecurityService,

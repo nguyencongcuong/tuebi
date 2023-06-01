@@ -10,10 +10,12 @@ import { UsersModule } from '../users/users.module';
 import { UsersService } from '../users/users.service';
 import { BookmarksController } from './bookmarks.controller';
 import { BookmarksService } from './bookmarks.service';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Module({
 	controllers: [BookmarksController],
 	providers: [
+    AzDbClient,
 		CategoriesService,
 		BookmarksService,
 		AuthService,

@@ -21,10 +21,13 @@ import { TagsService } from './tags/tags.service';
 import { TaskService } from './task/task.service';
 import { UsersModule } from './users/users.module';
 import { UsersService } from './users/users.service';
+import { ConfigModule } from '@nestjs/config';
+import { AzDbClient } from './azure/az-db.client';
 
 @Module({
 	controllers: [AppController],
 	providers: [
+    AzDbClient,
 		JwtService,
 		AppService,
 		AuthService,
@@ -37,6 +40,10 @@ import { UsersService } from './users/users.service';
 		ImagesService
 	],
 	imports: [
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: [".env", ".env.prod"],
+    }),
 		JwtModule,
 		AuthModule,
 		SecurityModule,

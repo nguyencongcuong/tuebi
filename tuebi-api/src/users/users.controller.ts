@@ -4,18 +4,18 @@ import { isObject, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
-import { azAppSettings } from '../azure/azure-application-settings';
 import { EmailsService } from '../emails/emails.service';
 import { SecurityService } from '../security/security.service';
 import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { sendError, sendSuccess } from '../utilities';
 import { CreateUserRequestBodyI, UpdateUserRequestBodyI, User, } from './users.interface';
 import { UsersService } from './users.service';
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class UsersController {
-  TUEBI_EMAIL_NO_REPLY_NAME = azAppSettings.TUEBI_EMAIL_NO_REPLY_NAME;
-  TUEBI_EMAIL_NO_REPLY_ADDRESS = azAppSettings.TUEBI_EMAIL_NO_REPLY_ADDRESS;
+  private TUEBI_EMAIL_NO_REPLY_NAME;
+  private TUEBI_EMAIL_NO_REPLY_ADDRESS;
   private ENCRYPTED_FIELDS = ['user_name'];
   
   constructor(
@@ -24,7 +24,11 @@ export class UsersController {
     private authService: AuthService,
     private subscriptionService: SubscriptionsService,
     private securityService: SecurityService,
-  ) {}
+    private configService: ConfigService
+  ) {
+    this.TUEBI_EMAIL_NO_REPLY_NAME = this.configService.get('TUEBI_EMAIL_NO_REPLY_NAME');
+    this.TUEBI_EMAIL_NO_REPLY_ADDRESS = this.configService.get('TUEBI_EMAIL_NO_REPLY_ADDRESS')
+  }
   
   @UseGuards(AzureB2cJwt)
   @Post('users')

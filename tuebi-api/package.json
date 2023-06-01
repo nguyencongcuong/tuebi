@@ -6,8 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
-    "build": "nest build && cp -R package.json dist/package.json && cp -R node_modules dist/node_modules",
-    "start": "node main.js",
+    "build": "nest build && cp -R .env.prod dist && cp -R package.json dist",
+    "start": "npm install && node main.js",
     "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
@@ -53,6 +53,7 @@
   "devDependencies": {
     "@compodoc/compodoc": "^1.1.19",
     "@nestjs/cli": "^9.0.0",
+    "@nestjs/config": "^2.3.2",
     "@nestjs/testing": "8.0.0",
     "@types/cron": "^2.0.0",
     "@types/crypto-js": "^4.1.1",

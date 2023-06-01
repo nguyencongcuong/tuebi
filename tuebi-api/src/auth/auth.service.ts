@@ -1,13 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
-import { azAppSettings } from '../azure/azure-application-settings';
+import { ConfigService } from '@nestjs/config';
 
 const Jose = require('jose');
 
 @Injectable()
 export class AuthService {
+  AZURE_B2C_TENANT_NAME;
+  AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN;
+  
 	constructor(
-	) {}
+    private configService: ConfigService
+	) {
+    this.AZURE_B2C_TENANT_NAME = this.configService.get('AZURE_B2C_TENANT_NAME');
+    this.AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN = this.configService.get('AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN');
+  }
 	
 	async decodeJwt(jwt: string) {
 		if(jwt.includes('Bearer')) {
@@ -17,7 +24,7 @@ export class AuthService {
 	}
 	async getPublicKey() {
 		// Verify Access Token Signature
-		const jwkResponse = await axios.get(`https://${azAppSettings.AZURE_B2C_TENANT_NAME}.b2clogin.com/${azAppSettings.AZURE_B2C_TENANT_NAME}.onmicrosoft.com/${azAppSettings.AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN}/discovery/v2.0/keys`);
+		const jwkResponse = await axios.get(`https://${this.AZURE_B2C_TENANT_NAME}.b2clogin.com/${this.AZURE_B2C_TENANT_NAME}.onmicrosoft.com/${this.AZURE_B2C_USER_FLOW_SIGNUP_SIGNIN}/discovery/v2.0/keys`);
 		const jwk = jwkResponse.data.keys[0];
 		const alg = 'RS256';
 

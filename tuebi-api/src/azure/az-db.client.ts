@@ -1,11 +1,20 @@
-import { CosmosClient, CosmosClientOptions } from '@azure/cosmos';
-import { azAppSettings } from './azure-application-settings';
+import { CosmosClient, Database } from '@azure/cosmos';
+import { Injectable } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
-const options: CosmosClientOptions = {
-	endpoint: azAppSettings.AZURE_COSMOS_DB_ENDPOINT,
-	key: azAppSettings.AZURE_COSMOS_DB_PRIMARY_KEY,
-};
+@Injectable()
+export class AzDbClient {
+  public azDb: Database;
+  private azDbClient: CosmosClient;
 
-export const azDbClient = new CosmosClient(options);
+  constructor(private readonly configService: ConfigService) {
+    const endpoint = this.configService.get('AZURE_COSMOS_DB_ENDPOINT');
+    const key = this.configService.get('AZURE_COSMOS_DB_PRIMARY_KEY');
+    const database = this.configService.get('AZURE_COSMOS_DB_DATABASE_NAME');
 
-export const azDb = azDbClient.databases.client.database(azAppSettings.AZURE_COSMOS_DB_DATABASE_NAME);
+    this.azDbClient = new CosmosClient({ endpoint, key });
+    this.azDb = this.azDbClient.databases.client.database(database);
+  }
+
+  // Add methods for interacting with the database using the `azDbClient`
+}

@@ -9,7 +9,7 @@ async function bootstrap() {
 			logger: ['log', 'error', 'debug', 'warn', 'verbose']
 		}
 	);
-	const port = process.env.PORT || 3333;
+	const port = process.env.PORT || 8001;
 	
 	app.enableCors();
 	app.use(helmet());

@@ -11,10 +11,12 @@ import { UsersService } from '../users/users.service';
 import { CategoriesController } from './categories.controller';
 
 import { CategoriesService } from './categories.service';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Module({
 	controllers: [CategoriesController],
 	providers: [
+    AzDbClient,
 		CategoriesService,
 		AuthService,
 		UsersService,

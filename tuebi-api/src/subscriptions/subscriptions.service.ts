@@ -2,11 +2,16 @@ import { SqlQuerySpec } from '@azure/cosmos';
 import { Injectable, Logger } from '@nestjs/common';
 import { AzDbService, PatchPayload } from '../azure/az-db.service';
 import { Subscription } from './subscriptions.interface';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Injectable()
 export class SubscriptionsService {
 	private logger = new Logger(SubscriptionsService.name);
-	private db = new AzDbService('subscriptions');
+	private db: AzDbService;
+
+  constructor(azDbClient: AzDbClient) {
+    this.db = new AzDbService(azDbClient, 'subscriptions');
+  }
 	
 	async createOne(subscription: Subscription): Promise<Subscription> {
 		try {

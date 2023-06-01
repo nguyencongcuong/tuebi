@@ -6,17 +6,21 @@ import { BookmarksService } from '../bookmarks/bookmarks.service';
 import { CategoriesService } from '../categories/categories.service';
 import { User } from '../users/users.interface';
 import { UsersService } from '../users/users.service';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Injectable()
 export class TaskService {
-  private userDb = new AzDbService('users');
+  private userDb: AzDbService;
   private logger = new Logger(TaskService.name);
   
   constructor(
     private bookmarksService: BookmarksService,
     private categoriesService: CategoriesService,
-    private userService: UsersService
-  ) {}
+    private userService: UsersService,
+    private azDbClient: AzDbClient
+  ) {
+    this.userDb = new AzDbService(azDbClient, 'users');
+  }
   
   @Cron(CronExpression.EVERY_6_MONTHS)
   async welcome() {

@@ -1,7 +1,7 @@
 import { Injectable, Logger } from '@nestjs/common';
 import Mail from 'nodemailer/lib/mailer';
 import SMTPTransport from 'nodemailer/lib/smtp-transport';
-import { azAppSettings } from '../azure/azure-application-settings';
+import { ConfigService } from '@nestjs/config';
 
 const nodemailer = require('nodemailer');
 const mjml2html = require('mjml');
@@ -9,16 +9,18 @@ const mjml2html = require('mjml');
 @Injectable()
 export class EmailsService {
 	private logger = new Logger(EmailsService.name);
-	
 	private options: SMTPTransport.Options = {
-		host: azAppSettings.TUEBI_EMAIL_HOST,
-		port: Number(azAppSettings.TUEBI_EMAIL_PORT),
+		host: this.configService.get('TUEBI_EMAIL_HOST'),
+		port: Number(this.configService.get('TUEBI_EMAIL_PORT')),
 		secure: true,
 		auth: {
-			user: azAppSettings.TUEBI_EMAIL_NO_REPLY_ADDRESS,
-			pass: azAppSettings.TUEBI_EMAIL_NO_REPLY_PASSWORD,
+			user: this.configService.get('TUEBI_EMAIL_NO_REPLY_ADDRESS'),
+			pass: this.configService.get('TUEBI_EMAIL_NO_REPLY_PASSWORD'),
 		},
 	};
+	
+  constructor(private configService: ConfigService) {
+  }
 	
 	async sendEmail(emailOptions: Mail.Options) {
 		try {
@@ -79,7 +81,7 @@ export class EmailsService {
 	
 	async genResetPasswordEmail(confirmationCode: string) {
 		try {
-			const FRONT_END_URL = azAppSettings.TUEBI_FRONTEND_URL + '/pw/reset';
+			const FRONT_END_URL = this.configService.get('TUEBI_FRONTEND_URL') + '/pw/reset';
 			const year = new Date().getFullYear();
 			const {html} = mjml2html(`
 			  <mjml>

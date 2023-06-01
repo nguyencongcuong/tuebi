@@ -1,11 +1,10 @@
 import { ContainerClient } from '@azure/storage-blob';
 import { Injectable } from '@nestjs/common';
-import { azAppSettings } from './azure-application-settings';
 const { BlobServiceClient } = require("@azure/storage-blob");
 
 @Injectable()
 export class AzBlobStorageClient {
-	private connectionString = azAppSettings.AZURE_STORAGE_PRIMARY_KEY;
+	private connectionString = process.env.AZURE_STORAGE_PRIMARY_KEY;
 	private blobServiceClient = BlobServiceClient.fromConnectionString(this.connectionString);
 	private containerClient: ContainerClient;
 	

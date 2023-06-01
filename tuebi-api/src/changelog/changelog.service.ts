@@ -5,7 +5,7 @@ import { CreateChangelogDto } from './dto/create-changelog.dto';
 @Injectable()
 export class ChangelogService {
   private azureBlobStorageClient = new AzBlobStorageClient('enums');
-  private BLOB_NAME = 'changelog.json'
+  private BLOB_NAME = 'changelog.json';
   
   async create(createChangelogDto: CreateChangelogDto) {
     const content = JSON.stringify(createChangelogDto);

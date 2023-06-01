@@ -10,10 +10,12 @@ import { SubscriptionsService } from '../subscriptions/subscriptions.service';
 import { TagsService } from '../tags/tags.service';
 import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
+import { AzDbClient } from '../azure/az-db.client';
 
 @Module({
 	controllers: [UsersController],
 	providers: [
+    AzDbClient,
 		AuthService,
 		JwtService,
 		UsersService,

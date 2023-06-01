@@ -18,7 +18,6 @@ import { groupBy, isEmpty, transform } from 'lodash';
 import { AuthService } from '../auth/auth.service';
 import { AzureB2cJwt } from '../auth/guards/azure-b2c-jwt';
 import { PatchPayload } from '../azure/az-db.service';
-import { azAppSettings } from '../azure/azure-application-settings';
 import { CategoriesService } from '../categories/categories.service';
 import { SecurityService } from '../security/security.service';
 import { bookmarkHtmlToJson, runBatchAsync, sendError, sendSuccess } from '../utilities';
@@ -30,6 +29,7 @@ import {
   UpdateBookmarksRequestBodyI,
 } from './bookmarks.interface';
 import { BookmarksService } from './bookmarks.service';
+import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class BookmarksController {
@@ -45,6 +45,7 @@ export class BookmarksController {
     private bookmarksService: BookmarksService,
     private authService: AuthService,
     private securityService: SecurityService,
+    private configService: ConfigService,
   ) {
   }
   
@@ -69,8 +70,8 @@ export class BookmarksController {
             Authorization: bearerToken,
           },
         };
-        const createCategoryUrl = `${azAppSettings.TUEBI_BACKEND_URL}/categories`;
-        const createBookmarkUrl = `${azAppSettings.TUEBI_BACKEND_URL}/bookmarks`;
+        const createCategoryUrl = `${this.configService.get('TUEBI_BACKEND_URL')}/categories`;
+        const createBookmarkUrl = `${this.configService.get('TUEBI_BACKEND_URL')}/bookmarks`;
         
         const res = await axios.post(createCategoryUrl, newCategory, options);
         
